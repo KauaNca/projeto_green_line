@@ -12,24 +12,25 @@ body{
     padding:0;
 }
 .background-login-degrade{
-    background: linear-gradient(to bottom,#47EBB4,#A6F5DB,#FFFFFF);
-    height: 99.8%;
+    background: linear-gradient(to bottom,#1D4435,#40A82F,#FFFFFF,#F2B911) no-repeat;
+    height: 678px;
+    border: 1px solid black;
 }
 #login-register-block{
     width: 1100px;
     height: 600px;
     margin: 0 auto;
-    margin-top: 100px;
+    margin-top: 40px;
     box-sizing: border-box;
     padding: 15px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 .login-block{
     width: 44%;
 }
 .titulo-form{
-    font-size: 2.5rem;
+    font-size: 2.7rem;
     font-weight: bold;
 }
 .login-block form{
@@ -62,10 +63,6 @@ button{
 .color-red-button{
     background-color: #FF3333;
 }
-.register-block{
-    width: 45%;
-    border: 1px solid red; 
-}
 .alinhamento_form{
     width: 68%;
     display: flex;
@@ -80,10 +77,11 @@ a{
     font-size: 1.3rem;
 }
 .register-block{
+    width: 45%; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
 }
