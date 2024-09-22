@@ -37,9 +37,9 @@ a{
 #tela-inteira-cadastro {
     height: 100vh;  /* Use 100vh para garantir 100% da altura da tela */
     width: 100vw;   /* Use 100vw para garantir 100% da largura da tela */
-    background: -webkit-gradient(linear,left top, left bottom,from(#1D4435),color-stop(#40A82F),color-stop(#FFFFFF),to(#F2B911)) no-repeat;
-    background: -o-linear-gradient(top,#1D4435,#40A82F,#FFFFFF,#F2B911) no-repeat;
-    background: linear-gradient(to bottom,#1D4435,#40A82F,#FFFFFF,#F2B911) no-repeat;
+    background: -webkit-gradient(linear,left top, left bottom,from(#1D4435),color-stop(#40A82F),color-stop(gray),to(#47EBB4)) no-repeat;
+    background: -o-linear-gradient(top,#1D4435,#40A82F,gray,#47EBB4) no-repeat;
+    background: linear-gradient(to bottom,#1D4435,#40A82F,gray,#47EBB4) no-repeat;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -70,7 +70,7 @@ a{
         -ms-flex-align: center;
             align-items: center;
     font-size: 2rem;
-    color: black;
+    color: white;
 
 }
 #fazer-cadastro-container {
