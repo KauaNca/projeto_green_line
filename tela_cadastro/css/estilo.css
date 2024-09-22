@@ -1,0 +1,146 @@
+/* Fontes customizadas */
+@font-face {
+    font-family: "Nunito";
+    src: url(Nunito.ttf);
+}
+
+@font-face {
+    font-family: "CrimsonText";
+    src: url(CrimsonText.ttf);
+}
+
+body {
+    font-family: Nunito, CrimsonText; /* Padrão de fontes */
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Impede qualquer rolagem indesejada */
+}
+
+/* Configuração da tela inteira */
+#tela-inteira-cadastro {
+    height: 100vh;  /* Use 100vh para garantir 100% da altura da tela */
+    width: 100vw;   /* Use 100vw para garantir 100% da largura da tela */
+    background: linear-gradient(to top, #1D4435, #40A82F, #FFFFFF, #F2B911) no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Relativo para que o absolute funcione */
+}
+
+/* Contêiner de login */
+#fazer-login-container {
+    width: 500px;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: black;
+}
+
+/* Contêiner de cadastro */
+#fazer-cadastro-container {
+    width: 500px;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+/* Estilo do título */
+h1 {
+    font-size: 3rem;
+    margin: 10px;
+}
+
+/* Estilo do formulário */
+form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo dos inputs e botões */
+input, button {
+    display: block;
+    width: 60%;
+    height: 15%;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    padding-left: 15px;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid gray;
+}
+
+button {
+    width: 30%;
+    height: 15%;
+}
+
+/* Botão alinhado à direita */
+.alinhamento-a-direita {
+    margin-right: -174px;
+    background-color: #40A82F;
+    color: white;
+    height: 12%;
+}
+
+.alinhamento-a-direita:hover {
+    background-color: #28871F;
+}
+
+/* Botão vermelho */
+.color-red-button {
+    background-color: red;
+    color: white;
+    height: 12%;
+}
+
+.color-red-button:hover {
+    background-color: #B22222;
+}
+
+/* Imagem de voltar no canto */
+#imagem-voltar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px; /* Adiciona espaçamento */
+    z-index: 1000; /* Garante que a imagem esteja sempre visível acima de outros elementos */
+}
+
+#imagem-voltar img {
+    width: 40px; /* Ajusta o tamanho da imagem */
+    height: auto; /* Mantém a proporção da imagem */
+}
+
+/* Media query para telas menores */
+@media (max-width: 850px) {
+    #tela-inteira-cadastro {
+        flex-direction: column-reverse;
+    }
+    
+    #fazer-login-container {
+        margin-bottom: 10px;
+        background-color: white;
+        height: 40%;
+    }
+
+    .color-red-button {
+        height: 50px;
+        width: 145px;
+    }
+
+    #imagem-voltar img {
+        width: 30px; /* Reduz o tamanho da imagem em telas menores */
+    }
+}
