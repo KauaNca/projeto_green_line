@@ -145,6 +145,7 @@ button {
 
 .alinhamento-a-direita:hover {
     background-color: #28871F;
+    cursor: pointer;
 }
 
 /* Botão vermelho */
@@ -156,6 +157,7 @@ button {
 }
 .color-red-button:hover {
     background-color: #B22222;
+    cursor: pointer;
 }
 
 /* Imagem de voltar no canto */
