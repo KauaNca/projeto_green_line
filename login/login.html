@@ -1,37 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="css/login_estilo.css">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <script src="js/script.js"></script>
 </head>
 
-<body class="background-login-degrade">
+<body id="tela-inteira-cadastro">
     <div id="imagem-voltar">
         <a href="#"><img src="../login/img/icone_voltar.png" alt="voltar"></a>
     </div>
-    <section id="login-register-block">
-        <section class="login-block">
-            <form>
-                <h1 class="titulo-form">Login</h1>
-                <input type="email" placeholder="E-mail" required>
-                <input type="password" placeholder="Senha" required>
-                <div class="alinhamento_form">
-                    <button type="submit" class="color-green-button">Entrar</button>
-                </div>
-                <div class="esqueceu_a_senha">
-                    <a href="#">Esqueceu a senha?</a>
-                </div>
-            </form>
-        </section>
-        <section class="register-block">
-            <span>Não tem uma conta?</span>
-            <span>Faça seu registro</span>
-            <button type="button" class="color-red-button">Cadastrar</button>
-        </section>
+
+    </div>
+    <section id="fazer-cadastro-container">
+        <form>
+            <h1>Login</h1>
+            <input type="email" placeholder="Email" required maxlength="30" minlength="8">
+            <input type="password" placeholder="Senha" required maxlength="10" minlength="5">
+            <section id="redes-sociais-container">
+                <a href="#"><img src="img/email.png"></a>
+                <a href="#"><img src="img/instagram.png"></a>
+                <a href="#"><img src="img/facebook.png"></a>
+                <a href="#"><img src="img/twitter.png"></a>
+            </section>
+            <button type="submit" class="alinhamento-a-direita"><a href="#">Entrar</a></button>
+        </form>
     </section>
+    <section id="fazer-login-container">
+        <span>Não tem uma conta?</span>
+            <span>Faça seu registro</span>
+        <button type="button" class="color-red-button"><a href="../tela_cadastro/cadastro.html">Cadastro</a></button>
+    </section>
+
 </body>
 
 </html>
