@@ -22,7 +22,14 @@ body {
     padding: 0;
     overflow: hidden; /* Impede qualquer rolagem indesejada */
 }
-
+@keyframes movimentacao_inicial{
+    from{
+        right: -200px;
+    }
+    to{
+        right: 0;
+    }
+}
 /* Configuração da tela inteira */
 #tela-inteira-cadastro {
     height: 100vh;  /* Use 100vh para garantir 100% da altura da tela */
@@ -40,6 +47,8 @@ body {
         -ms-flex-align: center;
             align-items: center;
     position: relative; /* Relativo para que o absolute funcione */
+    animation-name: movimentacao_inicial;
+    animation-duration: 1s;
 }
 
 /* Contêiner de login */
@@ -174,7 +183,10 @@ button {
 #redes-sociais-container img:hover{
     transform: scale(1.1);
 }
-
+a{
+    color: white;
+    text-decoration: none;
+}
 /* Media query para telas menores */
 @media (max-width: 850px) {
     #tela-inteira-cadastro {

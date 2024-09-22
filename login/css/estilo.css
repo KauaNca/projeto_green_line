@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 /* Fontes customizadas */
 @font-face {
     font-family: "Nunito";
@@ -15,6 +22,14 @@ body {
     padding: 0;
     overflow: hidden; /* Impede qualquer rolagem indesejada */
 }
+@keyframes movimentacao_inicial{
+    from{
+        left: -200px;
+    }
+    to{
+        left: 0;
+    }
+}
 a{
     color: white;
     text-decoration: none;
@@ -22,6 +37,8 @@ a{
 #tela-inteira-cadastro {
     height: 100vh;  /* Use 100vh para garantir 100% da altura da tela */
     width: 100vw;   /* Use 100vw para garantir 100% da largura da tela */
+    background: -webkit-gradient(linear,left top, left bottom,from(#1D4435),color-stop(#40A82F),color-stop(#FFFFFF),to(#F2B911)) no-repeat;
+    background: -o-linear-gradient(top,#1D4435,#40A82F,#FFFFFF,#F2B911) no-repeat;
     background: linear-gradient(to bottom,#1D4435,#40A82F,#FFFFFF,#F2B911) no-repeat;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -33,6 +50,8 @@ a{
         -ms-flex-align: center;
             align-items: center;
     position: relative; /* Relativo para que o absolute funcione */
+    animation-name: movimentacao_inicial;
+    animation-duration: 1s;
 }
 #fazer-login-container {
     width: 500px;
@@ -52,6 +71,7 @@ a{
             align-items: center;
     font-size: 2rem;
     color: black;
+
 }
 #fazer-cadastro-container {
     width: 500px;
@@ -157,12 +177,17 @@ button {
     margin: 5px;
 }
 #redes-sociais-container img:hover{
-    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+            transform: scale(1.1);
 }
 /* Media query para telas menores */
 @media (max-width: 850px) {
     #tela-inteira-cadastro {
-                flex-direction: column;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                    -ms-flex-direction: column;
+                        flex-direction: column;
     }
     
     #fazer-login-container {
@@ -191,4 +216,17 @@ button {
     input,button{
         font-size: 1.2rem;
     }
+}.example {
+    display: -ms-grid;
+    display: grid;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    background: -webkit-gradient(linear, left top, left bottom, from(white), to(black));
+    background: -o-linear-gradient(top, white, black);
+    background: linear-gradient(to bottom, white, black);
 }
