@@ -70,7 +70,7 @@ form {
 input, button {
     display: block;
     width: 60%;
-    height: 15%;
+    height: 10%;
     margin-bottom: 15px;
     font-size: 1.4rem;
     padding-left: 15px;
@@ -91,7 +91,8 @@ button {
     margin-right: -174px;
     background-color: #40A82F;
     color: white;
-    height: 12%;
+    height: 9%;
+    border-radius: 10px;
 }
 
 .alinhamento-a-direita:hover {
@@ -102,7 +103,8 @@ button {
 .color-red-button {
     background-color: red;
     color: white;
-    height: 12%;
+    height: 9%;
+    border-radius: 10px;
 }
 
 .color-red-button:hover {
@@ -122,6 +124,11 @@ button {
     width: 40px; /* Ajusta o tamanho da imagem */
     height: auto; /* Mantém a proporção da imagem */
 }
+#redes-sociais-container img{
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+}
 
 /* Media query para telas menores */
 @media (max-width: 850px) {
@@ -133,14 +140,27 @@ button {
         margin-bottom: 10px;
         background-color: white;
         height: 40%;
+        font-size: 1.5rem;
+    }
+    #fazer-login-container span{
+        font-size: 1.4rem;
+        margin-top: -15px;
+        margin-bottom: 15px;
     }
 
     .color-red-button {
         height: 50px;
         width: 145px;
     }
-
+    .alinhamento-a-direita{
+        
+        margin: 0 auto;
+        margin-top: 30px;
+    }
     #imagem-voltar img {
         width: 30px; /* Reduz o tamanho da imagem em telas menores */
+    }
+    input,button{
+        font-size: 1.2rem;
     }
 }
