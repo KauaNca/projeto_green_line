@@ -1,0 +1,83 @@
+/* Fontes customizadas */
+@font-face {
+    font-family: "Nunito";
+    src: url(Nunito.ttf);
+}
+
+@font-face {
+    font-family: "CrimsonText";
+    src: url(CrimsonText.ttf);
+}
+
+body {
+    font-family: Nunito, CrimsonText; /* Padrão de fontes */
+    margin: 0;
+    padding: 0;
+}
+#imagem-inicial-sobre{
+    width: 99.8vw;
+    height: 45vh;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#imagem-inicial-sobre span{ 
+    display: block;
+    font-size: 1.8rem;
+}
+#imagem-inicial-sobre #titulo{
+    font-size: 3rem;
+}
+#imagem2-inicial-sobre{
+    width: 99.8vw;
+    height: 43vh;
+    background-color: blue;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+.quadrados-meio{
+    height: 400px;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -55px;
+    background-color: white;
+    border-radius: 15px;
+    flex-direction: column;
+    font-size: 1.7rem;
+}
+
+.quadrados-meio img{
+    width: 250px;
+    height: 250px;
+    margin-bottom: 30px;
+}
+#texto-sobre-empresa{
+    margin-top: 5px;
+    width: 99.8vw;
+    height: 90vh;
+    display: flex;
+}
+#texto-sobre-empresa div{
+    width: 800px;
+    height: 400px;
+    margin-bottom: 5px;
+}
+#align-item-end{
+    align-self:flex-end;
+    background-color: yellow;
+    z-index: -1;
+}
+#align-item-start{
+    align-self: flex-start;
+    justify-self: flex-end;
+    background-color: green;
+    z-index: -1;
+}
+#align-item-center{
+    justify-self: center;
+}

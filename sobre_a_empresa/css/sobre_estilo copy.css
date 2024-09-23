@@ -1,0 +1,17 @@
+/* Fontes customizadas */
+@font-face {
+    font-family: "Nunito";
+    src: url(Nunito.ttf);
+}
+
+@font-face {
+    font-family: "CrimsonText";
+    src: url(CrimsonText.ttf);
+}
+
+body {
+    font-family: Nunito, CrimsonText; /* Padrão de fontes */
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Impede qualquer rolagem indesejada */
+}
