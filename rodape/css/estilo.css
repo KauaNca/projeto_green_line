@@ -1,0 +1,88 @@
+@font-face {
+    font-family: "Nunito";
+    src: url(Nunito.ttf);
+}
+@font-face{
+    font-family: "CrimsonText";
+    src: url(CrimsonText.ttf);
+}
+body{
+    font-family: Nunito,CrimsonText; /*padrão*/
+    margin: 0;
+    padding:0;
+}
+footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+  }
+  
+
+
+#caixapreta {
+    background-color: #000000;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#caixapreta h3 {
+    border-bottom: 1px solid #1cee00e1;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+  
+   
+
+}
+
+#caixapreta ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+#caixapreta li {
+    margin: 5px 0;
+    text-align: center;
+}
+
+#caixapreta a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#caixapreta a:hover {
+    text-decoration: underline;
+}
+
+#caixa_alta {
+    background-color: rgba(27, 202, 27, 0.877);
+    color: #fff;
+    text-align: center;
+}
+
+#cb01{
+    background-color: #000000;
+}
+
+#caixa_baixa{
+  background-color: #000000;
+  color: #fff;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+#cbnomes{
+    background-color: #000000;
+    color: #fff;
+    text-align: center;
+    margin: 5px 0;
+}
+
+#caixap01, #caixap02, #caixap03 {
+    flex: 2;
+    margin: 0 10px;
+}
+
+  
