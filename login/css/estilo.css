@@ -37,10 +37,9 @@ a{
 #tela-inteira-cadastro {
     height: 100vh;  /* Use 100vh para garantir 100% da altura da tela */
     width: 100vw;   /* Use 100vw para garantir 100% da largura da tela */
-    background: -webkit-gradient(linear,left top, left bottom,from(#1D4435),color-stop(#40A82F),color-stop(gray),to(#47EBB4)) no-repeat;
-    background: -o-linear-gradient(top,#1D4435,#40A82F,gray,#47EBB4) no-repeat;
-    background: linear-gradient(to bottom,#1D4435,#40A82F,gray,#47EBB4) no-repeat;
-    display: -webkit-box;
+    background: -webkit-gradient(linear,left top, left bottom,from(#11422D),color-stop(#6EC030),color-stop(#3CA12A)) no-repeat;
+    background: -o-linear-gradient(top,#6EC030,#3CA12A,#11422D) no-repeat;
+    background: linear-gradient(to bottom,#11422D,#3CA12A,#6EC030) no-repeat; display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
@@ -136,7 +135,7 @@ button {
 /* Botão alinhado à direita */
 .alinhamento-a-direita {
     margin-right: -174px;
-    background-color: #40A82F;
+    background-color:  #28871F;
     color: white;
     height: 9%;
     border-radius: 10px;
@@ -144,21 +143,23 @@ button {
 }
 
 .alinhamento-a-direita:hover {
-    background-color: #28871F;
+    background-color: #11422D;
     cursor: pointer;
 }
 
 /* Botão vermelho */
 .color-red-button {
-    background-color: red;
+    background-color: #11422D;
     color: white;
     height: 9%;
     border-radius: 10px;
 }
+
 .color-red-button:hover {
-    background-color: #B22222;
+    background-color: #28871F;
     cursor: pointer;
 }
+
 
 /* Imagem de voltar no canto */
 #imagem-voltar {
