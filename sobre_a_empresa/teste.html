@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco Interativo</title>
+    <style>
+        .bloco {
+            width: 200px;
+            height: auto;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .texto-escondido {
+            display: none;
+            margin-top: 10px;
+            color: #ecf0f1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bloco" onclick="mostrarTexto(this)">
+        Clique aqui para ver mais
+        <div class="texto-escondido">
+            Esse é o texto escondido que aparece dentro do bloco!
+        </div>
+    </div>
+
+    <script>
+        function mostrarTexto(elemento) {
+            var texto = elemento.querySelector('.texto-escondido');
+            if (texto.style.display === "none") {
+                texto.style.display = "block";
+            } else {
+                texto.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>

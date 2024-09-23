@@ -92,8 +92,6 @@ body {
     padding: 10px;
     flex-direction: column;
     border-radius: 10px;
-
-
 }
 
 #align-item-start {
@@ -162,4 +160,94 @@ body {
     position: absolute;
     bottom: 0;
     left: 0;
+}
+#colaboladores{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 5px;
+    background-color: brown;
+    margin-top: 10px;
+}
+#colaboladores div{
+    display: flex;
+    justify-content: space-evenly;
+}
+#nossos-valores{
+    width: 99.8vw;
+    height: 99.5vh;
+    background-color: yellow;
+    margin-top: 10px;
+    padding: 5px;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-evenly;
+}
+#primeira-coluna{
+    display: flex;
+    flex-direction: column;
+}
+.valores{
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+    width: 700px;
+    height: 110vh;
+    padding: 15px;
+    align-items: left;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.titulo-e-imagem{
+    display: flex;
+}
+.titulo-e-imagem img{
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+.texto-valores{
+    text-align: justify;
+}
+#perguntas-e-fatos{
+    width: 99.8vw;
+    height: 50vh;
+    background-color: orange;
+    margin-top: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.perguntas-e-fatos{
+    background-color: white;
+    width: 80%;
+    height: auto;
+    padding: 10px;
+    font-size: 1.4rem;
+    border-radius: 5px;
+    position: relative;
+    margin-bottom: 15px;
+    
+}
+.perguntas-e-fatos img{
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    border: 1px solid red;
+}
+.texto-escondido {
+    display: none;
+    margin-top: 10px;
+    color: #ecf0f1;
+}
+#perguntas-e-fatos button{
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #29c20a;
+    font-size: 1.1rem;
+    color: white;
 }
