@@ -1,8 +1,7 @@
-li{
-    display: inline;
+a,li{
+display: inline;
     padding: 10px;
 }
-
 #caixa-pesquisa {
   width: 70%;
   padding: 14px;
@@ -18,9 +17,10 @@ li{
 }
 
 #categorias a{
-    text-decoration: none;
+  text-decoration: none;
     color: black;
-    padding: 50px;
+    padding: 10px;
+    font-size: 18px;
 }
 
 #categorias ul {
@@ -36,10 +36,10 @@ li{
   }
 
 .imagem-direita img{
-  width: 50px;
-  height: 50px;
-  margin: 10px;
+  padding: 15px;
+  width: 45px;
   position: relative;
+  cursor: pointer;
 }
 
 #Eco a{
@@ -50,9 +50,9 @@ li{
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    width: 160px; /* add this line to set the width */
-    max-height: 250px; /* add this line to set the max height */
-    overflow-y: auto; /* add this line to enable vertical scrolling */
+    width: 160px; 
+    max-height: 250px; 
+    overflow-y: auto;
   }
   
   .dropdown-content a {
@@ -68,4 +68,13 @@ li{
   
   .dropdown:hover .dropdown-content {
     display: block;
+  }
+
+  #Eco a:hover {
+    color: rgb(4, 155, 4);
+    text-decoration: underline;
+  }
+
+  #categorias a:hover {
+    text-decoration: underline;
   }
