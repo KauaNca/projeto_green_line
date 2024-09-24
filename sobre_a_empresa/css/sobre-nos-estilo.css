@@ -1,0 +1,178 @@
+/* Fontes customizadas */
+@font-face {
+    font-family: "Nunito";
+    src: url(Nunito.ttf);
+}
+
+@font-face {
+    font-family: "CrimsonText";
+    src: url(CrimsonText.ttf);
+}
+@font-face {
+    font-family: "Oswald";
+    src: url(Oswald-Bold.ttf);
+}
+
+body {
+    font-family: Nunito, CrimsonText; /* Padrão de fontes */
+    margin: 0;
+    padding: 0;
+}
+#nossa-historia{
+    width: 99.8vw;
+    height: 40vh;
+    background: #af923a;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    padding-top: 80px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+#titulo-texto-historia{
+    font-family: Oswald;
+    font-size: 1.8rem;
+    color: white ;
+}
+#titulo-texto-historia2{
+    font-family: Oswald;
+    font-size: 1.8rem;
+    color: white ;
+    text-indent: 120px;
+}
+#texto-nossa-historia{
+    display: flex;
+    flex-direction: row;
+}
+#primeiro-texto,#segundo-texto{
+    width: 400px;
+    margin-right: 30px;
+    margin-left: 30px;
+    text-align: justify;
+    font-size: 1.5rem;
+    font-family: CrimsonText;
+}
+#nossa-equipe{
+    width: 99.8vw;
+    height: 90vh;
+    background-color: #6FC933;
+    position: relative;
+    text-align: center;
+}
+.quadrado-descricao{
+    display: flex;
+    width: 500px;
+    height: 250px;
+    margin: 5px;
+    padding: 5px;
+    background-color: white;
+}
+.equipe-imagem{
+    width: 250px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.texto-pessoa{
+    width: 250px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.equipe-imagem img{
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+
+}
+.ultimo-quadro{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.segundo-quadro{
+    position: absolute;
+    right: 0;
+    top: 45px;
+}
+.centro-quadro{
+    position: absolute;
+    top: 50%; /* 50% da altura do contêiner */
+    left: 50%; /* 50% da largura do contêiner */
+    transform: translate(-50%, -50%); /* Move o elemento para cima e para a esquerda pela metade da sua própria largura e altura */
+}
+.quarto-quadro{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+#nossos-valores{
+    width: 99.8vw;
+    height: 99.5vh;
+    background-color: yellow;
+    margin-top: 10px;
+    padding: 5px;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-evenly;
+}
+#primeira-coluna{
+    display: flex;
+    flex-direction: column;
+}
+.valores{
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+    width: 700px;
+    height: 110vh;
+    padding: 15px;
+    align-items: left;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.titulo-e-imagem{
+    display: flex;
+}
+.titulo-e-imagem img{
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+.texto-valores{
+    text-align: justify;
+}
+#nossos-valores{
+    width: 99.8vw;
+    height: 50vh;
+    background-color: bisque;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+#quadrado-valores{
+    width: 300px;
+    height: 300px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    border-radius: 15px ;
+}
+#texto-escondido{
+    display: none;
+}
+#alinhamento-row{
+    width: 70.8vw;
+    display: flex;
+    justify-content: space-around;
+}
