@@ -10,27 +10,36 @@
 }
 
 body {
-    font-family: Nunito, CrimsonText; /* Padrão de fontes */
+    font-family: Nunito, CrimsonText;
+    /* Padrão de fontes */
     margin: 0;
     padding: 0;
 }
-#imagem-inicial-sobre{
+
+#imagem-inicial-sobre {
     width: 99.8vw;
-    height: 45vh;
-    background-color: gray;
+    height: 55vh;
+    background-image: url(../img/\(1\).jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    background-attachment: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-#imagem-inicial-sobre span{ 
+
+#imagem-inicial-sobre span {
     display: block;
     font-size: 1.8rem;
 }
-#imagem-inicial-sobre #titulo{
+
+#imagem-inicial-sobre #titulo {
     font-size: 3rem;
 }
-#imagem2-inicial-sobre{
+
+#imagem2-inicial-sobre {
     width: 99.8vw;
     height: 43vh;
     background-color: blue;
@@ -38,7 +47,8 @@ body {
     justify-content: space-evenly;
     align-items: flex-start;
 }
-.quadrados-meio{
+
+.quadrados-meio {
     height: 400px;
     width: 400px;
     display: flex;
@@ -51,26 +61,32 @@ body {
     font-size: 1.7rem;
 }
 
-.quadrados-meio img{
+.quadrados-meio img {
     width: 250px;
     height: 250px;
     margin-bottom: 30px;
 }
-#texto-sobre-empresa{
+
+#texto-sobre-empresa {
     margin-top: 5px;
     width: 99.8vw;
     height: 90vh;
     border: 1px solid blue;
     position: relative;
 }
+
 #texto-sobre-empresa {
-    position: relative; /* Se necessário para o contexto de empilhamento */
+    position: relative;
+    /* Se necessário para o contexto de empilhamento */
 }
 
 #align-item-end {
-    position: absolute; /* ou relative */
-    z-index: 1; /* Menor valor */
-    background-color: red; /* Apenas para visualização */
+    position: absolute;
+    /* ou relative */
+    z-index: 1;
+    /* Menor valor */
+    background-color: red;
+    /* Apenas para visualização */
     width: 700px;
     height: 400px;
     bottom: 15px;
@@ -78,13 +94,20 @@ body {
 }
 
 #align-item-center {
-    position: absolute; /* ou relative */
-    z-index: 2; /* Maior valor */
-    background:linear-gradient(to bottom,#47EBB4,#FFF); /* Apenas para visualização */
+    position: absolute;
+    /* ou relative */
+    z-index: 2;
+    /* Maior valor */
+    background: linear-gradient(to bottom, #47EBB4, #FFF);
+    /* Apenas para visualização */
     width: 800px;
     height: 500px;
-    top: 150px;
-    left: 500px;
+    top: 50%;
+    /* 50% da altura do contêiner */
+    left: 50%;
+    /* 50% da largura do contêiner */
+    transform: translate(-50%, -50%);
+    /* Move o elemento para cima e para a esquerda pela metade da sua própria largura e altura */
     text-align: justify;
     display: flex;
     align-items: center;
@@ -95,22 +118,26 @@ body {
 }
 
 #align-item-start {
-    position: absolute; /* ou relative */
-    z-index: 1; /* Menor valor */
-    background-color: green; /* Apenas para visualização */
+    position: absolute;
+    /* ou relative */
+    z-index: 1;
+    /* Menor valor */
+    background-color: green;
+    /* Apenas para visualização */
     width: 700px;
     height: 400px;
     right: 50px;
     top: 15px;
 }
 
-#nossa-equipe{
+#nossa-equipe {
     width: 99.8vw;
     height: 90vh;
     background-color: #47EBB4;
     position: relative;
 }
-.quadrado-descricao{
+
+.quadrado-descricao {
     display: flex;
     border: 1px solid red;
     width: 500px;
@@ -119,14 +146,16 @@ body {
     padding: 5px;
     background-color: white;
 }
-.equipe-imagem{
+
+.equipe-imagem {
     width: 250px;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.texto-pessoa{
+
+.texto-pessoa {
     width: 250px;
     height: 100%;
     display: flex;
@@ -134,34 +163,43 @@ body {
     align-items: center;
     flex-direction: column;
 }
-.equipe-imagem img{
+
+.equipe-imagem img {
     width: 200px;
     height: 200px;
     border-radius: 100px;
 
 }
-.ultimo-quadro{
+
+.ultimo-quadro {
     position: absolute;
     right: 0;
     bottom: 0;
 }
-.segundo-quadro{
+
+.segundo-quadro {
     position: absolute;
     right: 0;
     top: 0;
 }
-.centro-quadro{
+
+.centro-quadro {
     position: absolute;
-    top: 50%; /* 50% da altura do contêiner */
-    left: 50%; /* 50% da largura do contêiner */
-    transform: translate(-50%, -50%); /* Move o elemento para cima e para a esquerda pela metade da sua própria largura e altura */
+    top: 50%;
+    /* 50% da altura do contêiner */
+    left: 50%;
+    /* 50% da largura do contêiner */
+    transform: translate(-50%, -50%);
+    /* Move o elemento para cima e para a esquerda pela metade da sua própria largura e altura */
 }
-.quarto-quadro{
+
+.quarto-quadro {
     position: absolute;
     bottom: 0;
     left: 0;
 }
-#colaboladores{
+
+#colaboladores {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -170,11 +208,13 @@ body {
     background-color: brown;
     margin-top: 10px;
 }
-#colaboladores div{
+
+#colaboladores div {
     display: flex;
     justify-content: space-evenly;
 }
-#nossos-valores{
+
+#nossos-valores {
     width: 99.8vw;
     height: 99.5vh;
     background-color: yellow;
@@ -184,11 +224,13 @@ body {
     display: flex;
     justify-content: space-evenly;
 }
-#primeira-coluna{
+
+#primeira-coluna {
     display: flex;
     flex-direction: column;
 }
-.valores{
+
+.valores {
     display: flex;
     background-color: white;
     flex-direction: column;
@@ -200,18 +242,22 @@ body {
     margin-bottom: 20px;
     margin-top: 20px;
 }
-.titulo-e-imagem{
+
+.titulo-e-imagem {
     display: flex;
 }
-.titulo-e-imagem img{
+
+.titulo-e-imagem img {
     width: 30px;
     height: 30px;
     margin-right: 10px;
 }
-.texto-valores{
+
+.texto-valores {
     text-align: justify;
 }
-#perguntas-e-fatos{
+
+#perguntas-e-fatos {
     width: 99.8vw;
     height: 50vh;
     background-color: orange;
@@ -221,7 +267,8 @@ body {
     flex-direction: column;
     align-items: center;
 }
-.perguntas-e-fatos{
+
+.perguntas-e-fatos {
     background-color: white;
     width: 80%;
     height: auto;
@@ -230,20 +277,23 @@ body {
     border-radius: 5px;
     position: relative;
     margin-bottom: 15px;
-    
+
 }
-.perguntas-e-fatos img{
+
+.perguntas-e-fatos img {
     position: absolute;
     right: 10px;
     top: 30px;
     border: 1px solid red;
 }
+
 .texto-escondido {
     display: none;
     margin-top: 10px;
     color: #ecf0f1;
 }
-#perguntas-e-fatos button{
+
+#perguntas-e-fatos button {
     width: 150px;
     height: 50px;
     border-radius: 5px;
