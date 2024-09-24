@@ -28,9 +28,9 @@ footer {
 }
 
 #caixapreta h3 {
-    border-bottom: 1px solid #1cee00e1;
-    padding-bottom: 5px;
-    margin-bottom: 5px;
+    border-bottom: 1px solid #006C3F;
+    padding-bottom: 0,5px;
+    margin-bottom: 0,5px;
     text-align: center;
   
    
@@ -57,7 +57,7 @@ footer {
 }
 
 #caixa_alta {
-    background-color: rgba(27, 202, 27, 0.877);
+    background-color:#006C3F;
     color: #fff;
     text-align: center;
 }
