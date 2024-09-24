@@ -44,7 +44,7 @@ a,li{
     }
     
     #Eco a{
-        color: green;
+        color: rgb(2, 173, 2);
     }
     
     .dropdown-content {
@@ -72,7 +72,7 @@ a,li{
       }
     
       #Eco a:hover {
-        color: rgb(4, 155, 4);
+        color: rgb(8, 255, 8);
         text-decoration: underline;
       }
     
@@ -87,7 +87,7 @@ a,li{
         padding-bottom: 10px;
         margin: 10px;
         border-radius: 10px;
-        background: #024b2d7e;
+        background: rgba(221, 252, 200, 0.541);
         margin-top: 0px;
     }
     .caixa-servico:hover{
@@ -126,7 +126,7 @@ a,li{
     }
     .agendamento-botao:hover{
         background-color: #11111100;
-        color: rgb(255, 255, 255);
+        color: rgb(102, 102, 102);
         font-style:italic;
         border: 2px solid rgb(42, 224, 87);
     }
