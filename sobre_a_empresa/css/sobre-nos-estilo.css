@@ -18,19 +18,22 @@ body {
     margin: 0;
     padding: 0;
 }
+body#sobre-nos{
+    background-color: #F4F1E9;
+}
 #nossa-historia{
     width: 99.8vw;
     height: 40vh;
-    background: #af923a;
+    background: #006C3F;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 15px;
     padding-top: 80px;
-    margin-bottom: 20px;
     text-align: center;
 }
+
 #titulo-texto-historia{
     font-family: Oswald;
     font-size: 1.8rem;
@@ -55,9 +58,9 @@ body {
     font-family: CrimsonText;
 }
 #nossa-equipe{
-    width: 99.8vw;
+    width: 99.9vw;
     height: 90vh;
-    background-color: #6FC933;
+    background-color: #F4F1E9;
     position: relative;
     text-align: center;
 }
@@ -68,6 +71,15 @@ body {
     margin: 5px;
     padding: 5px;
     background-color: white;
+    color: black;
+    border-radius: 20px;
+    } 
+.texto-pessoa p {
+    font-size: 1.5rem;
+}
+.texto-pessoa h2{
+    margin: 0;
+    font-size: 1.8rem;
 }
 .equipe-imagem{
     width: 250px;
@@ -90,32 +102,38 @@ body {
     border-radius: 100px;
 
 }
+.primeiro-quadro h2{
+    margin-bottom: -20px;
+}.primeiro-quadro p{
+    font-size: 1.3rem;
+}
 .ultimo-quadro{
     position: absolute;
-    right: 0;
-    bottom: 0;
+    bottom: 10px;
+    right: 20px;
+    
 }
 .segundo-quadro{
     position: absolute;
-    right: 0;
+    right: 20px;
     top: 45px;
+    
 }
 .centro-quadro{
     position: absolute;
-    top: 50%; /* 50% da altura do contêiner */
+    top: 51.5%; /* 50% da altura do contêiner */
     left: 50%; /* 50% da largura do contêiner */
     transform: translate(-50%, -50%); /* Move o elemento para cima e para a esquerda pela metade da sua própria largura e altura */
 }
 .quarto-quadro{
     position: absolute;
-    bottom: 0;
-    left: 0;
+    bottom: 10px;
+    left: 10px;
 }
 #nossos-valores{
     width: 99.8vw;
     height: 99.5vh;
     background-color: yellow;
-    margin-top: 10px;
     padding: 5px;
     flex-direction: row;
     display: flex;
@@ -151,7 +169,7 @@ body {
 #nossos-valores{
     width: 99.8vw;
     height: 50vh;
-    background-color: bisque;
+    background-color: #a9c795;
     display: flex;
     flex-direction: column;
     align-items: center;
