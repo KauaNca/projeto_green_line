@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <title>Contatos</title>
+   
+</head>
+<body>
+    <header class="cont-header">
+        <h1 class="cont-h1">Contate-nos</h1>
+        <p class="cont-pA">Alguma dúvida ou  observação? Basta nos escrever  uma mensagem!</p>
+    </header>
+    <main id="main-contato">
+        <div class="contato-form">
+            <form action="">
+                <fieldset>
+                    <legend>Entrar em Contato</legend>
+                    <p id="cont-P">Tem um inquérito ou algum feedbak para nós? Preencha o formulário abaixo para entrar em contato com nossa equipe.</p>
+                    <label for="nome" >Nome:</label>
+                    <input type="text" id="nome" name="nome" onkeyup="validaNome()">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" onkeyup="validaEmail()">
+                    <label for="assunto">Como podemos ajudar?</label>
+                    <textarea name="assunto" id="assunto" onkeyup="validaAssunto()"></textarea>
+                    <input type="submit" value="Enviar" onclick="enviar()">
+                </fieldset>
+            </form>
+        </div>
+        <div class="contato-img">
+            
+                <img id="img1" src="./img/retorno-tel.png" alt="imagem contato">
+           
+            <div id="cont-caixa">
+                <div class="cont-caixas">
+                    <img id="ico" src="./img/celular.png" alt="incone de celular">
+                    <a href="#"><h6>Telefone</h6></a>
+                    <a href="#">(00) 99999-9999</a>
+                </div>
+                <div class="cont-caixas">
+                    <img id="ico-email" src="./img/o-email.png" alt="incone de email">
+                    <a href="#"><h6>Email</h6></a>
+                    <a href="#">MeuEmail@email.com</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
