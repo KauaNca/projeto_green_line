@@ -118,13 +118,17 @@ a,li{
         }
         .txt-cima{
           display: flex;
+          box-sizing: border-box;
           justify-content: space-between;
-          padding: 20px;
-          border: 1px solid rgba(170, 170, 170, 0.37);
-          margin: 5px;
-          margin-left: 100px;
-          border-top:none ;
-          border-left:none ;
+          align-items: center;
+          height: 51px;
+          width: 100%;
+          border-bottom: 0.5px solid gray;
+          padding-bottom: 10px ;
+        }
+        #segunda-coluna{
+          display: flex;
+          flex-direction: column;
         }
 #home, #Produtos{
   text-decoration: none;
@@ -185,4 +189,8 @@ a,li{
 }
 main{
   display: flex;
+}
+#produtos-container{
+  display: flex;
+  justify-content: space-around;
 }
