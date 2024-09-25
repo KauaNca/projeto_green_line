@@ -112,6 +112,18 @@ a,li{
         #limpar-carrinho:hover{
           background-color: #27c792;
         }
+        #comprar-carrinho{
+          background-color: #36f4ab;
+          color: #424242;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        
+        #comprar-carrinho:hover{
+          background-color: #27c792;
+        }
         
         #total-carrinho {
           font-weight: bold;
