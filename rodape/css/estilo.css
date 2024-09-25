@@ -1,16 +1,4 @@
-@font-face {
-    font-family: "Nunito";
-    src: url(../css/Nunito.ttf);
-}
-@font-face{
-    font-family: "CrimsonText";
-    src: url(../css/CrimsonText.ttf);
-}
-body{
-    font-family: Nunito,CrimsonText; /*padrão*/
-    margin: 0;
-    padding:0;
-}
+
 footer {
     background-color: #000;
     color: #fff;

@@ -1,23 +1,4 @@
 /* Fontes customizadas */
-@font-face {
-    font-family: "Nunito";
-    src: url(Nunito.ttf);
-}
-
-@font-face {
-    font-family: "CrimsonText";
-    src: url(CrimsonText.ttf);
-}
-@font-face {
-    font-family: "Oswald";
-    src: url(Oswald-Bold.ttf);
-}
-
-body {
-    font-family: Nunito, CrimsonText; /* Padrão de fontes */
-    margin: 0;
-    padding: 0;
-}
 body#sobre-nos{
     background-color: #F4F1E9;
 }
@@ -149,7 +130,7 @@ body#sobre-nos{
     text-align: center;
     justify-content: space-around;
 }
-#quadrado-valores{
+.quadrado-valores{
     width: 400px;
     height: 400px;
     background-color: white;
@@ -161,8 +142,10 @@ body#sobre-nos{
     border-radius: 15px ;
     margin: 15px;
 }
-#texto-escondido{
+.texto-escondido{
     display: none;
+    font-size: 1.8rem;
+    text-align: justify;
 }
 #alinhamento-row{
     width: 99.8vw;

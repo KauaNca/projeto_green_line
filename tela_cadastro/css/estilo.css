@@ -1,25 +1,4 @@
-/*
-* Prefixed by https://autoprefixer.github.io
-* PostCSS: v8.4.14,
-* Autoprefixer: v10.4.7
-* Browsers: last 4 version
-*/
-
-/* Fontes customizadas */
-@font-face {
-    font-family: "Nunito";
-    src: url(Nunito.ttf);
-}
-
-@font-face {
-    font-family: "CrimsonText";
-    src: url(CrimsonText.ttf);
-}
-
 body {
-    font-family: Nunito, CrimsonText; /* Padrão de fontes */
-    margin: 0;
-    padding: 0;
     overflow: hidden; /* Impede qualquer rolagem indesejada */
 }
 @keyframes movimentacao_inicial{
@@ -68,7 +47,7 @@ body {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: white;
 }
 
@@ -123,7 +102,7 @@ input, button {
     width: 60%;
     height: 10%;
     margin-bottom: 15px;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     padding-left: 15px;
 }
 

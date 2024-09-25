@@ -1,0 +1,19 @@
+@font-face {
+    font-family: "Nunito";
+    src: url(../estilo_padrao/Nunito.ttf);
+}
+
+@font-face {
+    font-family: "CrimsonText";
+    src: url(../estilo_padrao/CrimsonText.ttf);
+}
+@font-face {
+    font-family: "Oswald";
+    src: url(../estilo_padrao/Oswald-Bold.ttf);
+}
+
+body {
+    font-family: Nunito, CrimsonText; /* Padrão de fontes */
+    margin: 0;
+    padding: 0;
+}
