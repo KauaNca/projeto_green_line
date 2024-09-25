@@ -102,7 +102,6 @@ display: inline;
       font-size: 1.2rem;
     }
   }
-<<<<<<< Updated upstream
 
 .imagem-carrinho img{
   padding: 15px;
@@ -137,6 +136,7 @@ display: inline;
   border-radius: 15px;
   background-color: #ececec;
   padding: 18px;
+  transition: all ease-in-out 2s;
 }
 
 .imagem-direita {
@@ -148,19 +148,22 @@ display: inline;
   color: white;
   padding: 10px 20px;
   border-radius: 10px;
+  margin: 0;
 }
 
 .pergunta-h3{
+  margin: 0;
   display: flex;
   justify-content: center;
   text-align: center;
 }
 
 .crie-h3{
+  margin: 0;
   text-align: center;
   color: rgb(23, 145, 53);
   text-decoration:underline;
 }
-=======
- 
->>>>>>> Stashed changes
+a{
+  text-decoration: none;
+}

@@ -76,7 +76,10 @@ a{
     flex: 2;
     margin: 0 10px;
 }
-@media (max-width: 1300px){
+#rodape{
+    margin-top: 50px;
+}
+@media (max-width: 900px){
     #caixapreta{
         flex-direction: column;
     }
