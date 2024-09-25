@@ -40,6 +40,7 @@ display: inline;
   width: 45px;
   position: relative;
   cursor: pointer;
+  display: inline-block;
 }
 
 #Eco a{
@@ -85,6 +86,9 @@ display: inline;
     .imagem-direita img{
       width: 50px;
     }
+    .imagem-carrinho img{
+      width: 50px;
+    }
     #categorias a{
       font-size: 1.4rem;
     }
@@ -98,3 +102,61 @@ display: inline;
       font-size: 1.2rem;
     }
   }
+
+.imagem-carrinho img{
+  padding: 15px;
+  width: 45px;
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-content2 {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1;
+}
+
+.dropdown-toggle:hover + .dropdown-content2 {
+  display: block;
+  justify-content: center;
+  visibility: visible;
+  border-radius: 15px;
+  background-color: #ececec;
+  padding: 18px;
+}
+
+.dropdown-content2:hover {
+  display: block;
+  visibility: visible;
+  border-radius: 15px;
+  background-color: #ececec;
+  padding: 18px;
+}
+
+.imagem-direita {
+  position: relative;
+}
+
+.login-h3{
+  background-color: rgb(23, 145, 53);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.pergunta-h3{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.crie-h3{
+  text-align: center;
+  color: rgb(23, 145, 53);
+  text-decoration:underline;
+}
