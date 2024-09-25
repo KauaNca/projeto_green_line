@@ -23,7 +23,7 @@ body#sobre-nos{
 }
 #nossa-historia{
     width: 99.8vw;
-    height: 40vh;
+    height: auto;
     background: #006C3F;
     color: white;
     display: flex;
@@ -36,7 +36,7 @@ body#sobre-nos{
 
 #titulo-texto-historia{
     font-family: Oswald;
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     color: white ;
 }
 #titulo-texto-historia2{
@@ -50,85 +50,57 @@ body#sobre-nos{
     flex-direction: row;
 }
 #primeiro-texto,#segundo-texto{
-    width: 400px;
+    width: 450px;
     margin-right: 30px;
     margin-left: 30px;
     text-align: justify;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-family: CrimsonText;
 }
-#nossa-equipe{
-    width: 99.9vw;
-    height: 90vh;
-    background-color: #F4F1E9;
-    position: relative;
-    text-align: center;
-}
-.quadrado-descricao{
+#nossa-equipe {
     display: flex;
-    width: 500px;
-    height: 250px;
-    margin: 5px;
-    padding: 5px;
+    flex-direction: column;
+    text-align: center;
+    width: 99.9vw;
+    height: auto;
+    background-color: #F4F1E9;
+    padding-top: 15px;
+    padding: 20px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#quadrados-equipe {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.nossa-equipe-quadrado {
+    width: 400px;
+    height: auto;
     background-color: white;
     color: black;
-    border-radius: 20px;
-    } 
-.texto-pessoa p {
+    text-align: center;
+    margin: 10px;
+    padding: 20px;
     font-size: 1.5rem;
+    border: 2px solid rgb(131, 173, 131);
 }
-.texto-pessoa h2{
-    margin: 0;
-    font-size: 1.8rem;
-}
-.equipe-imagem{
-    width: 250px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.texto-pessoa{
-    width: 250px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-.equipe-imagem img{
-    width: 200px;
-    height: 200px;
-    border-radius: 100px;
 
+.nossa-equipe-quadrado img {
+    width: 300px;
+    height: 300px;
+    border-radius: 150px;
 }
-.primeiro-quadro h2{
-    margin-bottom: -20px;
-}.primeiro-quadro p{
-    font-size: 1.3rem;
+
+.nossa-equipe-quadrado h2 {
+    margin: 0;
+    margin-top: 10px;
+    font-size: 2.1rem;
 }
-.ultimo-quadro{
-    position: absolute;
-    bottom: 10px;
-    right: 20px;
-    
-}
-.segundo-quadro{
-    position: absolute;
-    right: 20px;
-    top: 45px;
-    
-}
-.centro-quadro{
-    position: absolute;
-    top: 51.5%; /* 50% da altura do contêiner */
-    left: 50%; /* 50% da largura do contêiner */
-    transform: translate(-50%, -50%); /* Move o elemento para cima e para a esquerda pela metade da sua própria largura e altura */
-}
-.quarto-quadro{
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
+.nossa-equipe-quadrado p{
+    font-size: 1.6rem;
 }
 #nossos-valores{
     width: 99.8vw;
@@ -168,29 +140,67 @@ body#sobre-nos{
 }
 #nossos-valores{
     width: 99.8vw;
-    height: 50vh;
-    background-color: #a9c795;
+    height: auto;
+    padding: 20px;
+    background-color: #9bd770;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    justify-content: space-around;
 }
 #quadrado-valores{
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     border-radius: 15px ;
+    margin: 15px;
 }
 #texto-escondido{
     display: none;
 }
 #alinhamento-row{
-    width: 70.8vw;
+    width: 99.8vw;
     display: flex;
     justify-content: space-around;
+}
+@media (max-width: 1000px){
+    #alinhamento-row{
+        flex-direction: column;
+        align-items: center;
+    }
+    #texto-nossa-historia{
+        flex-direction: column;
+    }
+    #primeiro-texto,#segundo-texto{
+        font-size: 2rem;
+    }
+    #titulo-texto-historia{
+        font-size: 2.1rem;
+    }
+    #quadrado-valores{
+        width: 60%;
+        font-size: 2rem;
+    }
+    #quadrado-valores img{
+        width: 40%;
+        height: 50%;
+    }
+    .nossa-equipe-quadrado{
+        width: 60%;
+        font-size: 2rem;
+    }
+}
+@media(max-width:900px){
+    #primeiro-texto,#segundo-texto{
+        font-size: 1.6rem;
+    }
+    #titulo-texto-historia{
+        font-size: 1.8rem;
+    }
 }

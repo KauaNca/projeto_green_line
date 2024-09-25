@@ -1,10 +1,10 @@
 @font-face {
     font-family: "Nunito";
-    src: url(Nunito.ttf);
+    src: url(../css/Nunito.ttf);
 }
 @font-face{
     font-family: "CrimsonText";
-    src: url(CrimsonText.ttf);
+    src: url(../css/CrimsonText.ttf);
 }
 body{
     font-family: Nunito,CrimsonText; /*padrão*/
@@ -16,15 +16,14 @@ footer {
     color: #fff;
     padding: 20px;
   }
-  
-
 
 #caixapreta {
     background-color: #000000;
     color: #fff;
     padding: 20px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    font-size: 1.5rem;
 }
 
 #caixapreta h3 {
@@ -32,8 +31,6 @@ footer {
     padding-bottom: 0,5px;
     margin-bottom: 0,5px;
     text-align: center;
-  
-   
 
 }
 
@@ -43,6 +40,7 @@ footer {
     text-align: center;
 }
 #caixapreta li {
+    display: block;
     margin: 5px 0;
     text-align: center;
 }
@@ -60,6 +58,7 @@ footer {
     background-color:#006C3F;
     color: #fff;
     text-align: center;
+    font-size: 1.5rem;
 }
 
 #cb01{
@@ -78,11 +77,21 @@ footer {
     color: #fff;
     text-align: center;
     margin: 5px 0;
+    font-size: 1.2rem;
+}
+a{
+    text-decoration: none;
+    color: #fff;
 }
 
 #caixap01, #caixap02, #caixap03 {
     flex: 2;
     margin: 0 10px;
+}
+@media (max-width: 1300px){
+    #caixapreta{
+        flex-direction: column;
+    }
 }
 
   

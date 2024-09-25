@@ -20,7 +20,7 @@ display: inline;
   text-decoration: none;
     color: black;
     padding: 10px;
-    font-size: 18px;
+    font-size: 1.7rem;
 }
 
 #categorias ul {
@@ -77,4 +77,24 @@ display: inline;
 
   #categorias a:hover {
     text-decoration: underline;
+  }
+  @media(max-width:1000px){
+    #imagem-canto img{
+      width: 100px;
+    }
+    .imagem-direita img{
+      width: 50px;
+    }
+    #categorias a{
+      font-size: 1.4rem;
+    }
+    #caixa-pesquisa{
+      width: 45%;
+      font-size: 1.1rem;
+    }
+  }
+  @media(max-width:900px){
+    #categorias a{
+      font-size: 1.2rem;
+    }
   }
