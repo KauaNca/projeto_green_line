@@ -11,7 +11,7 @@ function adicionarAoCarrinho(produto) {
     produtoExistente.quantidade++;
   } else {
     // Se o produto não está no carrinho, adiciona-o com quantidade 1
-    carrinho.push({ nome: produto.nome, preco: produto.preco, quantidade: 1 });
+    carrinho.push({ nome: produto.nome, preco: produto.preco, quantidade: 1, imagem: produto.imagem });
   }
   
   // Atualiza o carrinho na tela
@@ -36,10 +36,13 @@ function atualizarCarrinho() {
     // Cria um elemento para o produto
     let produtoElement = document.createElement('div');
     produtoElement.innerHTML = `
+      <img src="${produto.imagem}" alt="${produto.nome}" width="50" height="50">
       <p>Produto: ${produto.nome}</p>
       <p>Quantidade: ${produto.quantidade}</p>
       <p>Preço: R$${produto.preco.toFixed(2)}</p>
       <p>Subtotal: R$${(produto.preco * produto.quantidade).toFixed(2)}</p>
+      <button class="remover-produto">Remover</button>
+      <button class="comprar-produto">Comprar</button>
     `;
     
     // Adiciona o produto ao carrinho
@@ -48,21 +51,46 @@ function atualizarCarrinho() {
   
   // Atualiza o valor total do carrinho
   document.getElementById('carrinho-total').innerHTML = `Valor Total: R$${valorTotal.toFixed(2)}`;
-}
-
-// Adiciona evento de clique aos botões de comprar
-let comprarButtons = document.getElementsByClassName('agendamento-botao');
-for (let i = 0; i < comprarButtons.length; i++) {
-  let button = comprarButtons[i];
-  button.addEventListener('click', function() {
-    // Obtém o produto associado ao botão
-    let produto = {
-      nome: button.parentNode.parentNode.querySelector('.body-txt').textContent,
-      preco: parseFloat(button.parentNode.parentNode.querySelector('.preco-servico').textContent.replace('R$', ''))
-    };
-    
-    // Adiciona o produto ao carrinho
-    adicionarAoCarrinho(produto);
+  
+  // Adiciona evento de clique aos botões de remover produto
+  let removerProdutoButtons = document.querySelectorAll('.remover-produto');
+  removerProdutoButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      // Obtém o produto associado ao botão
+      let produto = {
+        nome: button.parentNode.querySelector('p:nth-child(2)').textContent.replace('Produto: ', ''),
+        preco: parseFloat(button.parentNode.querySelector('p:nth-child(4)').textContent.replace('Preço: R$', '')),
+        imagem: button.parentNode.querySelector('img').src
+      };
+      
+      // Remove o produto do carrinho
+      carrinho = carrinho.filter(item => item.nome !== produto.nome);
+      
+      // Atualiza o carrinho na tela
+      atualizarCarrinho();
+    });
+  });
+  
+  // Adiciona evento de clique aos botões de comprar produto
+  let comprarProdutoButtons = document.querySelectorAll('.comprar-produto');
+  comprarProdutoButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      // Obtém o produto associado ao botão
+      let produto = {
+        nome: button.parentNode.querySelector('p:nth-child(2)').textContent.replace('Produto: ', ''),
+        preco: parseFloat(button.parentNode.querySelector('p:nth-child(4)').textContent.replace('Preço: R$', '')),
+        imagem: button.parentNode.querySelector('img').src
+      };
+      
+      // Compra o produto
+      alert(`Você comprou o produto ${produto.nome} por R$${produto.preco.toFixed(2)}`);
+      
+      // Remove o produto do carrinho
+      carrinho = carrinho.filter(item => item.nome !== produto.nome);
+      
+      // Atualiza o carrinho na tela
+      atualizarCarrinho();
+    });
   });
 }
 
@@ -78,9 +106,17 @@ carrinhoButton.addEventListener('click', function() {
   }
 });
 
-// Adiciona evento de clique ao botão de limpar o carrinho
-let limparCarrinhoButton = document.getElementById('limpar-carrinho');
-limparCarrinhoButton.addEventListener('click', function() {
+// Adiciona evento de clique ao botão de comprar
+let comprarButton = document.querySelector('.comprar');
+comprarButton.addEventListener('click', function() {
+ // Compra todos os produtos do carrinho
+  carrinho.forEach(produto => {
+    alert(`Você comprou o produto ${produto.nome} por R$${produto.preco.toFixed(2)}`);
+  });
+  
   // Limpa o carrinho
-  limparCarrinho();
+  carrinho = [];
+  
+  // Atualiza o carrinho na tela
+  atualizarCarrinho();
 });
