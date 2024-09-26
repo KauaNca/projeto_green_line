@@ -1,0 +1,446 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+#carro {
+    background: #f3f1ee;
+}
+
+.slider {
+    margin: 0 auto;
+    padding: 0;
+    width: 950px;
+    height: 490px;
+    overflow: hidden;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.slides {
+    width: 500%;
+    height: 390px;
+    display: flex;
+}
+
+.slides input {
+    display: none;
+}
+
+.slide {
+    width: 35%;
+    position: relative;
+    transition: 0.1s;
+}
+
+.slide img {
+    width: 950px;
+}
+
+.manual-controls {
+    position: absolute;
+    width: 800px;
+    margin-top: 70px;
+    margin-left: 55px;
+    display: flex;
+    justify-content: center;
+}
+
+.manual-btn {
+    border: 2px solid rgb(44, 5, 5);
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.4s; 
+    /* display: none; */
+}
+
+.manual-btn:not(:last-child) {
+    margin-right: 15px;
+}
+
+.manual-btn:hover {
+    background-color: white;
+}
+
+#radio1:checked ~ .first {
+    margin-right: 0;
+}
+
+#radio2:checked ~ .first {
+    margin-right: -20%;
+}
+
+#radio3:checked ~ .first {
+    margin-right: -50%;
+}
+
+#radio4:checked ~ .first {
+    margin-right: -100%;
+}
+
+#radio5:checked ~ .first {
+    margin-right: -140%;
+}
+
+#radio6:checked ~ .first {
+    margin-right: -175%;
+}
+
+.navigation-auto div {
+    border: 2px solid #20a6ff;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+    /* display: none; */
+}
+
+.navigation-auto {
+    position: absolute;
+    width: 800px;
+    margin-top: 460px;
+    margin-left: 55px;
+    display: flex;
+    justify-content: center;
+}
+
+.navigation-auto div:not(:last-child) {
+    margin-right: 15px;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn1 {
+    background-color: #000;
+}
+
+#radio2:checked ~ .navigation-auto .auto-btn2 {
+    background-color: #000;
+}
+
+#radio3:checked ~ .navigation-auto .auto-btn3 {
+    background-color: #000;
+}
+
+#radio4:checked ~ .navigation-auto .auto-btn4 {
+    background-color: #000;
+}
+
+#radio5:checked ~ .navigation-auto .auto-btn5 {
+    background-color: #000;
+}
+
+#radio6:checked ~ .navigation-auto .auto-btn6 {
+    background-color: #000;
+}
+
+#garantia {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    position: relative;
+    top: -90px;
+}
+
+#garantia img {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+}
+
+.garantia-txt {
+    margin-left: 15px;
+    font-size: 19px;
+}
+
+.garantia-txt h5 {
+    margin-bottom: 0;
+    color: #006c3f;
+}
+
+.caixas-garantia {
+    display: flex;
+    align-items: center;
+    height: 90px;
+    border: 2px solid black;
+    background-color: #F3F3F3;
+    border-radius: 5px;
+}
+
+.pri {
+    width: 260px;
+}
+
+.seg {
+    width: 350px;
+}
+
+.ter {
+    width: 290px;
+}
+
+.quar {
+    width: 270px;
+}
+
+#maisVendido {
+    text-align: center;
+    color: darkgreen;
+    font: 3em "Inter";
+}
+
+.produtos {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.produto {
+    width: 200px;
+    height: 200px;
+    background-color: #f3f1ee;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.item {
+    scroll-snap-align: center;
+}
+
+button {
+    border: 4px solid rgb(95, 41, 41);
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    width: 45px;
+    height: 45px;
+}
+
+#H-categoria {
+    text-align: center;
+    margin-top: 77px;
+    padding: 10px;
+    text-align: center;
+    color: darkgreen;
+    font: 3em "Inter";
+}
+
+.container {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.carousel-view {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 44px 0;
+    transition: all 0.25s ease-in;
+}
+
+.carousel-view .item-list {
+    max-width: 990px;
+    width: 450vw;
+    padding: 50px 10px;
+    display: flex;
+    gap: 50px;
+    scroll-behavior: smooth;
+    transition: all 0.25s ease-in;
+    -ms-overflow-style: none; /* IE e Edge */
+    scrollbar-width: none; /* Firefox */
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+}
+
+/* Esconder a barra de rolagem para Chrome, Safari e Opera */
+.item-list::-webkit-scrollbar {
+    display: none;
+}
+
+.prev-btn {
+    cursor: pointer;
+    border-right: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    transform: rotate(-42deg);
+}
+
+.next-btn {
+    cursor: pointer;
+    border-left: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    transform: rotate(42deg);
+}
+
+.item {
+    scroll-snap-align: center;
+    min-width: 150px;
+    height: 150px;
+    background-color: #f3f1ee;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 1266px) and (min-width: 968px) {
+    .slider {
+        width: 100%; /* Ajusta a largura do slider */
+    }
+
+    .manual-controls {
+        width: 90%; /* Ajusta a largura dos controles manuais */
+        margin-left: 5%; /* Centraliza os controles */
+    }
+
+    .navigation-auto {
+        width: 90%; /* Ajusta a largura da navegação automática */
+        margin-left: 5%;
+    }
+
+    
+#radio1:checked ~ .first {
+    margin-right: 10%;
+}
+
+#radio2:checked ~ .first {
+    margin-right: -20%;
+}
+
+#radio3:checked ~ .first {
+    margin-right: -50%;
+}
+
+#radio4:checked ~ .first {
+    margin-right: -100%;
+}
+
+#radio5:checked ~ .first {
+    margin-right: -140%;
+}
+
+#radio6:checked ~ .first {
+    margin-right: -175%;
+}
+
+    #garantia {
+        display: none; /* Esconde a seção de garantia */
+    }
+
+    .produto {
+        width: calc(33.33% - 20px); /* Ajusta a largura dos produtos */
+        margin: 10px; /* Margem entre os produtos */
+    }
+}
+
+@media (max-width: 967px) and (min-width: 421px) {
+    .slider {
+        width: 80%; /* O slider ocupa 80% da largura */
+        margin: 0 auto; /* Centraliza o slider */
+    }
+
+    .slide {
+        width: 100%;
+    }
+
+    .slide img {
+        width: 80%; 
+    }
+
+    .manual-controls {
+        width: 100%; 
+        margin-left: 0;
+    }
+
+    .navigation-auto {
+        width: 100%; 
+        margin-left: 0;
+    }
+
+    
+#radio1:checked ~ .first {
+    margin-right: 10%;
+}
+
+#radio2:checked ~ .first {
+    margin-right: -20%;
+}
+
+#radio3:checked ~ .first {
+    margin-right: -40%;
+}
+
+#radio4:checked ~ .first {
+    margin-right: -100%;
+}
+
+#radio5:checked ~ .first {
+    margin-right: -140%;
+}
+
+#radio6:checked ~ .first {
+    margin-right: -175%;
+}
+
+    #garantia {
+        display: none; /* Esconde a seção de garantia */
+    }
+
+    .produtos {
+        flex-direction: column; /* Produtos empilhados verticalmente */
+        align-items: center; /* Centraliza os produtos */
+    }
+
+    .produto {
+        width: 90%; /* Produtos ocupam 90% da largura */
+        margin: 10px 0; /* Margem vertical */
+    }
+}
+
+@media (max-width: 420px) {
+    .slider {
+        width: 95%; /* O slider ocupa 95% da largura */
+        margin: 0 auto; /* Centraliza o slider */
+    }
+
+    .slide {
+        width: 100%; /* Cada slide ocupa 100% da largura */
+    }
+
+    .slide img {
+        width: 100%; /* As imagens dos slides ocupam 100% da largura do slide */
+    }
+
+    .manual-controls {
+        width: 100%; /* Controle ocupa toda a largura */
+        margin-left: 0; /* Remove margem */
+    }
+
+    .navigation-auto {
+        width: 100%; /* Navegação ocupa toda a largura */
+        margin-left: 0;
+    }
+
+    #garantia {
+        display: none; /* Esconde a seção de garantia */
+    }
+
+    .produtos {
+        flex-direction: column; /* Produtos empilhados verticalmente */
+        align-items: center; /* Centraliza os produtos */
+    }
+
+    .produto {
+        width: 90%; /* Produtos ocupam 90% da largura */
+        margin: 10px 0; /* Margem vertical */
+    }
+}

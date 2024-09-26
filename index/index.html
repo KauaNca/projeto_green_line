@@ -1,13 +1,184 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/estilo.css">
     <title>Página Inicial</title>
 </head>
 <body>
-    <h1>Olá, Mundo!</h1>
-    
+    <div id="carro">
+    <div class="slider">
+        <div class='slides'>
+            <input type="radio" name="radio-btn" id="radio1">
+            <input type="radio" name="radio-btn" id="radio2">
+            <input type="radio" name="radio-btn" id="radio3">
+            <input type="radio" name="radio-btn" id="radio4">
+            <input type="radio" name="radio-btn" id="radio5">
+            <input type="radio" name="radio-btn" id="radio6">
+
+           <div class="slide first">
+            <img src="./img/1.png" alt="imagem produtos ecologicos">
+           </div>
+
+           <div class="slide">
+            <img src="./img/2.png" alt="imagem de roupas">
+           </div>
+
+           <div class="slide">
+            <img src="./img/3.png" alt="imagem cuidado pessoal">
+           </div>
+
+           <div class="slide">
+            <img src="./img/4.png" alt="imagem de artigos esportivos">
+           </div>
+
+           <div class="slide">
+            <img src="./img/5.png" alt="imagem de produtos eletronicos">
+           </div>
+
+           <div class="slide">
+            <img src="./img/6.png" alt="imagem de livros">
+           </div>
+
+
+            <div class="navigation-auto">
+                <div class="auto-btn1"></div>
+                <div class="auto-btn2"></div>
+                <div class="auto-btn3"></div>
+                <div class="auto-btn4"></div>
+                <div class="auto-btn5"></div>
+                <div class="auto-btn6"></div>
+            </div>
+
+        </div>
+
+        <div class="manual-controls">
+            <label for="radio1" class="manual-btn"></label>
+            <label for="radio2" class="manual-btn"></label>
+            <label for="radio3" class="manual-btn"></label>
+            <label for="radio4" class="manual-btn"></label>
+            <label for="radio5" class="manual-btn"></label>
+            <label for="radio6" class="manual-btn"></label>
+        </div>
+    </div>
+    </div>
+
+    <div id="garantia">
+        <div class="caixas-garantia pri">
+            <img src="./img/protecao.png" alt="">
+            <div class="garantia-txt">
+                <h5>Produtos Certificados</h5>
+                <p>Produtos Certificados</p>
+            </div>
+        </div>
+        <div class="caixas-garantia seg">
+            <img src="./img/correio.png" alt="">
+            <div class="garantia-txt">
+                <h5>Frete Grátis para todo Brasil</h5>
+                <p>Nas compras acima de R$ 250,00</p>
+            </div>
+        </div>
+        <div class="caixas-garantia ter">
+            <img src="./img/forma-de-pagamento.png" alt="">
+            <div class="garantia-txt">
+                <h5>Pagamento Seguro</h5>
+                <p>Garantido pela PagSeguro</p>
+            </div>
+        </div>
+        <div class="caixas-garantia quar">
+            <img src="./img/pergunta.png" alt="">
+            <div class="garantia-txt">
+                <h5>Dúvidas?</h5>
+                <p>Chame pelo WhatsApp</p>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <h2 id="maisVendido">Mais Vendidos</h2>
+        <div class="produtos">
+            <div class="produto">
+                <img src="./img/produto1.png" alt="produto">
+                <h3>Nome do Produto</h3>
+                <p>R$ 99,99</p>
+            </div>
+            <div class="produto">
+                <img src="./img/produto2.png" alt="produto">
+                <h3>Nome do Produto</h3>
+                <p>R$ 99,99</p>
+            </div>
+            <div class="produto">
+                <img src="./img/produto3.png" alt="produto">
+                <h3>Nome do Produto</h3>
+                <p>R$ 99,99</p>
+            </div>
+            <div class="produto">
+                <img src="./img/produto4.png" alt="produto">
+                <h3>Nome do Produto</h3>
+                <p>R$ 99,99</p>
+            </div>
+            <div class="produto">
+                <img src="./img/produto5.png" alt="produto">
+                <h3>Nome do Produto</h3>
+                <p>R$ 99,99</p>
+            </div>
+            <div class="produto">
+                <img src="./img/produto1.png" alt="produto">
+                <h3>Nome do Produto</h3>
+                <p>R$ 99,99</p>
+            </div>
+            <div class="produto">
+                <img src="./img/produto2.png" alt="produto">
+                <h3>Nome do Produto</h3>
+                <p>R$ 99,99</p>
+            </div>
+            <div class="produto">
+                <img src="./img/produto3.png" alt="produto">
+                <h3>Nome do Produto</h3>
+                <p>R$ 99,99</p>
+            </div>
+            <div class="produto">
+                <img src="./img/produto4.png" alt="produto">
+                <h3>Nome do Produto</h3>
+                <p>R$ 99,99</p>
+            </div>
+            <div class="produto">
+                <img src="./img/produto5.png" alt="produto">
+                <h3>Nome do Produto</h3>
+                <p>R$ 99,99</p>
+            </div>
+            
+        </div>
+    </section>
+
+    <section>
+        <h2 id="H-categoria">Escolha por cartegorias</h2>
+        <div class="container">
+            <div class="carousel-view">
+              
+              <!-- Left Button -->
+              <button id="prev-btn" class="prev-btn"> </button>
+              
+                  <!-- List Container -->
+                  <div id="item-list" class="item-list">
+                        <!-- Items -->
+                        <div id="item" class="item"> </div>
+                        <div id="item" class="item"> </div>
+                        <div id="item" class="item"> </div>
+                        <div id="item" class="item"> </div>
+                        <div id="item" class="item"> </div>
+                        <div id="item" class="item"> </div>
+                        <div id="item" class="item"> </div>
+                        <div id="item" class="item"> </div>
+                  </div>
+              
+              <!-- Right Button -->
+                  <button id="next-btn" class="next-btn"> </button>
+              </div>
+            </div>
+    </section>
+    <!-- <script src="./js/script.js"></script> -->
 </body>
 </html>
