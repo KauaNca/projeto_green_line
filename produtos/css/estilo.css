@@ -104,12 +104,12 @@ a,li{
         .txt-cima{
           display: flex;
           justify-content: space-between;
-          padding: 20px;
-          border: 1px solid rgba(170, 170, 170, 0.37);
-          margin: 5px;
-          margin-left: 100px;
+          align-items: center;
+          border-bottom: 1px solid rgba(170, 170, 170, 0.37);
+          margin: 0;
           border-top:none ;
           border-left:none ;
+          height: 50px;
         }
 #home, #Produtos-cima{
   text-decoration: none;
