@@ -87,10 +87,12 @@ a,li{
           border: 1px solid #ddd;
           padding: 20px;
           width: 300px;
+          
         }
         
         #carrinho-produtos {
           margin-bottom: 20px;
+          
         }
         
         #carrinho-produtos div {
