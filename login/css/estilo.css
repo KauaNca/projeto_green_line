@@ -131,15 +131,16 @@ button {
 
 /* Botão vermelho */
 .color-red-button {
-    background-color: #11422D;
+    background-color: #013d23;
     color: white;
     height: 9%;
     border-radius: 10px;
 }
 
 .color-red-button:hover {
-    background-color: #28871F;
+    background-color: #000400;
     cursor: pointer;
+    color: white;
 }
 
 

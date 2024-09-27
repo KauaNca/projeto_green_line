@@ -1,3 +1,8 @@
+#menu-fixo{
+  position: relative;
+  top: 0;
+  z-index: 1;
+}
 a,li{
 display: inline;
     padding: 10px;

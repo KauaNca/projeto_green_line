@@ -140,7 +140,7 @@ button {
 }
 
 .color-red-button:hover {
-    background-color: #28871F;
+    background-color: black;
     cursor: pointer;
 }
 

@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="../produtos/css/estilo.css">
     <link rel="stylesheet" href="../estilo_padrao/style_padrao.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <link rel="stylesheet" href="/menu/menu.css">
+    <link rel="stylesheet" href="../menu/menu.css">
+    <link rel="stylesheet" href="../rodape/css/estilo.css">
     <title>Document</title>
     <script src="/produtos/js/script.js" defer></script>
 </head>
@@ -47,7 +48,7 @@
                 <ul>
                     <li class="dropdown"><a href="#" class="dropbtn">Categorias</a>
                         <div class="dropdown-content">
-                            <a href="/produtos/produtos.html">Produtos Ecologicos</a>
+                            <a href="../produto_especifico/produto_especifico.html">Produtos Ecologicos</a>
                             <a href="/produtos/produtos.html">Roupas</a>
                             <a href="/produtos/produtos.html">Cuidados Pessoais</a>
                             <a href="/produtos/produtos.html">Artigos Esportivos</a>
@@ -68,12 +69,12 @@
     </section>
     <main>
         <div id="primeira-coluna">
-            <section id="filtros"></section>
-            <div class="blocos-coluna filtro">
+            <section id="filtros">
+            <div class="blocos-coluna filtro" style="border-bottom: 1px solid rgb(221, 220, 220);">
                 <img src="../produtos/img/filter.svg" id="imagem-filtro">
-                <span>Filtros</span>
+                <span><strong>Filtros</strong></span>
             </div>
-            <div class="blocos-coluna tags-filtradas">
+            <div class="blocos-coluna tags-filtradas" >
                 <span>Filtros aplicados</span>
             </div>
             <div class="blocos-coluna">
@@ -98,14 +99,14 @@
                     <input type="button" value="Aplicar" class="aplicar">
                 </form>
             </div>
-            <div class="blocos-coluna">
+            <div class="blocos-coluna" style="border-bottom: none;">
                 <span>Status de estoque</span>
                 <form>
                     <div class="input-checkbox-filtro">
                         <input type="checkbox" id="estoque">
                         <label for="estoque" class="">Estoque</label>
                     </div>
-                    <div class="input-checkbox-filtro">
+                    <div class="input-checkbox-filtro" >
                         <input type="checkbox" id="fora-de-estoque">
                         <label for="fora-de-estoque" class="">Fora de estoque</label>
                     </div>
@@ -415,6 +416,54 @@
                 </div>
             </section>
     </main>
+    <section id="rodape"></section>
+        <div id="caixa_alta"><a href="#">Voltar ao início</a></div>
+        <div id="caixapreta">
+
+            <div id="caixap01">
+                <h3>CONTATO</h3>
+                <ul>
+                    <li><a href="https://www.instagram.com/">Instagram</a></li>
+                    <li><a href="https://web.whatsapp.com/">Whatsapp</a></li>
+                    <li><a href="https://criarmeulink.com.br/u/1727178228">Email</a></li>
+                    <li><a href="">Telegram</a></li>
+                </ul>
+            </div>
+
+            <div id="caixap02">
+                <h3>INSTITUCIONAL</h3>
+                <ul>
+                    <li>Nossa história</li>
+                    <li>Sobre os produtos</li>
+                    <li>Responsabilidade social</li>
+                    <li>Política de privacidade</li>
+                    <li>Política de envio de prazo</li>
+                    <li>Termos de uso</li>
+                    <li>Fale conosco</li>
+                </ul>
+            </div>
+
+            <div id="caixap03">
+                <h3>PAGAMENTO</h3>
+                <ul>
+                    <li>Meios de pagamento:</li>
+                    <li>Compre com pontos</li>
+                    <li>Cartão de credito</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div id="cb01">
+            <div id="caixa_baixa"> _______________________________________________________</div>
+
+            <div id="cbnomes">
+                <p>Green Line | CNPJ : 74.707.730/0001-63</p>
+                <p>71080-020 - Guará II, Brasília-DF</p>
+            </div>
+
+        </div>
+    </section>
     
 </body>
 
