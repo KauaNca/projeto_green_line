@@ -2,13 +2,12 @@
 footer {
     background-color: #000;
     color: #fff;
-    padding: 20px;
+    padding: 5px;
   }
 
 #caixapreta {
     background-color: #000000;
     color: #fff;
-    padding: 20px;
     display: flex;
     justify-content: space-evenly;
     font-size: 1.2rem;
