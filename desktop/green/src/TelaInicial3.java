@@ -20,12 +20,18 @@ public class TelaInicial3 extends JFrame {
     JMenu Cadastro = new JMenu("Cadastro");
     JMenu Relatorios = new JMenu("Relatórios");
     JMenu Editar = new JMenu("Editar");
-    JMenu Financeiro = new JMenu("Financeiro");
     JMenu Agenda = new JMenu("Agenda");
     JMenu Notificacoes = new JMenu("Notificações");
-    JMenuItem cadastroUsuario = new JMenuItem("Usuario");
+    JMenu Configuracoes = new JMenu("Configurações");
+    JMenu SuaConta = new JMenu("Sua conta");
+    JMenuItem cadastroUsuario = new JMenuItem("Usuário");
     JMenuItem cadastroProdutos = new JMenuItem("Produtos");
     JMenuItem cadastroCategorias = new JMenuItem("Categorias");
+    JMenuItem editarUsuario = new JMenuItem("Usuário");
+    JMenuItem editarProdutos = new JMenuItem("Produtos");
+    JMenuItem editarCategorias = new JMenuItem("Categorias");
+    JMenuItem sair = new JMenuItem("Sair");
+    JMenuItem seusDados = new JMenuItem("Seus dados");
     Font fontePadrao = new Font("Arial", Font.PLAIN, 28);
     Font fonteItem = new Font("Arial", Font.PLAIN, 25);
     JLabel wallpaper = new JLabel(new ImageIcon(getClass().getResource("img/telaInicial.jpg")));
@@ -57,15 +63,18 @@ public class TelaInicial3 extends JFrame {
         Editar.setForeground(Color.white);
         Editar.setFont(fontePadrao);
         Editar.setBorder(bordaItemMenu);
-        Financeiro.setForeground(Color.white);
-        Financeiro.setFont(fontePadrao);
-        Financeiro.setBorder(bordaItemMenu);
         Agenda.setForeground(Color.white);
         Agenda.setFont(fontePadrao);
         Agenda.setBorder(bordaItemMenu);
         Notificacoes.setForeground(Color.white);
         Notificacoes.setFont(fontePadrao);
         Notificacoes.setBorder(bordaItemMenu);
+        Configuracoes.setForeground(Color.white);
+        Configuracoes.setFont(fontePadrao);
+        Configuracoes.setBorder(bordaItemMenu);
+        SuaConta.setForeground(Color.white);
+        SuaConta.setFont(fontePadrao);
+        SuaConta.setBorder(bordaItemMenu);
         
         cadastroUsuario.setForeground(Color.black);
         cadastroUsuario.setFont(fonteItem);
@@ -73,19 +82,42 @@ public class TelaInicial3 extends JFrame {
         cadastroProdutos.setFont(fonteItem);
         cadastroCategorias.setForeground(Color.black);
         cadastroCategorias.setFont(fonteItem);
+        
+        editarUsuario.setForeground(Color.black);
+        editarUsuario.setFont(fonteItem);
+        editarProdutos.setForeground(Color.black);
+        editarProdutos.setFont(fonteItem);
+        editarCategorias.setForeground(Color.black);
+        editarCategorias.setFont(fonteItem);
+        
+        sair.setForeground(Color.black);
+        sair.setFont(fonteItem);
+        seusDados.setForeground(Color.black);
+        seusDados.setFont(fonteItem);
 
         // Adicionando os itens ao menu "Cadastro"
         Cadastro.add(cadastroUsuario);
         Cadastro.add(cadastroProdutos);
         Cadastro.add(cadastroCategorias);
-
+        
+        Editar.add(editarUsuario);
+        Editar.add(editarProdutos);
+        Editar.add(editarCategorias);
+        
+        SuaConta.add(seusDados);
+        SuaConta.add(sair);
+        
+        
+        
+        
         // Adicionando os menus à barra de menu
         menuSuperior.add(Cadastro);
         menuSuperior.add(Relatorios);
         menuSuperior.add(Editar);
-        menuSuperior.add(Financeiro);
         menuSuperior.add(Agenda);
         menuSuperior.add(Notificacoes);
+        menuSuperior.add(Configuracoes);
+        menuSuperior.add(SuaConta);
 
         // Adicionando a barra de menus ao JFrame
         setJMenuBar(menuSuperior);
@@ -100,7 +132,7 @@ public class TelaInicial3 extends JFrame {
     wallpaper.setIcon(scaledIcon); // Definindo o ícone redimensionado no JLabel
 
     // Configuração do JFrame
-    setSize(1600, 1000);  // Tamanho da janela
+    setSize(1400, 800);  // Tamanho da janela
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(new BorderLayout());  // Usando BorderLayout
     setLocationRelativeTo(null);  // Centraliza a janela
@@ -138,12 +170,12 @@ public class TelaInicial3 extends JFrame {
             }
         });
         
-        Financeiro.addMouseListener(new MouseAdapter(){
+        SuaConta.addMouseListener(new MouseAdapter(){
             public void mouseEntered(MouseEvent e){
-                Financeiro.setForeground(Color.black);
+               SuaConta.setForeground(Color.black);
             }
             public void mouseExited(MouseEvent e){
-                Financeiro.setForeground(Color.white);
+               SuaConta.setForeground(Color.white);
             }
         });
         
