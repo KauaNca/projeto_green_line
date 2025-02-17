@@ -1,4 +1,4 @@
-
+package telas;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -127,7 +127,7 @@ public class TelaInicial extends JFrame {
 
     public void Frame() {
         // Redimensiona a imagem para caber na janela
-        URL imgUrl = getClass().getResource("../green_line/img/telainicial.jpg");
+        URL imgUrl = getClass().getResource("/img/telaInicial.jpg"); // não está encontrando a imagem, por quê?
         if (imgUrl != null) {
             ImageIcon imageIcon = new ImageIcon(imgUrl);
             Image image = imageIcon.getImage(); // Transformando em um objeto Image
@@ -208,6 +208,7 @@ public class TelaInicial extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new Login();
+                
                 dispose();
             }
         });
