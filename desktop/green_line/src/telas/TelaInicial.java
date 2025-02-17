@@ -1,10 +1,15 @@
+
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,7 +39,7 @@ public class TelaInicial extends JFrame {
     JMenuItem seusDados = new JMenuItem("Seus dados");
     Font fontePadrao = new Font("Arial", Font.PLAIN, 28);
     Font fonteItem = new Font("Arial", Font.PLAIN, 25);
-    JLabel wallpaper = new JLabel(new ImageIcon(getClass().getResource("img/telaInicial.jpg")));
+    JLabel wallpaper = new JLabel();
     Color corVerde = new Color(29,68,53);
     EmptyBorder bordaItemMenu = new EmptyBorder(0,20,0,20);
  
@@ -107,9 +112,6 @@ public class TelaInicial extends JFrame {
         SuaConta.add(seusDados);
         SuaConta.add(sair);
         
-        
-        
-        
         // Adicionando os menus à barra de menu
         menuSuperior.add(Cadastro);
         menuSuperior.add(Relatorios);
@@ -124,23 +126,28 @@ public class TelaInicial extends JFrame {
     }
 
     public void Frame() {
-    // Redimensiona a imagem para caber na janela
-    ImageIcon imageIcon = new ImageIcon(getClass().getResource("img/telaInicial.jpg"));
-    Image image = imageIcon.getImage(); // Transformando em um objeto Image
-    Image scaledImage = image.getScaledInstance(1600, 750, java.awt.Image.SCALE_DEFAULT); // Redimensionando a imagem
-    ImageIcon scaledIcon = new ImageIcon(scaledImage); // Transformando de volta para um ImageIcon
-    wallpaper.setIcon(scaledIcon); // Definindo o ícone redimensionado no JLabel
+        // Redimensiona a imagem para caber na janela
+        URL imgUrl = getClass().getResource("../green_line/img/telainicial.jpg");
+        if (imgUrl != null) {
+            ImageIcon imageIcon = new ImageIcon(imgUrl);
+            Image image = imageIcon.getImage(); // Transformando em um objeto Image
+            Image scaledImage = image.getScaledInstance(1600, 750, java.awt.Image.SCALE_DEFAULT); // Redimensionando a imagem
+            ImageIcon scaledIcon = new ImageIcon(scaledImage); // Transformando de volta para um ImageIcon
+            wallpaper.setIcon(scaledIcon); // Definindo o ícone redimensionado no JLabel
+        } else {
+            System.err.println("Imagem não encontrada: /img/telaInicial.jpg");
+        }
 
-    // Configuração do JFrame
-    setSize(1400, 800);  // Tamanho da janela
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setLayout(new BorderLayout());  // Usando BorderLayout
-    setLocationRelativeTo(null);  // Centraliza a janela
-    add(BorderLayout.CENTER, wallpaper);
+        // Configuração do JFrame
+        setSize(1400, 800);  // Tamanho da janela
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());  // Usando BorderLayout
+        setLocationRelativeTo(null);  // Centraliza a janela
+        add(BorderLayout.CENTER, wallpaper);
 
-    // Tornando a janela visível
-    setVisible(true);
-}
+        // Tornando a janela visível
+        setVisible(true);
+    }
     
     public void Mouse(){
         Cadastro.addMouseListener(new MouseAdapter(){
@@ -194,6 +201,14 @@ public class TelaInicial extends JFrame {
             }
             public void mouseExited(MouseEvent e){
                 Notificacoes.setForeground(Color.white);
+            }  
+        });
+        
+        sair.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Login();
+                dispose();
             }
         });
     }

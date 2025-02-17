@@ -1,5 +1,3 @@
-package green;
-
 
 import java.awt.Component;
 import java.sql.Connection;
