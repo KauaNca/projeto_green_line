@@ -1,5 +1,3 @@
-package telas;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -127,11 +125,11 @@ public class TelaInicial extends JFrame {
 
     public void Frame() {
         // Redimensiona a imagem para caber na janela
-        URL imgUrl = getClass().getResource("/img/telaInicial.jpg"); // não está encontrando a imagem, por quê?
+        URL imgUrl = getClass().getResource("imagens/telaInicial.jpg"); // não está encontrando a imagem, por quê?
         if (imgUrl != null) {
             ImageIcon imageIcon = new ImageIcon(imgUrl);
             Image image = imageIcon.getImage(); // Transformando em um objeto Image
-            Image scaledImage = image.getScaledInstance(1600, 750, java.awt.Image.SCALE_DEFAULT); // Redimensionando a imagem
+            Image scaledImage = image.getScaledInstance(1600, 750, Image.SCALE_DEFAULT); // Redimensionando a imagem
             ImageIcon scaledIcon = new ImageIcon(scaledImage); // Transformando de volta para um ImageIcon
             wallpaper.setIcon(scaledIcon); // Definindo o ícone redimensionado no JLabel
         } else {
