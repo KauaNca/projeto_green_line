@@ -1,11 +1,5 @@
 
-package telas;
 
-
-/**
- *
- * @author kauan
- */
 public class cadastrarProdutos extends javax.swing.JFrame {
 
     public cadastrarProdutos() {
