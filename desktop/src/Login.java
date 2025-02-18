@@ -161,38 +161,37 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btLoginMouseClicked
-        try {
-            Connection con = Conexao.conexaoBanco();
-            String sql = "SELECT * FROM login WHERE usuario = ? AND senha = UPPER(MD5(?));";
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, usuario.getText());
-            stmt.setString(2, senha.getText());
+       try {
+    Connection con = Conexao.conexaoBanco();
+    String sql = "SELECT u.situacao FROM acessos a "
+               + "JOIN usuario u ON u.id_usuario = a.id_usuario "
+               + "WHERE u.usuario = ? AND u.senha = UPPER(MD5(?));";
+    
+    PreparedStatement stmt = con.prepareStatement(sql);
+    stmt.setString(1, usuario.getText());
+    stmt.setString(2, senha.getText());
 
-            ResultSet rs = stmt.executeQuery();
+    ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
-                // Verifica a situação do usuário
-                String situacao = rs.getString("situacao");
-                if ("I".equals(situacao)) {
-                    JOptionPane.showMessageDialog(null, "Usuário inativo. Entre em contato com o administrador.");
-                } else {
-
-                    dispose();
-                }
-            } else {
-                // Se não encontrou o usuário ou a senha
-                JOptionPane.showMessageDialog(null, "Senha ou Usuário incorreto!!!");
-            }
-
-            // Fechar ResultSet e PreparedStatement
-            rs.close();
-            stmt.close();
-            con.close();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Erro ao conectar ao banco de dados: " + ex.getMessage());
+    if (rs.next()) {
+        String situacao = rs.getString("situacao");
+        if ("I".equals(situacao)) {
+            JOptionPane.showMessageDialog(null, "Usuário inativo. Entre em contato com o administrador.");
+        } else {
+            dispose();
         }
+    } else {
+        JOptionPane.showMessageDialog(null, "Senha ou Usuário incorreto!!!");
+    }
+    rs.close();
+    stmt.close();
+    con.close();
+
+} catch (SQLException ex) {
+    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+    JOptionPane.showMessageDialog(null, "Erro ao conectar ao banco de dados: " + ex.getMessage());
+}
+
     }//GEN-LAST:event_btLoginMouseClicked
 
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed

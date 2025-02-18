@@ -140,23 +140,23 @@ public class Categoria extends javax.swing.JFrame {
 
     private void btCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btCadastrarMouseClicked
  try {
-            Connection con = Conexao.conexaoBanco();
-            String sql = "INSERT INTO categoria (descricao, id_categoria_pai) VALUES (?, ?);";
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, descrica.getText());
+        Connection con = Conexao.conexaoBanco();
+        String sql = "INSERT INTO subcategorias (id_categoria, subcategoria, descricao) VALUES (?, ?, ?);";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        Integer idCategoria = getIdCategoriaSelecionada(); 
+        stmt.setInt(1, idCategoria);
+        stmt.setString(2, descrica.getText()); 
+        stmt.setString(3, ""); 
 
-            Integer idCategoriaPai = getIdCategoriaSelecionada(); 
-            stmt.setObject(2, idCategoriaPai); 
-
-            stmt.executeUpdate();
-            stmt.close();  
-            JOptionPane.showMessageDialog(null, "SubCategoria cadastrada com sucesso!");
-            carregarDadosTabela(); 
-            carregarCategoriasCombo(); 
-        } catch (SQLException ex) {
-            Logger.getLogger(Categoria.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage());
-        }
+        stmt.executeUpdate();
+        stmt.close();  
+        JOptionPane.showMessageDialog(null, "SubCategoria cadastrada com sucesso!");
+        carregarDadosTabela(); 
+        carregarCategoriasCombo(); 
+    } catch (SQLException ex) {
+        Logger.getLogger(Categoria.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage());
+    }
     }//GEN-LAST:event_btCadastrarMouseClicked
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
@@ -169,39 +169,38 @@ public class Categoria extends javax.swing.JFrame {
     }//GEN-LAST:event_tabelaMouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-         try {
-            Connection con = Conexao.conexaoBanco();
-            if (con == null) {
-                JOptionPane.showMessageDialog(null, "Erro ao conectar ao banco de dados.");
-                return;
-            }
-
-            if (descrica.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "A descrição não pode estar vazia.");
-                return;
-            }
-
-            String sql = "UPDATE categoria SET descricao = ? WHERE id_categoria = ?";
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, descrica.getText());
-            stmt.setInt(2, idCategoria); 
-
-            int rowsAffected = stmt.executeUpdate();
-            stmt.close();
-            con.close();
-
-            if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "Alteração feita com sucesso!");
-                descrica.setText(null);
-                carregarDadosTabela();
-            } else {
-                JOptionPane.showMessageDialog(null, "Nenhuma categoria foi alterada. Verifique se a descrição antiga existe.");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Categoria.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Erro ao alterar categoria: " + ex.getMessage());
+        try {
+        Connection con = Conexao.conexaoBanco();
+        if (con == null) {
+            JOptionPane.showMessageDialog(null, "Erro ao conectar ao banco de dados.");
+            return;
         }
-    
+
+        if (descrica.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "A descrição não pode estar vazia.");
+            return;
+        }
+
+        String sql = "UPDATE subcategorias SET subcategoria = ? WHERE id_subcat = ?";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, descrica.getText());
+        stmt.setInt(2, idCategoria); 
+
+        int rowsAffected = stmt.executeUpdate();
+        stmt.close();
+        con.close();
+
+        if (rowsAffected > 0) {
+            JOptionPane.showMessageDialog(null, "Alteração feita com sucesso!");
+            descrica.setText(null);
+            carregarDadosTabela();
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhuma subcategoria foi alterada. Verifique se a descrição antiga existe.");
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(Categoria.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(null, "Erro ao alterar subcategoria: " + ex.getMessage());
+    }
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void carregarCategoriasComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carregarCategoriasComboActionPerformed
@@ -252,55 +251,59 @@ public class Categoria extends javax.swing.JFrame {
     
    private void carregarCategoriasCombo() {
     try {
-            Connection con = Conexao.conexaoBanco();
-            String sql = "SELECT id_categoria, descricao FROM categoria WHERE id_categoria_pai IS NULL"; 
-            PreparedStatement stmt = con.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
+        Connection con = Conexao.conexaoBanco();
+        String sql = "SELECT s.id_subcat, s.subcategoria, c.categoria " +
+                     "FROM subcategorias s JOIN categoria c ON s.id_categoria = c.id_categoria " +
+                     "ORDER BY s.id_subcat DESC;";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+        DefaultTableModel modeloTabela = (DefaultTableModel) tabela.getModel();
+        modeloTabela.setNumRows(0); 
 
-            carregarCategoriasCombo.removeAllItems(); 
-
-            while (rs.next()) {
-                int idCategoria = rs.getInt("id_categoria");
-                String descricao = rs.getString("descricao");
-                carregarCategoriasCombo.addItem(descricao + " (ID: " + idCategoria + ")");
-            }
-
-            stmt.close();
-            rs.close();
-            con.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Categoria.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Erro ao carregar categorias: " + ex.getMessage());
+        while (rs.next()) {
+            Object[] dados = {
+                rs.getInt("id_subcat"), 
+                rs.getString("subcategoria"),  
+                rs.getString("categoria") 
+            };
+            modeloTabela.addRow(dados); 
         }
+
+        stmt.close();
+        rs.close();
+        con.close();
+    } catch (SQLException ex) {
+        Logger.getLogger(Categoria.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(null, "Erro ao carregar subcategorias: " + ex.getMessage());
+    }
 }
     private void carregarDadosTabela() {
     try {
-            Connection con = Conexao.conexaoBanco();
-            String sql = "SELECT c.id_categoria, c.descricao, cp.descricao AS categoria_pai " +
-                         "FROM categoria c LEFT JOIN categoria cp ON c.id_categoria_pai = cp.id_categoria " +
-                         "ORDER BY c.id_categoria DESC;";
-            PreparedStatement stmt = con.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
-            DefaultTableModel modeloTabela = (DefaultTableModel) tabela.getModel();
-            modeloTabela.setNumRows(0); 
+        Connection con = Conexao.conexaoBanco();
+        String sql = "SELECT s.id_subcat, s.subcategoria, c.categoria " +
+                     "FROM subcategorias s JOIN categoria c ON s.id_categoria = c.id_categoria " +
+                     "ORDER BY s.id_subcat DESC;";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+        DefaultTableModel modeloTabela = (DefaultTableModel) tabela.getModel();
+        modeloTabela.setNumRows(0); 
 
-            while (rs.next()) {
-                Object[] dados = {
-                    rs.getInt("id_categoria"), 
-                    rs.getString("descricao"),  
-                    rs.getString("categoria_pai") 
-                };
-                modeloTabela.addRow(dados); 
-            }
-
-            stmt.close();
-            rs.close();
-            con.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Categoria.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Erro ao carregar categorias: " + ex.getMessage());
- 
+        while (rs.next()) {
+            Object[] dados = {
+                rs.getInt("id_subcat"), 
+                rs.getString("subcategoria"),  
+                rs.getString("categoria") 
+            };
+            modeloTabela.addRow(dados); 
         }
+
+        stmt.close();
+        rs.close();
+        con.close();
+    } catch (SQLException ex) {
+        Logger.getLogger(Categoria.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(null, "Erro ao carregar subcategorias: " + ex.getMessage());
+    }
 }
     private Integer getIdCategoriaSelecionada() {
         String selectedItem = (String) carregarCategoriasCombo.getSelectedItem();
