@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -7,13 +8,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -37,18 +38,33 @@ public class TelaInicial extends JFrame {
     JMenuItem seusDados = new JMenuItem("Seus dados");
     Font fontePadrao = new Font("Arial", Font.PLAIN, 28);
     Font fonteItem = new Font("Arial", Font.PLAIN, 25);
-    JLabel wallpaper = new JLabel();
-    Color corVerde = new Color(29,68,53);
-    EmptyBorder bordaItemMenu = new EmptyBorder(0,20,0,20);
- 
+    JPanel painelDeFundo = new JPanel();
+    JPanel linhaDeBaixo = new JPanel();
+    Color corVerde = new Color(29, 68, 53);
+    Color corDeFundo = new Color(255, 242, 207);
+    EmptyBorder bordaItemMenu = new EmptyBorder(0, 20, 0, 20);
+
     public TelaInicial() {
-        Mouse();
-        // Configuração do menu
+        JOptionPane();
         Menu();
-        
-        // Configuração do frame
         Frame();
-        
+        Mouse();
+
+    }
+
+    public void JOptionPane() {
+        ImageIcon imagem = new ImageIcon(TelaInicial.class.getResource("imagens/notificacao.png"));
+        if (imagem.getIconWidth() == -1) {
+            System.out.println("Ícone não encontrado");
+        } else {
+            // Redimensionar ícone se for necessário
+            Image image = imagem.getImage();
+            Image scaledImage = image.getScaledInstance(64, 64, Image.SCALE_SMOOTH);
+            ImageIcon scaledIcon = new ImageIcon(scaledImage);
+        String messagem = "<html><h1>Bem-vindo!</h1><p>Estamos felizes em tê-lo conosco.</p></html>";
+        JLabel titulo = new JLabel(messagem);
+        JOptionPane.showMessageDialog(null, titulo, "Bem-vindo!",JOptionPane.INFORMATION_MESSAGE,scaledIcon);
+    }
     }
 
     public void Menu() {
@@ -78,21 +94,21 @@ public class TelaInicial extends JFrame {
         SuaConta.setForeground(Color.white);
         SuaConta.setFont(fontePadrao);
         SuaConta.setBorder(bordaItemMenu);
-        
+
         cadastroUsuario.setForeground(Color.black);
         cadastroUsuario.setFont(fonteItem);
         cadastroProdutos.setForeground(Color.black);
         cadastroProdutos.setFont(fonteItem);
         cadastroCategorias.setForeground(Color.black);
         cadastroCategorias.setFont(fonteItem);
-        
+
         editarUsuario.setForeground(Color.black);
         editarUsuario.setFont(fonteItem);
         editarProdutos.setForeground(Color.black);
         editarProdutos.setFont(fonteItem);
         editarCategorias.setForeground(Color.black);
         editarCategorias.setFont(fonteItem);
-        
+
         sair.setForeground(Color.black);
         sair.setFont(fonteItem);
         seusDados.setForeground(Color.black);
@@ -102,14 +118,14 @@ public class TelaInicial extends JFrame {
         Cadastro.add(cadastroUsuario);
         Cadastro.add(cadastroProdutos);
         Cadastro.add(cadastroCategorias);
-        
+
         Editar.add(editarUsuario);
         Editar.add(editarProdutos);
         Editar.add(editarCategorias);
-        
+
         SuaConta.add(seusDados);
         SuaConta.add(sair);
-        
+
         // Adicionando os menus à barra de menu
         menuSuperior.add(Cadastro);
         menuSuperior.add(Relatorios);
@@ -124,89 +140,87 @@ public class TelaInicial extends JFrame {
     }
 
     public void Frame() {
-        // Redimensiona a imagem para caber na janela
-        URL imgUrl = getClass().getResource("imagens/telaInicial.jpg"); // não está encontrando a imagem, por quê?
-        if (imgUrl != null) {
-            ImageIcon imageIcon = new ImageIcon(imgUrl);
-            Image image = imageIcon.getImage(); // Transformando em um objeto Image
-            Image scaledImage = image.getScaledInstance(1600, 750, Image.SCALE_DEFAULT); // Redimensionando a imagem
-            ImageIcon scaledIcon = new ImageIcon(scaledImage); // Transformando de volta para um ImageIcon
-            wallpaper.setIcon(scaledIcon); // Definindo o ícone redimensionado no JLabel
-        } else {
-            System.err.println("Imagem não encontrada: /img/telaInicial.jpg");
-        }
-
         // Configuração do JFrame
         setSize(1400, 800);  // Tamanho da janela
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());  // Usando BorderLayout
         setLocationRelativeTo(null);  // Centraliza a janela
-        add(BorderLayout.CENTER, wallpaper);
-
+        painelDeFundo.setPreferredSize(new Dimension(1400, 800));
+        painelDeFundo.setBackground(corDeFundo);
+        linhaDeBaixo.setPreferredSize(new Dimension(1400, 60));
+        linhaDeBaixo.setBackground(corVerde);
+        add(painelDeFundo);
+        add(BorderLayout.SOUTH, linhaDeBaixo);
         // Tornando a janela visível
         setVisible(true);
     }
-    
-    public void Mouse(){
-        Cadastro.addMouseListener(new MouseAdapter(){
-            public void mouseEntered(MouseEvent e){
+
+    public void Mouse() {
+        Cadastro.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
                 Cadastro.setForeground(Color.black);
             }
-            public void mouseExited(MouseEvent e){
+
+            public void mouseExited(MouseEvent e) {
                 Cadastro.setForeground(Color.white);
             }
         });
-        
-        Relatorios.addMouseListener(new MouseAdapter(){
-            public void mouseEntered(MouseEvent e){
+
+        Relatorios.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
                 Relatorios.setForeground(Color.black);
             }
-            public void mouseExited(MouseEvent e){
+
+            public void mouseExited(MouseEvent e) {
                 Relatorios.setForeground(Color.white);
             }
         });
-        
-        Editar.addMouseListener(new MouseAdapter(){
-            public void mouseEntered(MouseEvent e){
+
+        Editar.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
                 Editar.setForeground(Color.black);
             }
-            public void mouseExited(MouseEvent e){
+
+            public void mouseExited(MouseEvent e) {
                 Editar.setForeground(Color.white);
             }
         });
-        
-        SuaConta.addMouseListener(new MouseAdapter(){
-            public void mouseEntered(MouseEvent e){
-               SuaConta.setForeground(Color.black);
+
+        SuaConta.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                SuaConta.setForeground(Color.black);
             }
-            public void mouseExited(MouseEvent e){
-               SuaConta.setForeground(Color.white);
+
+            public void mouseExited(MouseEvent e) {
+                SuaConta.setForeground(Color.white);
             }
         });
-        
-        Agenda.addMouseListener(new MouseAdapter(){
-            public void mouseEntered(MouseEvent e){
+
+        Agenda.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
                 Agenda.setForeground(Color.black);
             }
-            public void mouseExited(MouseEvent e){
+
+            public void mouseExited(MouseEvent e) {
                 Agenda.setForeground(Color.white);
             }
         });
-        
-        Notificacoes.addMouseListener(new MouseAdapter(){
-            public void mouseEntered(MouseEvent e){
+
+        Notificacoes.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
                 Notificacoes.setForeground(Color.black);
             }
-            public void mouseExited(MouseEvent e){
+
+            public void mouseExited(MouseEvent e) {
                 Notificacoes.setForeground(Color.white);
-            }  
+            }
         });
-        
-        sair.addActionListener(new ActionListener(){
+
+        sair.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new Login();
-                
+
                 dispose();
             }
         });

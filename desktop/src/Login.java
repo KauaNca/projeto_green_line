@@ -4,9 +4,6 @@ import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -41,6 +38,10 @@ public class Login extends javax.swing.JFrame {
         btSair = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        codigoCampo = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 242, 207));
@@ -58,7 +59,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuário");
 
-        btLogin.setBackground(new java.awt.Color(51, 255, 51));
+        btLogin.setBackground(new java.awt.Color(50, 205, 50));
         btLogin.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         btLogin.setForeground(new java.awt.Color(255, 255, 255));
         btLogin.setText("Entrar");
@@ -76,7 +77,7 @@ public class Login extends javax.swing.JFrame {
         usuario.setFont(new java.awt.Font("Arial", 0, 28)); // NOI18N
         usuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btSair.setBackground(new java.awt.Color(255, 0, 0));
+        btSair.setBackground(new java.awt.Color(169, 169, 169));
         btSair.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         btSair.setForeground(new java.awt.Color(255, 255, 255));
         btSair.setText("Sair");
@@ -86,64 +87,98 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Cooper Black", 0, 40)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 40)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Green Line");
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel4.setText("?");
 
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 28)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(245, 245, 245));
+        jLabel5.setText("Código");
+
+        codigoCampo.setFont(new java.awt.Font("Arial", 0, 28)); // NOI18N
+        codigoCampo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        codigoCampo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                codigoCampoKeyReleased(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Sem cadastro?");
+
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Esqueceu sua senha?");
+
         javax.swing.GroupLayout painelPrincipalLayout = new javax.swing.GroupLayout(painelPrincipal);
         painelPrincipal.setLayout(painelPrincipalLayout);
         painelPrincipalLayout.setHorizontalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelPrincipalLayout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
-                .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelPrincipalLayout.createSequentialGroup()
-                        .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(24, 24, 24)
-                        .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(painelPrincipalLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(btLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(52, 52, 52))
             .addGroup(painelPrincipalLayout.createSequentialGroup()
                 .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelPrincipalLayout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(jLabel3))
-                    .addGroup(painelPrincipalLayout.createSequentialGroup()
                         .addGap(214, 214, 214)
-                        .addComponent(jLabel4)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel4))
+                    .addGroup(painelPrincipalLayout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(jLabel7))
+                    .addGroup(painelPrincipalLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5))
+                        .addGap(24, 24, 24)
+                        .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(senha, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                            .addComponent(usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                            .addGroup(painelPrincipalLayout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(129, 129, 129))
+                            .addComponent(codigoCampo, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addGroup(painelPrincipalLayout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(btLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(57, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelPrincipalLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(127, 127, 127))
         );
         painelPrincipalLayout.setVerticalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelPrincipalLayout.createSequentialGroup()
-                .addGap(71, 71, 71)
+                .addGap(70, 70, 70)
                 .addComponent(jLabel3)
-                .addGap(38, 38, 38)
+                .addGap(39, 39, 39)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabel5)
+                    .addComponent(codigoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(28, 28, 28)
-                .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btLogin)
                     .addComponent(btSair))
-                .addGap(102, 102, 102))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,36 +196,44 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btLoginMouseClicked
-       try {
-    Connection con = Conexao.conexaoBanco();
-    String sql = "SELECT u.situacao FROM acessos a "
-               + "JOIN usuario u ON u.id_usuario = a.id_usuario "
-               + "WHERE u.usuario = ? AND u.senha = UPPER(MD5(?));";
-    
-    PreparedStatement stmt = con.prepareStatement(sql);
-    stmt.setString(1, usuario.getText());
-    stmt.setString(2, senha.getText());
+        String codigo;
+        String tipo_usuario;
+        String nivel_acesso;
+        try {
+            Connection con = Conexao.conexaoBanco();
+            String sql = "SELECT id_usuario, id_tipo_usuario, nivel_acesso "
+                    + "FROM usuario INNER JOIN pessoa ON pessoa.id_pessoa = usuario.id_pessoa "
+                    + "WHERE nome = ? AND senha = ?;";
 
-    ResultSet rs = stmt.executeQuery();
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, usuario.getText());
+            stmt.setString(2, senha.getText());
+  
 
-    if (rs.next()) {
-        String situacao = rs.getString("situacao");
-        if ("I".equals(situacao)) {
-            JOptionPane.showMessageDialog(null, "Usuário inativo. Entre em contato com o administrador.");
-        } else {
-            dispose();
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                codigo = rs.getString("id_usuario");
+                tipo_usuario = rs.getString("id_tipo_usuario");
+                nivel_acesso = rs.getString("nivel_acesso");
+                
+
+                if (codigo.equals(codigoCampo.getText())&& tipo_usuario.equals("1") && nivel_acesso.equals("Com acesso")) {
+                    new TelaInicial();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuário comum | Sem acesso | Fale com ADM");
+                }
+            } else {
+            JOptionPane.showMessageDialog(null, "Senha ou Usuário incorreto!");
+            }
+
+            rs.close();
+            stmt.close();
+            con.close();
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage());
         }
-    } else {
-        JOptionPane.showMessageDialog(null, "Senha ou Usuário incorreto!!!");
-    }
-    rs.close();
-    stmt.close();
-    con.close();
-
-} catch (SQLException ex) {
-    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-    JOptionPane.showMessageDialog(null, "Erro ao conectar ao banco de dados: " + ex.getMessage());
-}
 
     }//GEN-LAST:event_btLoginMouseClicked
 
@@ -199,8 +242,25 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btLoginActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-       dispose();
+        dispose();
     }//GEN-LAST:event_btSairActionPerformed
+
+    private void codigoCampoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigoCampoKeyReleased
+        try (Connection con = Conexao.conexaoBanco()) {
+            String nomeUsuario;
+            String sql = "SELECT nome FROM usuario INNER JOIN pessoa ON pessoa.id_pessoa = usuario.id_pessoa WHERE id_usuario = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, codigoCampo.getText());
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                nomeUsuario = rs.getString("nome");
+                usuario.setText(nomeUsuario);
+            }
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_codigoCampoKeyReleased
 
     /**
      * @param args the command line arguments
@@ -240,10 +300,14 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btLogin;
     private javax.swing.JButton btSair;
+    private javax.swing.JTextField codigoCampo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel painelPrincipal;
     private javax.swing.JPasswordField senha;
     private javax.swing.JTextField usuario;
