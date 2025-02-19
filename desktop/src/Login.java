@@ -17,13 +17,12 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
-<<<<<<< Updated upstream
+
         //painelPrincipal.setBackground(corVerde);
         imagem.setIcon(new ImageIcon("imagens/icone.png"));
         imagem.setBounds(183, 130, 110, 110);
         painelPrincipal.add(imagem);
-=======
->>>>>>> Stashed changes
+
         Frame();
         painelPrincipal.setBackground(corVerde);
         
