@@ -53,7 +53,7 @@ public class TelaInicial extends JFrame {
     }
 
     public void JOptionPane() {
-        ImageIcon imagem = new ImageIcon(TelaInicial.class.getResource("imagens/notificacao.png"));
+        ImageIcon imagem = new ImageIcon("imagens/notificacao.png");
         if (imagem.getIconWidth() == -1) {
             System.out.println("Ícone não encontrado");
         } else {
@@ -219,7 +219,7 @@ public class TelaInicial extends JFrame {
         sair.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Login();
+                new Vendas();
 
                 dispose();
             }
