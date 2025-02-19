@@ -7,23 +7,24 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 public class Categoria extends javax.swing.JFrame {
 
-    private String descricaoAntiga;
+ private String descricaoAntiga;
     private int idCategoria;
     private String descricao;
     private Integer idCategoriaPai;
-
+    private JTextArea jTextArea1;
     /**
      * Creates new form Categoria
      */
     public Categoria() {
        initComponents();
-        carregarDadosTabela(); 
+        carregarDadosTabela();
         carregarCategoriasCombo();
-
+        setResizable(false);
 }
     
 
@@ -31,44 +32,32 @@ public class Categoria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabela = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        descricaoArea = new javax.swing.JTextArea();
         descrica = new javax.swing.JTextField();
         btCadastrar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabela = new javax.swing.JTable();
         carregarCategoriasCombo = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 102));
 
-        jLabel1.setText("Cadastrar SubCategorias");
+        jPanel1.setBackground(new java.awt.Color(255, 242, 207));
 
-        btCadastrar.setText("Cadastrar");
-        btCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btCadastrarMouseClicked(evt);
-            }
-        });
-        btCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCadastrarActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Alterar");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
-            }
-        });
-
+        tabela.setBackground(new java.awt.Color(255, 242, 207));
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "id_Categoria", "SubCategoria ", "Categoria "
+                "ID", "SubCategoria ", "Categoria "
             }
         ));
         tabela.setSelectionBackground(new java.awt.Color(102, 102, 102));
@@ -79,55 +68,104 @@ public class Categoria extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabela);
 
+        jLabel1.setText("Descrição:");
+
+        descricaoArea.setColumns(20);
+        descricaoArea.setRows(5);
+        jScrollPane2.setViewportView(descricaoArea);
+
+        btCadastrar.setBackground(new java.awt.Color(43, 189, 49));
+        btCadastrar.setText("Cadastrar");
+        btCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btCadastrarMouseClicked(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
+        jButton2.setText("Alterar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
+        carregarCategoriasCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma opção" }));
         carregarCategoriasCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 carregarCategoriasComboActionPerformed(evt);
             }
         });
 
+        jLabel2.setText("Cadastrar SubCategorias");
+
+        jLabel3.setText("Categoria:");
+
+        jLabel4.setText("Nome:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(descrica, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel3)
+                                .addComponent(carregarCategoriasCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(btCadastrar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton2)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel2)))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(carregarCategoriasCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(descrica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btCadastrar)
+                    .addComponent(jButton2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(descrica, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(btCadastrar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(carregarCategoriasCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 674, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(descrica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btCadastrar)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(carregarCategoriasCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -135,24 +173,22 @@ public class Categoria extends javax.swing.JFrame {
 
     
     
-    private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-    }//GEN-LAST:event_btCadastrarActionPerformed
-
     private void btCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btCadastrarMouseClicked
  try {
         Connection con = Conexao.conexaoBanco();
         String sql = "INSERT INTO subcategorias (id_categoria, subcategoria, descricao) VALUES (?, ?, ?);";
         PreparedStatement stmt = con.prepareStatement(sql);
-        Integer idCategoria = getIdCategoriaSelecionada(); 
-        stmt.setInt(1, idCategoria);
-        stmt.setString(2, descrica.getText()); 
-        stmt.setString(3, ""); 
+        
+        Integer idCategoriaSelecionada = getIdCategoriaSelecionada();
+        stmt.setInt(1, idCategoriaSelecionada);
+        stmt.setString(2, descrica.getText());
+        stmt.setString(3, descricaoArea.getText());
 
         stmt.executeUpdate();
-        stmt.close();  
+        stmt.close();
         JOptionPane.showMessageDialog(null, "SubCategoria cadastrada com sucesso!");
-        carregarDadosTabela(); 
-        carregarCategoriasCombo(); 
+        carregarDadosTabela();
+        carregarCategoriasCombo();
     } catch (SQLException ex) {
         Logger.getLogger(Categoria.class.getName()).log(Level.SEVERE, null, ex);
         JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage());
@@ -161,18 +197,25 @@ public class Categoria extends javax.swing.JFrame {
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
     int linha = tabela.getSelectedRow();
-        if (linha >= 0) {
-            descricaoAntiga = tabela.getValueAt(linha, 1).toString();
-            idCategoria = (int) tabela.getValueAt(linha, 0); 
-            descrica.setText(descricaoAntiga);
-        }
+    if (linha >= 0) {
+        
+        descricaoAntiga = tabela.getValueAt(linha, 1).toString(); 
+        idCategoria = (int) tabela.getValueAt(linha, 0); 
+        descrica.setText(descricaoAntiga); 
+        System.out.println("ID da subcategoria selecionada: " + idCategoria);
+    }
     }//GEN-LAST:event_tabelaMouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        try {
+     try {
         Connection con = Conexao.conexaoBanco();
         if (con == null) {
             JOptionPane.showMessageDialog(null, "Erro ao conectar ao banco de dados.");
+            return;
+        }
+
+        if (idCategoria == 0) {
+            JOptionPane.showMessageDialog(null, "Selecione uma subcategoria para alterar.");
             return;
         }
 
@@ -181,19 +224,29 @@ public class Categoria extends javax.swing.JFrame {
             return;
         }
 
-        String sql = "UPDATE subcategorias SET subcategoria = ? WHERE id_subcat = ?";
+        Integer idNovaCategoria = getIdCategoriaSelecionada();
+        if (idNovaCategoria == null) {
+            JOptionPane.showMessageDialog(null, "Selecione uma nova categoria.");
+            return;
+        }
+
+        // Atualiza a subcategoria no banco de dados
+        String sql = "UPDATE subcategorias SET id_categoria = ?, subcategoria = ?, descricao = ? WHERE id_subcat = ?";
         PreparedStatement stmt = con.prepareStatement(sql);
-        stmt.setString(1, descrica.getText());
-        stmt.setInt(2, idCategoria); 
+        stmt.setInt(1, idNovaCategoria); 
+        stmt.setString(2, descrica.getText());
+        stmt.setString(3, descricaoArea.getText()); 
+        stmt.setInt(4, idCategoria); 
 
         int rowsAffected = stmt.executeUpdate();
         stmt.close();
         con.close();
 
         if (rowsAffected > 0) {
-            JOptionPane.showMessageDialog(null, "Alteração feita com sucesso!");
+            JOptionPane.showMessageDialog(null, "Subcategoria alterada com sucesso!");
             descrica.setText(null);
-            carregarDadosTabela();
+            descricaoArea.setText(null);
+            carregarDadosTabela(); 
         } else {
             JOptionPane.showMessageDialog(null, "Nenhuma subcategoria foi alterada. Verifique se a descrição antiga existe.");
         }
@@ -205,13 +258,13 @@ public class Categoria extends javax.swing.JFrame {
 
     private void carregarCategoriasComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carregarCategoriasComboActionPerformed
         String selectedItem = (String) carregarCategoriasCombo.getSelectedItem();
-    if (selectedItem != null) {
-        
-        System.out.println("Categoria selecionada: " + selectedItem);
-       
-        Integer idCategoriaPai = getIdCategoriaSelecionada();
-        System.out.println("ID da categoria pai selecionada: " + idCategoriaPai);
-    }
+if (selectedItem != null) {
+    
+    System.out.println("Categoria selecionada: " + selectedItem);
+   
+    Integer idCategoriaPai = getIdCategoriaSelecionada();
+    System.out.println("ID da categoria pai selecionada: " + idCategoriaPai);
+}
     }//GEN-LAST:event_carregarCategoriasComboActionPerformed
 
     /**
@@ -252,21 +305,14 @@ public class Categoria extends javax.swing.JFrame {
    private void carregarCategoriasCombo() {
     try {
         Connection con = Conexao.conexaoBanco();
-        String sql = "SELECT s.id_subcat, s.subcategoria, c.categoria " +
-                     "FROM subcategorias s JOIN categoria c ON s.id_categoria = c.id_categoria " +
-                     "ORDER BY s.id_subcat DESC;";
+        String sql = "SELECT id_categoria, categoria FROM categoria ORDER BY categoria ASC;";
         PreparedStatement stmt = con.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
-        DefaultTableModel modeloTabela = (DefaultTableModel) tabela.getModel();
-        modeloTabela.setNumRows(0); 
 
+        carregarCategoriasCombo.removeAllItems(); // Limpa os itens existentes
         while (rs.next()) {
-            Object[] dados = {
-                rs.getInt("id_subcat"), 
-                rs.getString("subcategoria"),  
-                rs.getString("categoria") 
-            };
-            modeloTabela.addRow(dados); 
+            // Adiciona cada categoria ao JComboBox
+            carregarCategoriasCombo.addItem(rs.getString("categoria") + " (ID: " + rs.getInt("id_categoria") + ")");
         }
 
         stmt.close();
@@ -274,7 +320,7 @@ public class Categoria extends javax.swing.JFrame {
         con.close();
     } catch (SQLException ex) {
         Logger.getLogger(Categoria.class.getName()).log(Level.SEVERE, null, ex);
-        JOptionPane.showMessageDialog(null, "Erro ao carregar subcategorias: " + ex.getMessage());
+        JOptionPane.showMessageDialog(null, "Erro ao carregar categorias: " + ex.getMessage());
     }
 }
     private void carregarDadosTabela() {
@@ -321,9 +367,15 @@ public class Categoria extends javax.swing.JFrame {
     private javax.swing.JButton btCadastrar;
     private javax.swing.JComboBox<String> carregarCategoriasCombo;
     private javax.swing.JTextField descrica;
+    private javax.swing.JTextArea descricaoArea;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
 
