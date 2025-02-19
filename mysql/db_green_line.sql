@@ -127,14 +127,14 @@ CREATE TABLE pedidos_produtos (
     CONSTRAINT chk_quantidade_cancelada CHECK (quantidade_cancelada >= 0 AND quantidade_cancelada <= quantidade)
 );
 
-DROP DATABASE green_line;
-
 -- INSERINDO DADOS
 
 INSERT INTO pessoa (nome, email,  telefone, cpf_cnpj, rg, genero, idade) VALUES 
 ('Kauã', 'kaua@example.com',  '1234567890', '123.456.789-09', '12.345.678-9', 'M', 21),
 ('Gabriel', 'gabriel@example.com',  '0987654321', '987.654.321-00', '98.765.432-1', 'M', 25),
-('Edenilson', 'edenilson@example.com',  '1122334455', '112.233.445-67', '11.223.344-5', 'M', 30);
+('Edenilson', 'edenilson@example.com',  '1122334455', '112.233.445-67', '11.223.344-5', 'M', 30),
+('Fabricio', 'fafa@example.com',  '1122354455', '112.233.455-67', '11.223.374-5', 'M', 70),
+('Guilherme', 'gui@example.com',  '1127334455', '112.233.465-67', '11.223.384-5', 'M', 20);
 
 INSERT INTO tipo_usuario (tipo) VALUES 
 ('Administrador'), 
@@ -143,7 +143,9 @@ INSERT INTO tipo_usuario (tipo) VALUES
 INSERT INTO usuario (id_pessoa, id_tipo_usuario, senha, nivel_acesso, situacao) VALUES 
 ((SELECT id_pessoa FROM pessoa WHERE nome = 'Kauã'), 1, '123','Com acesso', 'A'),
 ((SELECT id_pessoa FROM pessoa WHERE nome = 'Gabriel'), 1, '123','Com acesso', 'A'),
-((SELECT id_pessoa FROM pessoa WHERE nome = 'Edenilson'), 1, '123','Com acesso', 'A');
+((SELECT id_pessoa FROM pessoa WHERE nome = 'Edenilson'), 1, '123','Com acesso', 'A'),
+((SELECT id_pessoa FROM pessoa WHERE nome = 'Fabricio'), 1, '123','Com acesso', 'A'),
+((SELECT id_pessoa FROM pessoa WHERE nome = 'Guilherme'), 1, '123','Com acesso', 'A');
 
 SELECT * FROM tipo_usuario;
 
