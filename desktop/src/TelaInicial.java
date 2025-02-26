@@ -9,7 +9,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -23,19 +25,21 @@ public class TelaInicial extends JFrame {
     JMenuBar menuSuperior = new JMenuBar();
     JMenu Cadastro = new JMenu("Cadastro");
     JMenu Relatorios = new JMenu("Relatórios");
-    JMenu Editar = new JMenu("Editar");
-    JMenu Agenda = new JMenu("Agenda");
+    JMenu Produtos = new JMenu("Produtos");
+    JMenu Vendas = new JMenu("Vendas");
     JMenu Notificacoes = new JMenu("Notificações");
     JMenu Configuracoes = new JMenu("Configurações");
     JMenu SuaConta = new JMenu("Sua conta");
+    JMenuItem ItemVendas = new JMenuItem("Vendas");
     JMenuItem cadastroUsuario = new JMenuItem("Usuário");
     JMenuItem cadastroProdutos = new JMenuItem("Produtos");
     JMenuItem cadastroCategorias = new JMenuItem("Categorias");
     JMenuItem editarUsuario = new JMenuItem("Usuário");
-    JMenuItem editarProdutos = new JMenuItem("Produtos");
+    JMenuItem PesquisarEEditar = new JMenuItem("Pesquisar e editar");
     JMenuItem editarCategorias = new JMenuItem("Categorias");
     JMenuItem sair = new JMenuItem("Sair");
     JMenuItem seusDados = new JMenuItem("Seus dados");
+    JDesktopPane painelPrincipal = new JDesktopPane();
     Font fontePadrao = new Font("Arial", Font.PLAIN, 28);
     Font fonteItem = new Font("Arial", Font.PLAIN, 25);
     JPanel painelDeFundo = new JPanel();
@@ -59,12 +63,23 @@ public class TelaInicial extends JFrame {
         } else {
             // Redimensionar ícone se for necessário
             Image image = imagem.getImage();
-            Image scaledImage = image.getScaledInstance(64, 64, Image.SCALE_SMOOTH);
+            Image scaledImage = image.getScaledInstance(45, 45, Image.SCALE_DEFAULT);
             ImageIcon scaledIcon = new ImageIcon(scaledImage);
-        String messagem = "<html><h1>Bem-vindo!</h1><p>Estamos felizes em tê-lo conosco.</p></html>";
-        JLabel titulo = new JLabel(messagem);
-        JOptionPane.showMessageDialog(null, titulo, "Bem-vindo!",JOptionPane.INFORMATION_MESSAGE,scaledIcon);
+            String messagem = "<html><h1>Bem-vindo!</h1><p>Estamos felizes em tê-lo conosco.</p></html>";
+            JLabel titulo = new JLabel(messagem);
+            JOptionPane.showMessageDialog(null, titulo, "Bem-vindo!", JOptionPane.INFORMATION_MESSAGE, scaledIcon);
+        }
     }
+    public void personalizacaoJMenu(JMenu item){
+        item.setBackground(Color.white);
+        item.setFont(fontePadrao);
+        item.setBorder(bordaItemMenu);
+        item.setForeground(Color.white);
+    }
+    public void personalizacaoJMenuItem(JMenuItem item){
+        item.setForeground(Color.black);
+        item.setFont(fonteItem);
+  
     }
 
     public void Menu() {
@@ -72,65 +87,43 @@ public class TelaInicial extends JFrame {
         menuSuperior.setBackground(corVerde);
         menuSuperior.setPreferredSize(new Dimension(1728, 90));
         menuSuperior.setBorderPainted(false);
+        personalizacaoJMenu(Cadastro);
+        personalizacaoJMenu(Relatorios);
+        personalizacaoJMenu(Produtos);
+        personalizacaoJMenu(Vendas);
+        personalizacaoJMenu(Notificacoes);
+        personalizacaoJMenu(Configuracoes);
+        personalizacaoJMenu(SuaConta);
+        personalizacaoJMenuItem(cadastroUsuario);
+        personalizacaoJMenuItem(cadastroProdutos);
+        personalizacaoJMenuItem(cadastroCategorias);
+        personalizacaoJMenuItem(editarUsuario);
+        personalizacaoJMenuItem(PesquisarEEditar);
+        personalizacaoJMenuItem(editarCategorias);
+        personalizacaoJMenuItem(sair);
+        personalizacaoJMenuItem(seusDados);
+        personalizacaoJMenuItem(ItemVendas);
 
-        Cadastro.setForeground(Color.white);
-        Cadastro.setFont(fontePadrao);
-        Cadastro.setBorder(bordaItemMenu);
-        Relatorios.setForeground(Color.white);
-        Relatorios.setFont(fontePadrao);
-        Relatorios.setBorder(bordaItemMenu);
-        Editar.setForeground(Color.white);
-        Editar.setFont(fontePadrao);
-        Editar.setBorder(bordaItemMenu);
-        Agenda.setForeground(Color.white);
-        Agenda.setFont(fontePadrao);
-        Agenda.setBorder(bordaItemMenu);
-        Notificacoes.setForeground(Color.white);
-        Notificacoes.setFont(fontePadrao);
-        Notificacoes.setBorder(bordaItemMenu);
-        Configuracoes.setForeground(Color.white);
-        Configuracoes.setFont(fontePadrao);
-        Configuracoes.setBorder(bordaItemMenu);
-        SuaConta.setForeground(Color.white);
-        SuaConta.setFont(fontePadrao);
-        SuaConta.setBorder(bordaItemMenu);
-
-        cadastroUsuario.setForeground(Color.black);
-        cadastroUsuario.setFont(fonteItem);
-        cadastroProdutos.setForeground(Color.black);
-        cadastroProdutos.setFont(fonteItem);
-        cadastroCategorias.setForeground(Color.black);
-        cadastroCategorias.setFont(fonteItem);
-
-        editarUsuario.setForeground(Color.black);
-        editarUsuario.setFont(fonteItem);
-        editarProdutos.setForeground(Color.black);
-        editarProdutos.setFont(fonteItem);
-        editarCategorias.setForeground(Color.black);
-        editarCategorias.setFont(fonteItem);
-
-        sair.setForeground(Color.black);
-        sair.setFont(fonteItem);
-        seusDados.setForeground(Color.black);
-        seusDados.setFont(fonteItem);
 
         // Adicionando os itens ao menu "Cadastro"
         Cadastro.add(cadastroUsuario);
         Cadastro.add(cadastroProdutos);
         Cadastro.add(cadastroCategorias);
 
-        Editar.add(editarUsuario);
-        Editar.add(editarProdutos);
-        Editar.add(editarCategorias);
+        Produtos.add(editarUsuario);
+        Produtos.add(PesquisarEEditar);
+        Produtos.add(editarCategorias);
 
         SuaConta.add(seusDados);
         SuaConta.add(sair);
 
+        Vendas.add(ItemVendas);
+
         // Adicionando os menus à barra de menu
         menuSuperior.add(Cadastro);
         menuSuperior.add(Relatorios);
-        menuSuperior.add(Editar);
-        menuSuperior.add(Agenda);
+        menuSuperior.add(Produtos);
+        menuSuperior.add(Vendas);
         menuSuperior.add(Notificacoes);
         menuSuperior.add(Configuracoes);
         menuSuperior.add(SuaConta);
@@ -141,18 +134,22 @@ public class TelaInicial extends JFrame {
 
     public void Frame() {
         // Configuração do JFrame
-        setSize(1400, 800);  // Tamanho da janela
+        setSize(1300, 770);  // Tamanho da janela
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());  // Usando BorderLayout
         setLocationRelativeTo(null);  // Centraliza a janela
-        painelDeFundo.setPreferredSize(new Dimension(1400, 800));
-        painelDeFundo.setBackground(corDeFundo);
-        linhaDeBaixo.setPreferredSize(new Dimension(1400, 60));
+        //painelDeFundo.setPreferredSize(new Dimension(1400, 800));
+        //painelDeFundo.setBackground(corDeFundo);
+        linhaDeBaixo.setPreferredSize(new Dimension(1400, 20));
         linhaDeBaixo.setBackground(corVerde);
-        add(painelDeFundo);
+        painelPrincipal.setPreferredSize(new Dimension(1400, 800));
+        painelPrincipal.setBackground(corDeFundo);
+        //add(painelDeFundo);
+        add(painelPrincipal);
         add(BorderLayout.SOUTH, linhaDeBaixo);
         // Tornando a janela visível
         setVisible(true);
+        setResizable(false);
     }
 
     public void Mouse() {
@@ -176,13 +173,13 @@ public class TelaInicial extends JFrame {
             }
         });
 
-        Editar.addMouseListener(new MouseAdapter() {
+        Produtos.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
-                Editar.setForeground(Color.black);
+                Produtos.setForeground(Color.black);
             }
 
             public void mouseExited(MouseEvent e) {
-                Editar.setForeground(Color.white);
+                Produtos.setForeground(Color.white);
             }
         });
 
@@ -196,13 +193,13 @@ public class TelaInicial extends JFrame {
             }
         });
 
-        Agenda.addMouseListener(new MouseAdapter() {
+        Vendas.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
-                Agenda.setForeground(Color.black);
+                Vendas.setForeground(Color.black);
             }
 
             public void mouseExited(MouseEvent e) {
-                Agenda.setForeground(Color.white);
+                Vendas.setForeground(Color.white);
             }
         });
 
@@ -219,11 +216,52 @@ public class TelaInicial extends JFrame {
         sair.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Vendas();
+                new Login();
 
                 dispose();
             }
         });
+        cadastroProdutos.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CadastroProdutos produtos = new CadastroProdutos();
+                CentralizarTela(produtos);
+            }
+        });
+
+        cadastroCategorias.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CadastroCategoria categorias = new CadastroCategoria();
+                CentralizarTela(categorias);
+            }
+        });
+
+// add telavendas a tela principal  
+        ItemVendas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TelaVendas novaTelaVendas = new TelaVendas();
+                CentralizarTela(novaTelaVendas);
+            }
+        });
+        PesquisarEEditar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PesquisaProdutos pp = new PesquisaProdutos();
+                CentralizarTela(pp);
+            }
+            
+        });
+    }
+
+    public void CentralizarTela(JInternalFrame tela) {
+        int x = (painelPrincipal.getWidth() - tela.getWidth()) / 2;
+        int y = (painelPrincipal.getHeight() - tela.getHeight()) / 2;
+        tela.setLocation(x, y);
+        painelPrincipal.add(tela);
+        tela.setVisible(true);
     }
 
     public static void main(String[] args) {

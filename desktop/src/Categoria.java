@@ -150,9 +150,9 @@ public class Categoria extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btCadastrar)
-                    .addComponent(jButton2))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
+                    .addComponent(btCadastrar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
         );
@@ -352,17 +352,19 @@ if (selectedItem != null) {
     }
 }
     private Integer getIdCategoriaSelecionada() {
-        String selectedItem = (String) carregarCategoriasCombo.getSelectedItem();
-        if (selectedItem != null) {
-            String[] parts = selectedItem.split(" \\(ID: ");
-            if (parts.length > 1) {
-                String idString = parts[1].replace(")", ""); 
-                return Integer.parseInt(idString); 
-            }
+    String selectedItem = (String) carregarCategoriasCombo.getSelectedItem();
+    if (selectedItem != null) {
+        String[] parts = selectedItem.split(" \\(ID: ");
+        if (parts.length > 1) {
+            String idString = parts[1].replace(")", ""); 
+            return Integer.parseInt(idString); 
         }
-        return null; 
+    } else {
+        // Mensagem de erro quando nenhuma categoria é selecionada
+        JOptionPane.showMessageDialog(null, "Por favor, selecione uma categoria.", "Erro", JOptionPane.ERROR_MESSAGE);
     }
-    
+    return null; 
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCadastrar;
     private javax.swing.JComboBox<String> carregarCategoriasCombo;
