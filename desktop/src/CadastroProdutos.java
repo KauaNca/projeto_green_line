@@ -377,11 +377,6 @@ public class CadastroProdutos extends javax.swing.JInternalFrame {
         jLabel9.setText("Categoria:");
 
         categorias.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        categorias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                categoriasActionPerformed(evt);
-            }
-        });
 
         btSelecionarImagens.setBackground(new java.awt.Color(102, 102, 255));
         btSelecionarImagens.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -652,22 +647,6 @@ public class CadastroProdutos extends javax.swing.JInternalFrame {
             sem_imagem.setIcon(redimensionamentoDeImagem(arquivo));
         }
     }//GEN-LAST:event_btSelecionarImagensMouseClicked
-
-    private void categoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoriasActionPerformed
-
-        JComboBox source = (JComboBox) evt.getSource();
-        if (source.getSelectedItem() != null && !source.getSelectedItem().toString().isEmpty()) {  // Verifica se há uma categoria selecionada
-            String id_categoria = String.valueOf(source.getSelectedItem().toString().charAt(0));
-            try {
-                janela = new EscolhaDeSubcategoria(id_categoria);
-                janela.setLocation(categorias.getX(), categorias.getY());
-                janela.setVisible(true);
-
-            } catch (Exception e) {
-                e.printStackTrace(); // Imprime qualquer erro que possa ocorrer
-            }
-        }
-    }//GEN-LAST:event_categoriasActionPerformed
     public void Apagar() {
 
         if (nomeProduto != null) {

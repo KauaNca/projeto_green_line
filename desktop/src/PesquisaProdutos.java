@@ -14,9 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.NumberFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,6 +24,7 @@ import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
+import java.util.ArrayList;
 
 /**
  *
@@ -35,13 +33,22 @@ import javax.swing.text.DocumentFilter;
 public class PesquisaProdutos extends javax.swing.JInternalFrame {
 
     int contagem = 0;
+    int numeroLinhas = 0;
     int numeroImagens = 0;
     String enderecoImagem1;
     String enderecoImagem2;
     File arquivo;
-    String[] enderecosImagens;
-    String Subcategoria;
+    ArrayList<String> enderecosImagens = new ArrayList<>();
+    String Subcategorias;
     EscolhaDeSubcategoria janela;
+    String id_produto;
+    String Produto;
+    String Preco;
+    String Descricao;
+    String Marca;
+    String Estoque;
+    String Categoria;
+    String Subcategoria;
 
     public PesquisaProdutos() {
         initComponents();
@@ -67,28 +74,30 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
         labelImagens.setVisible(false);
         imagem1.setVisible(false);
         imagem2.setVisible(false);
+        deletar1.setVisible(false);
+        deletar2.setVisible(false);
         btAlterar.setBackground(new Color(169, 169, 169));
         jPanel1.setBackground(Color.white);
         sem_imagem.setIcon(sem_imagem());
         passarImagem.setIcon(new ImageIcon("imagens/seta-direita.png"));
         applyTextAndNumberFilter(pesquisar);
-        applyTextAndNumberFilter(categoria);
         applyTextAndNumberFilter(preco);
         applyNumberOnlyMask(estoque);
         applyMoneyMask(preco);
+        pesquisa.setIcon(new ImageIcon("imagens/lupa.png"));
+
     }
-    
+
     Timer slide = new Timer(1000, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
 
             enderecoImagem1 = imagem1.getText();
             enderecoImagem2 = imagem2.getText();
-            enderecosImagens = new String[]{
-                enderecoImagem1, enderecoImagem2
-            };
-            contagem = (contagem + 1) % enderecosImagens.length;
-            ImageIcon proximaImagem = new ImageIcon("imagens/" + enderecosImagens[contagem]);
+            enderecosImagens.add(enderecoImagem1);
+            enderecosImagens.add(enderecoImagem2);
+            contagem = (contagem + 1) % enderecosImagens.size();
+            ImageIcon proximaImagem = new ImageIcon("imagens/produtos/" + enderecosImagens.get(contagem));
             if (proximaImagem.getIconWidth() == -1) {
                 System.out.println("Imagem não encontrada");
                 slide.stop();
@@ -102,7 +111,7 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
     );
 
     public PesquisaProdutos(String Subcategoria) {
-        this.Subcategoria = janela.getSubcategoria();
+        this.Subcategorias = janela.getSubcategoria();
         System.out.println(Subcategoria);
     }
 
@@ -115,7 +124,7 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Subcategoria = rs.getString("id_subcat");
+                Subcategorias = rs.getString("id_subcat");
             }
 
             stmt.close();
@@ -128,7 +137,7 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             e.printStackTrace();
         }
-        return Subcategoria;
+        return Subcategorias;
     }
 
     public ImageIcon sem_imagem() {
@@ -159,7 +168,7 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
             String sql = "INSERT INTO produto(nome_produto,descricao,preco,marca,estoque,id_subcat)"
                     + " VALUES (?,?,?,?,?,(SELECT id_subcat FROM subcategorias WHERE subcategoria = ?))";
             PreparedStatement stmt = con.prepareStatement(sql);
-            System.out.println(pesquisar.getText() + ", " + descricao.getText() + ", " + preco.getText() + ", " + categoria.getText() + ", " + estoque.getText() + ", " + Subcategoria);
+            System.out.println(pesquisar.getText() + ", " + descricao.getText() + ", " + preco.getText() + ", " + categoria.getText() + ", " + estoque.getText() + ", " + Subcategorias);
 
             stmt.setString(1, pesquisar.getText());
             stmt.setString(2, descricao.getText());
@@ -295,7 +304,6 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         btSelecionarImagens = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        categoria = new javax.swing.JTextField();
         btAlterar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
         passarImagem = new javax.swing.JLabel();
@@ -309,6 +317,9 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
         imagem1 = new javax.swing.JTextField();
         imagem2 = new javax.swing.JTextField();
         labelImagens = new javax.swing.JLabel();
+        categoria = new javax.swing.JTextField();
+        deletar1 = new javax.swing.JLabel();
+        deletar2 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -348,8 +359,9 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
         jLabel4.setText("Descrição:");
 
         descricao.setColumns(20);
-        descricao.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        descricao.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         descricao.setRows(5);
+        descricao.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         jScrollPane1.setViewportView(descricao);
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -359,11 +371,13 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
         jLabel6.setText("Marca:");
 
         preco.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        preco.setDisabledTextColor(new java.awt.Color(51, 51, 51));
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel7.setText("Estoque:");
 
         estoque.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        estoque.setDisabledTextColor(new java.awt.Color(51, 51, 51));
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel9.setText("Categoria:");
@@ -377,8 +391,6 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
                 btSelecionarImagensMouseClicked(evt);
             }
         });
-
-        categoria.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
 
         btAlterar.setBackground(new java.awt.Color(50, 205, 50));
         btAlterar.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -411,12 +423,13 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
         });
 
         nomeProduto.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-
-        pesquisa.setIcon(new javax.swing.ImageIcon("C:\\Users\\kauan\\OneDrive\\Área de Trabalho\\projeto_green_line\\projeto_green_line\\desktop\\imagens\\lupa.png")); // NOI18N
+        nomeProduto.setDisabledTextColor(new java.awt.Color(51, 51, 51));
 
         marca.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        marca.setDisabledTextColor(new java.awt.Color(51, 51, 51));
 
         subcategoria.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        subcategoria.setDisabledTextColor(new java.awt.Color(51, 51, 51));
 
         btCancelar1.setBackground(new java.awt.Color(204, 204, 255));
         btCancelar1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -429,94 +442,122 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
         });
 
         imagem1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        imagem1.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         imagem1.setEnabled(false);
 
         imagem2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        imagem2.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         imagem2.setEnabled(false);
 
         labelImagens.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         labelImagens.setText("Imagens");
+
+        categoria.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        categoria.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+
+        deletar1.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        deletar1.setForeground(new java.awt.Color(0, 0, 255));
+        deletar1.setText("Deletar");
+        deletar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deletar1MouseClicked(evt);
+            }
+        });
+
+        deletar2.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        deletar2.setForeground(new java.awt.Color(0, 0, 255));
+        deletar2.setText("Deletar");
+        deletar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deletar2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelProdutosLayout = new javax.swing.GroupLayout(painelProdutos);
         painelProdutos.setLayout(painelProdutosLayout);
         painelProdutosLayout.setHorizontalGroup(
             painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelProdutosLayout.createSequentialGroup()
-                .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelProdutosLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btAlterar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btCancelar))
-                    .addGroup(painelProdutosLayout.createSequentialGroup()
+                        .addGap(0, 20, Short.MAX_VALUE)
                         .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(painelProdutosLayout.createSequentialGroup()
-                                .addGap(0, 19, Short.MAX_VALUE)
-                                .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(painelProdutosLayout.createSequentialGroup()
-                                        .addComponent(jLabel10)
-                                        .addGap(64, 64, 64)
-                                        .addComponent(btSelecionarImagens))
-                                    .addGroup(painelProdutosLayout.createSequentialGroup()
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(62, 62, 62))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelProdutosLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(passarImagem)
-                                .addGap(73, 73, 73)))
-                        .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel8)
+                                .addComponent(jLabel10)
+                                .addGap(64, 64, 64)
+                                .addComponent(btSelecionarImagens))
                             .addGroup(painelProdutosLayout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(31, 31, 31)
-                                .addComponent(marca, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel7)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(estoque, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(72, 72, 72)
-                                .addComponent(btCancelar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel4)
-                            .addComponent(jScrollPane1)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(62, 62, 62))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelProdutosLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(passarImagem)
+                        .addGap(73, 73, 73)))
+                .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel8)
+                        .addGroup(painelProdutosLayout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addGap(31, 31, 31)
+                            .addComponent(marca, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(estoque, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(72, 72, 72)
+                            .addComponent(btCancelar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel4)
+                        .addComponent(jScrollPane1)
+                        .addGroup(painelProdutosLayout.createSequentialGroup()
+                            .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelProdutosLayout.createSequentialGroup()
+                                    .addComponent(jLabel11)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(nomeProduto))
+                                .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelProdutosLayout.createSequentialGroup()
+                                    .addGap(9, 9, 9)
+                                    .addComponent(pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(painelProdutosLayout.createSequentialGroup()
+                                    .addGap(69, 69, 69)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(preco)))))
+                    .addGroup(painelProdutosLayout.createSequentialGroup()
+                        .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
                             .addGroup(painelProdutosLayout.createSequentialGroup()
-                                .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelProdutosLayout.createSequentialGroup()
-                                        .addComponent(jLabel11)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(nomeProduto))
-                                    .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(painelProdutosLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(pesquisa)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(painelProdutosLayout.createSequentialGroup()
-                                        .addGap(42, 42, 42)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(preco))))
+                                .addGap(5, 5, 5)
+                                .addComponent(labelImagens)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(painelProdutosLayout.createSequentialGroup()
+                                .addComponent(categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(subcategoria))
+                            .addGroup(painelProdutosLayout.createSequentialGroup()
+                                .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(deletar1)
+                                    .addComponent(imagem1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addGroup(painelProdutosLayout.createSequentialGroup()
-                                        .addGap(5, 5, 5)
-                                        .addComponent(labelImagens)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(painelProdutosLayout.createSequentialGroup()
-                                        .addComponent(imagem1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(imagem2, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(painelProdutosLayout.createSequentialGroup()
-                                        .addComponent(categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(subcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(29, Short.MAX_VALUE))
+                                    .addComponent(imagem2)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelProdutosLayout.createSequentialGroup()
+                                        .addGap(0, 75, Short.MAX_VALUE)
+                                        .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelProdutosLayout.createSequentialGroup()
+                                                .addComponent(btAlterar)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(btCancelar))
+                                            .addComponent(deletar2, javax.swing.GroupLayout.Alignment.TRAILING))))))))
+                .addGap(39, 39, 39))
         );
         painelProdutosLayout.setVerticalGroup(
             painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -528,10 +569,21 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
                 .addGap(33, 33, 33)
                 .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelProdutosLayout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(pesquisar)
-                                .addComponent(pesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(painelProdutosLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(passarImagem))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelProdutosLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btSelecionarImagens)
+                                    .addComponent(jLabel10))
+                                .addGap(61, 61, 61))))
+                    .addGroup(painelProdutosLayout.createSequentialGroup()
+                        .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pesquisar)
+                            .addComponent(pesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel3)
                                 .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -561,31 +613,25 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
                         .addGap(34, 34, 34)
                         .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(categoria)
-                            .addComponent(subcategoria))
-                        .addGap(33, 33, 33))
-                    .addGroup(painelProdutosLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelProdutosLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(passarImagem))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelProdutosLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btSelecionarImagens)
-                                    .addComponent(jLabel10))
-                                .addGap(61, 61, 61)))))
+                            .addComponent(subcategoria)
+                            .addComponent(categoria))
+                        .addGap(33, 33, 33)))
                 .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(imagem1)
-                    .addComponent(imagem2)
+                    .addComponent(imagem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelImagens))
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deletar1)
+                    .addComponent(deletar2))
+                .addGap(79, 79, 79)
                 .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCancelar)
                     .addComponent(btAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(81, 81, 81))
+                .addContainerGap())
         );
+
+        pesquisar.getAccessibleContext().setAccessibleParent(null);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -595,11 +641,89 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 572, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(painelProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void deletar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletar2MouseClicked
+        imagem2.setText("");
+    }//GEN-LAST:event_deletar2MouseClicked
+
+    private void deletar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletar1MouseClicked
+        imagem1.setText("");
+    }//GEN-LAST:event_deletar1MouseClicked
+
+    private void btCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btCancelar1ActionPerformed
+
+    private void codigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigoKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try (Connection con = Conexao.conexaoBanco()) {
+                PreparedStatement stmt1 = con.prepareStatement("SELECT COUNT(*) FROM vw_produto_detalhado WHERE id_produto = ?");
+                stmt1.setString(1, codigo.getText());
+                ResultSet rs1 = stmt1.executeQuery();
+                numeroLinhas = 0;
+                if (rs1.next()) {
+                    numeroLinhas = rs1.getInt(1);
+                }
+                PreparedStatement stmt = con.prepareStatement("SELECT * FROM vw_produto_detalhado WHERE id_produto = ?");
+                stmt.setString(1, codigo.getText());
+                ResultSet rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    id_produto = rs.getString("id_produto");
+                    Produto = rs.getString("nome_produto");
+                    Preco = rs.getString("preco");
+                    Descricao = rs.getString("descricao");
+                    Marca = rs.getString("marca");
+                    Estoque = rs.getString("estoque");
+                    Categoria = rs.getString("categoria");
+                    Subcategoria = rs.getString("subcategoria");
+
+                    do {
+                        enderecosImagens.add(rs.getString("endereco"));
+                        contagem++;
+                    } while (contagem <= numeroLinhas);
+                    if (enderecosImagens.size() == 1) {
+                        enderecoImagem1 = enderecosImagens.get(0);
+                        numeroImagens = 1;
+
+                    } else {
+
+                        enderecoImagem1 = enderecosImagens.get(0);
+                        enderecoImagem2 = enderecosImagens.get(1);
+                        numeroImagens = 2;
+                    }
+
+                    codigo.setText(id_produto);
+                    nomeProduto.setText(Produto);
+                    preco.setText(Preco);
+                    descricao.setText(Descricao);
+                    marca.setText(Marca);
+                    estoque.setText(Estoque);
+                    categoria.setText(Categoria);
+                    subcategoria.setText(Subcategoria);
+                    sem_imagem.setIcon(new ImageIcon("imagens/produtos/" + enderecoImagem1));
+                    imagem1.setText(enderecoImagem1);
+                    imagem2.setText(enderecoImagem2);
+
+                } else {
+                    new CadastroProdutos().Avisos("imagens/erro.png", "Produto não encontrado");
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Erro ao conectar ao banco de dados: " + e.getMessage());
+                System.out.println("ERRO: " + e);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+                System.out.println("ERRO: " + e);
+            }
+        }
+    }//GEN-LAST:event_codigoKeyReleased
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         codigo.setText("");
@@ -620,7 +744,9 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
             labelImagens.setVisible(true);
             imagem1.setVisible(true);
             imagem2.setVisible(true);
-            Apagar();
+            deletar1.setVisible(true);
+            deletar2.setVisible(true);
+
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Houve um erro inesperado. Tente daqui a pouco!", "Mensagem", JOptionPane.ERROR_MESSAGE);
@@ -665,24 +791,6 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
             sem_imagem.setIcon(redimensionamentoDeImagem(arquivo));
         }
     }//GEN-LAST:event_btSelecionarImagensMouseClicked
-
-    private void btCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btCancelar1ActionPerformed
-    //PAREI AQUI
-    private void codigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigoKeyReleased
-        try(Connection con = Conexao.conexaoBanco()){
-            PreparedStatement stmt = con.prepareStatement("SELECT nome_produto,descricao,preco,marca,estoque,id_subcat ");
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao conectar ao banco de dados: " + e.getMessage());
-            System.out.println("ERRO: " + e);
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-            System.out.println("ERRO: " + e);
-        }
-        
-    }//GEN-LAST:event_codigoKeyReleased
     public void Apagar() {
 
         if (pesquisar != null) {
@@ -750,6 +858,8 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
     private javax.swing.JButton btSelecionarImagens;
     private javax.swing.JTextField categoria;
     private javax.swing.JTextField codigo;
+    private javax.swing.JLabel deletar1;
+    private javax.swing.JLabel deletar2;
     private javax.swing.JTextArea descricao;
     private javax.swing.JTextField estoque;
     private javax.swing.JTextField imagem1;
