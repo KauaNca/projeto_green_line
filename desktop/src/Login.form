@@ -333,11 +333,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="imagem">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\kauan\OneDrive\&#xc1;rea de Trabalho\projeto_green_line\desktop\imagens\usuarios\usuario.png"/>
-            </Property>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

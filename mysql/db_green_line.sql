@@ -245,11 +245,28 @@ ALTER TABLE acessos ADD nome_usuario VARCHAR(20) NOT NULL;
 INSERT INTO enderecos (uf, cep, cidade, bairro, endereco, complemento, situacao, id_pessoa)
 VALUES ('RJ', '98765-432', 'Rio de Janeiro', 'Bairro Novo', 'Rua das Flores, 789', 'Apto 101', 'A', 1);
 
+INSERT INTO enderecos (uf, cep, cidade, bairro, endereco, complemento, situacao, id_pessoa)
+VALUES ('RJ', '98765-432', 'Rio de Janeiro', 'Bairro Novo', 'Rua das Flores, 789', 'Apto 101', 'A', 1);
+
+INSERT INTO enderecos (uf, cep, cidade, bairro, endereco, complemento, situacao, id_pessoa)
+VALUES ('SP', '12345-678', 'São Paulo', 'Centro', 'Av. Paulista, 1000', 'Apto 102', 'A', 2);
+
+INSERT INTO enderecos (uf, cep, cidade, bairro, endereco, complemento, situacao, id_pessoa)
+VALUES ('MG', '87654-321', 'Belo Horizonte', 'Savassi', 'Rua Paraíba, 200', 'Apto 103', 'A', 3);
+
+INSERT INTO enderecos (uf, cep, cidade, bairro, endereco, complemento, situacao, id_pessoa)
+VALUES ('RS', '54321-876', 'Porto Alegre', 'Moinhos de Vento', 'Rua Padre Chagas, 300', 'Apto 104', 'A', 4);
+
+INSERT INTO enderecos (uf, cep, cidade, bairro, endereco, complemento, situacao, id_pessoa)
+VALUES ('BA', '65432-987', 'Salvador', 'Pituba', 'Av. Magalhães Neto, 400', 'Apto 105', 'A', 5);
+
+
 
 CREATE VIEW dados_pessoais
 AS
-SELECT p.id_pessoa,nome, email, telefone, cpf_cnpj, rg, idade,uf,cep,cidade,bairro,endereco,complemento,senha FROM pessoa p INNER JOIN enderecos e ON p.id_pessoa = e.id_pessoa
-INNER JOIN usuario ON p.id_pessoa = usuario.id_pessoa;
+SELECT p.id_pessoa,nome, email, telefone, cpf_cnpj, rg, idade,uf,cep,cidade,bairro,endereco,complemento,senha,caminho_imagem FROM pessoa p INNER JOIN enderecos e ON p.id_pessoa = e.id_pessoa
+INNER JOIN usuario ON p.id_pessoa = usuario.id_pessoa
+INNER JOIN ImagensUsuarios IU ON IU.id_usuario = usuario.id_usuario;
 
 
 INSERT INTO usuario (id_pessoa, id_tipo_usuario, senha, nivel_acesso, situacao) VALUES 
@@ -265,6 +282,10 @@ INSERT INTO ImagensUsuarios (id_usuario,caminho_imagem) VALUES (1,"kaua.jpeg"),(
 CREATE VIEW login AS
 SELECT us.id_usuario,nome,caminho_imagem FROM usuario us INNER JOIN pessoa ON pessoa.id_pessoa = us.id_pessoa 
 INNER JOIN ImagensUsuarios IU ON IU.id_usuario = us.id_usuario;
+
+SELECT * FROM dados_pessoais WHERE id_pessoa = 2;
+SELECT * FROM usuario;
+SELECT * FROM ImagensUsuarios;
 
 
 

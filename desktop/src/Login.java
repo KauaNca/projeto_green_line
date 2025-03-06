@@ -26,16 +26,14 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
 
-        /*imagem.setPreferredSize(new Dimension(100,100));
-        imagem.setBounds(200, 150, 110, 110);
-        imagem.setIcon(redimensionamentoDeImagem(new ImageIcon("imagens/usuarios/icone.png"), 100, 100));*/
         Frame();
-        // usuario.setBorder(margensInternas);
+        usuario.setBorder(margensInternas);
         codigoCampo.setBorder(margensInternas);
         senha.setBorder(margensInternas);
         painelPrincipal.setBackground(corVerde);
         usuario.setEnabled(false);
         usuario.setEditable(false);
+        imagem.setIcon(new ImageIcon("imagens/usuarios/usuario.png"));
         codigoCampo.setFocusTraversalKeysEnabled(false);
 
     }
@@ -374,9 +372,7 @@ public class Login extends javax.swing.JFrame {
                     if (imagemUsuario.getIconWidth() == -1) {
                         System.out.println("Imagem não encontrada");
                     } else {
-                       
 
-                        
                         usuario.setText(nomeUsuario);
                         codigoCampo.setFocusTraversalKeysEnabled(true);
 
