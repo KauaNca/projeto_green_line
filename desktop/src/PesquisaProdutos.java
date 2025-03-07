@@ -388,6 +388,11 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
                 btSelecionarImagensMouseClicked(evt);
             }
         });
+        btSelecionarImagens.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSelecionarImagensActionPerformed(evt);
+            }
+        });
 
         pesquisar.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
 
@@ -1002,6 +1007,10 @@ public class PesquisaProdutos extends javax.swing.JInternalFrame {
     private void btTrocarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTrocarCategoriaActionPerformed
         pegarCategoria();
     }//GEN-LAST:event_btTrocarCategoriaActionPerformed
+
+    private void btSelecionarImagensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionarImagensActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btSelecionarImagensActionPerformed
     private void pegarCategoria() {
         try {
             janelaCategoria = new EscolhaDeCategoria();

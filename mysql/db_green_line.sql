@@ -264,7 +264,7 @@ VALUES ('BA', '65432-987', 'Salvador', 'Pituba', 'Av. Magalhães Neto, 400', 'Ap
 
 CREATE VIEW dados_pessoais
 AS
-SELECT p.id_pessoa,nome, email, telefone, cpf_cnpj, rg, idade,uf,cep,cidade,bairro,endereco,complemento,senha,caminho_imagem FROM pessoa p INNER JOIN enderecos e ON p.id_pessoa = e.id_pessoa
+SELECT p.id_pessoa,usuario.id_usuario, nome, email, telefone, cpf_cnpj, rg, idade,uf,cep,cidade,bairro,endereco,complemento,senha,caminho_imagem FROM pessoa p INNER JOIN enderecos e ON p.id_pessoa = e.id_pessoa
 INNER JOIN usuario ON p.id_pessoa = usuario.id_pessoa
 INNER JOIN ImagensUsuarios IU ON IU.id_usuario = usuario.id_usuario;
 
@@ -283,9 +283,11 @@ CREATE VIEW login AS
 SELECT us.id_usuario,nome,caminho_imagem FROM usuario us INNER JOIN pessoa ON pessoa.id_pessoa = us.id_pessoa 
 INNER JOIN ImagensUsuarios IU ON IU.id_usuario = us.id_usuario;
 
-SELECT * FROM dados_pessoais WHERE id_pessoa = 2;
+SELECT id_pessoa FROM pessoa WHERE nome = "Kauã";
 SELECT * FROM usuario;
 SELECT * FROM ImagensUsuarios;
+
+SELECT * FROM dados_pessoais;
 
 
 

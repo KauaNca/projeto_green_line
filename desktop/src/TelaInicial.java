@@ -217,7 +217,7 @@ public class TelaInicial extends JFrame {
             centralizarTela(pesquisa);
         });
         seusDados.addActionListener(e->{
-            SuaConta conta = new SuaConta(codigo);
+            SeusDados conta = new SeusDados(codigo);
             centralizarTela(conta);
         });
     }
