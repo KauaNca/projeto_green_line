@@ -115,6 +115,7 @@ public class EscolhaDeCategoria extends javax.swing.JFrame {
         btOK.setBackground(new java.awt.Color(50, 205, 50));
         btOK.setForeground(new java.awt.Color(255, 255, 255));
         btOK.setText("OK");
+        btOK.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btOKActionPerformed(evt);

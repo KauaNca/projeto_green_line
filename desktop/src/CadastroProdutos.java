@@ -19,6 +19,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.AbstractDocument;
@@ -44,14 +45,14 @@ public class CadastroProdutos extends javax.swing.JInternalFrame {
     EscolhaDeSubcategoria janela;
     String espaco = "";
     int repeticao = 0;
+        private boolean atualizandoMascara = false;
 
     public CadastroProdutos() {
         initComponents();
         jPanel1.setBackground(Color.white);
         sem_imagem.setIcon(sem_imagem());
         passarImagem.setIcon(new ImageIcon("imagens/seta-direita.png"));
-        applyTextAndNumberFilter(nomeProduto);
-        applyTextAndNumberFilter(marca);
+       atualizarMascara();
         applyTextAndNumberFilter(preco);
         applyNumberOnlyMask(estoqueInicial);
         applyMoneyMask(preco);
@@ -63,13 +64,7 @@ public class CadastroProdutos extends javax.swing.JInternalFrame {
         });
         carregarCategorias();
     }
-
-    public CadastroProdutos(String Subcategoria) {
-        this.Subcategoria = janela.getSubcategoria();
-        System.out.println(Subcategoria);
-
-    }
-
+    //MÉTODOS
     Timer slide = new Timer(1000, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -296,6 +291,63 @@ public class CadastroProdutos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, titulo, "Mensagem", JOptionPane.INFORMATION_MESSAGE, scaledIcon);
         }
     }
+    public void carregarCategorias() {
+        try {
+            Connection con = Conexao.conexaoBanco();
+            String sql = "SELECT id_categoria, categoria FROM categoria ORDER BY id_categoria ASC;";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            categorias.removeAllItems(); // Limpa os itens existentes
+            categorias.addItem("");
+            while (rs.next()) {
+                // Adiciona cada categoria ao JComboBox
+                //id_categoria = rs.getString("id_categoria");
+
+                categorias.addItem(rs.getInt("id_categoria") + " " + rs.getString("categoria"));
+            }
+
+            stmt.close();
+            rs.close();
+            con.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao carregar categorias: " + ex.getMessage());
+            ex.printStackTrace();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+     public void Apagar() {
+
+        if (nomeProduto != null) {
+            nomeProduto.setText("");
+        }
+
+        if (descricao != null) {
+            descricao.setText("");
+        }
+
+        if (preco != null) {
+            preco.setText("");
+        }
+        if (marca != null) {
+            marca.setText("");
+        }
+        if (estoqueInicial != null) {
+            estoqueInicial.setText("");
+        }
+        if (imagem1 != null) {
+            imagem1.setText("");
+        }
+        if (imagem2 != null) {
+            imagem2.setText("");
+        }
+        if (sem_imagem != null) {
+            sem_imagem.setIcon(sem_imagem());
+        }
+    }
+     
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -356,33 +408,38 @@ public class CadastroProdutos extends javax.swing.JInternalFrame {
                 .addComponent(sem_imagem, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel3.setText("Produto");
 
         nomeProduto.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        nomeProduto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                nomeProdutoFocusLost(evt);
+            }
+        });
 
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel4.setText("Descrição:");
 
         descricao.setColumns(20);
-        descricao.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        descricao.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         descricao.setRows(5);
         jScrollPane1.setViewportView(descricao);
 
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel5.setText("Preço:");
 
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel6.setText("Marca:");
 
         preco.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
 
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel7.setText("Estoque inicial:");
 
         estoqueInicial.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
 
-        jLabel9.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel9.setText("Categoria:");
 
         categorias.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
@@ -405,7 +462,7 @@ public class CadastroProdutos extends javax.swing.JInternalFrame {
         marca.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
 
         btCadastrar.setBackground(new java.awt.Color(50, 205, 50));
-        btCadastrar.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        btCadastrar.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         btCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         btCadastrar.setText("Cadastrar");
         btCadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -415,7 +472,7 @@ public class CadastroProdutos extends javax.swing.JInternalFrame {
         });
 
         btCancelar.setBackground(new java.awt.Color(169, 169, 169));
-        btCancelar.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        btCancelar.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         btCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btCancelar.setText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -461,7 +518,7 @@ public class CadastroProdutos extends javax.swing.JInternalFrame {
             .addGroup(painelProdutosLayout.createSequentialGroup()
                 .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelProdutosLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 1, Short.MAX_VALUE)
                         .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
                             .addGroup(painelProdutosLayout.createSequentialGroup()
@@ -483,48 +540,46 @@ public class CadastroProdutos extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(nomeProduto))
                     .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4)
+                    .addComponent(jLabel4)
+                    .addGroup(painelProdutosLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(47, 47, 47)
+                        .addComponent(preco, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(123, 123, 123)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(marca, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelProdutosLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(categorias, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(70, 70, 70)
                         .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(estoqueInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(painelProdutosLayout.createSequentialGroup()
-                            .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel9)
-                                .addComponent(jLabel5))
+                            .addComponent(btCadastrar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btCancelar))
+                        .addGroup(painelProdutosLayout.createSequentialGroup()
+                            .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(imagem2, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
+                                .addComponent(imagem1))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(preco)
-                                .addComponent(categorias, 0, 389, Short.MAX_VALUE))
-                            .addGap(27, 27, 27)
-                            .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(painelProdutosLayout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(estoqueInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(painelProdutosLayout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(marca, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(painelProdutosLayout.createSequentialGroup()
-                                .addComponent(btCadastrar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btCancelar))
-                            .addGroup(painelProdutosLayout.createSequentialGroup()
-                                .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(imagem2, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
-                                    .addComponent(imagem1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btExcluir)
-                                    .addComponent(btExcluir2))))))
-                .addContainerGap(19, Short.MAX_VALUE))
+                            .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btExcluir)
+                                .addComponent(btExcluir2)))))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         painelProdutosLayout.setVerticalGroup(
             painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelProdutosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 559, Short.MAX_VALUE))
+                .addGap(18, 18, Short.MAX_VALUE))
             .addGroup(painelProdutosLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -532,7 +587,7 @@ public class CadastroProdutos extends javax.swing.JInternalFrame {
                         .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
-                        .addGap(41, 41, 41)
+                        .addGap(32, 32, 32)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -547,23 +602,24 @@ public class CadastroProdutos extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(categorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(estoqueInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btSelecionarImagens)))
+                        .addComponent(btSelecionarImagens))
                     .addGroup(painelProdutosLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelProdutosLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel10)
-                                .addGap(46, 46, 46))
                             .addGroup(painelProdutosLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(passarImagem)))))
-                .addGap(40, 40, 40)
+                                .addComponent(passarImagem))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelProdutosLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 21, Short.MAX_VALUE)
+                                .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel9)
+                                        .addComponent(categorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel7)
+                                        .addComponent(estoqueInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel10))
+                                .addGap(13, 13, 13)))))
+                .addGap(28, 28, 28)
                 .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(imagem1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -575,7 +631,7 @@ public class CadastroProdutos extends javax.swing.JInternalFrame {
                 .addGroup(painelProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btCancelar))
-                .addGap(57, 57, 57))
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -691,63 +747,24 @@ public class CadastroProdutos extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_categoriasActionPerformed
-    public void Apagar() {
 
-        if (nomeProduto != null) {
-            nomeProduto.setText("");
-        }
-
-        if (descricao != null) {
-            descricao.setText("");
-        }
-
-        if (preco != null) {
-            preco.setText("");
-        }
-        if (marca != null) {
-            marca.setText("");
-        }
-        if (estoqueInicial != null) {
-            estoqueInicial.setText("");
-        }
-        if (imagem1 != null) {
-            imagem1.setText("");
-        }
-        if (imagem2 != null) {
-            imagem2.setText("");
-        }
-        if (sem_imagem != null) {
-            sem_imagem.setIcon(sem_imagem());
-        }
-    }
-
-    public void carregarCategorias() {
-        try {
-            Connection con = Conexao.conexaoBanco();
-            String sql = "SELECT id_categoria, categoria FROM categoria ORDER BY id_categoria ASC;";
-            PreparedStatement stmt = con.prepareStatement(sql);
+    private void nomeProdutoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nomeProdutoFocusLost
+        try(Connection con = Conexao.conexaoBanco()){
+            PreparedStatement stmt = con.prepareStatement("SELECT nome_produto FROM produto WHERE nome_produto = ?");
+            stmt.setString(1,nomeProduto.getText());
             ResultSet rs = stmt.executeQuery();
-
-            categorias.removeAllItems(); // Limpa os itens existentes
-            categorias.addItem("");
-            while (rs.next()) {
-                // Adiciona cada categoria ao JComboBox
-                //id_categoria = rs.getString("id_categoria");
-
-                categorias.addItem(rs.getInt("id_categoria") + " " + rs.getString("categoria"));
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null,"Produto já existe","Mensagem",JOptionPane.INFORMATION_MESSAGE);
+                nomeProduto.setText("");
             }
-
-            stmt.close();
             rs.close();
+            stmt.close();
             con.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao carregar categorias: " + ex.getMessage());
-            ex.printStackTrace();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"ERRO","Mensagem",JOptionPane.ERROR_MESSAGE);
+            dispose();
         }
-    }
+    }//GEN-LAST:event_nomeProdutoFocusLost
 
     //MÁSCARAS
     public void applyTextAndNumberFilter(JTextField textField) {
@@ -830,6 +847,18 @@ public class CadastroProdutos extends javax.swing.JInternalFrame {
             }
         });
     }
+
+
+private void atualizarMascara() {
+    if (atualizandoMascara) return; // Evita loops
+    atualizandoMascara = true;
+    SwingUtilities.invokeLater(() -> {
+        String texto = nomeProduto.getText();
+        nomeProduto.setText(texto.replaceAll("[^a-zA-Z0-9áéíóúâêîôûãõçÁÉÍÓÚÂÊÎÔÛÃÕÇñÑ~\\s]", ""));
+        atualizandoMascara = false;
+    });
+}
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -46,7 +46,7 @@ public class SeusDados extends javax.swing.JInternalFrame {
         btSelecionar.setVisible(false);
         btSalvar.setVisible(false);
         btCancelar.setVisible(false);
-        
+
     }
 
     public void recuperarConta(String bancoCodigo) {
@@ -109,7 +109,6 @@ public class SeusDados extends javax.swing.JInternalFrame {
                 senha.setText(Objects.toString(rs.getString("senha"), ""));
                 System.out.println("Senha preenchida");
 
-                // Verificar se a coluna caminho_imagem existe e não é nula
                 caminhoImagem = rs.getString("caminho_imagem");
                 if (caminhoImagem != null) {
                     System.out.println("Imagem: " + caminhoImagem);
@@ -171,7 +170,7 @@ public class SeusDados extends javax.swing.JInternalFrame {
     }
 
     private boolean novosDados() {
-         novosDados = new String[]{
+        novosDados = new String[]{
             usuario.getText(),
             email.getText(),
             telefone.getText(),
@@ -185,9 +184,9 @@ public class SeusDados extends javax.swing.JInternalFrame {
             endereco.getText(),
             complemento.getText()
         };
-       for(int x = 0; x < novosDados.length;x++){
-         System.out.println(novosDados[x] + " ");
-     }
+        for (int x = 0; x < novosDados.length; x++) {
+            System.out.println(novosDados[x] + " ");
+        }
 
         for (int x = 0; x < novosDados.length; x++) {
             if (!Objects.equals(dadosBanco[x], novosDados[x])) {
@@ -253,23 +252,18 @@ public class SeusDados extends javax.swing.JInternalFrame {
             stmt3.execute();
             System.out.println("[DEBUG] Atualização na tabela 'endereco' concluída.");
 
-            // Atualiza dados na tabela "imagensUsuarios", se necessário
-            if (!caminhoImagem.equals(arquivoEscolhido)) {
+            try {
+                String caminhoAtualizar = (arquivoEscolhido == null) ? caminhoImagem : arquivoEscolhido;
+
                 System.out.println("[DEBUG] Atualizando dados na tabela 'imagensUsuarios'...");
                 String SQL3 = "UPDATE ImagensUsuarios SET caminho_imagem = ? WHERE id_usuario = ?";
                 PreparedStatement stmt4 = con.prepareStatement(SQL3);
-                stmt4.setString(1, caminhoImagem);
+                stmt4.setString(1, caminhoAtualizar);
                 stmt4.setString(2, codigo.getText());
                 stmt4.execute();
                 System.out.println("[DEBUG] Atualização na tabela 'imagensUsuarios' concluída.");
-            } else {
-                System.out.println("[DEBUG] Atualizando dados na tabela 'imagensUsuarios'...");
-                String SQL3 = "UPDATE ImagensUsuarios SET caminho_imagem = ? WHERE id_usuario = ?";
-                PreparedStatement stmt4 = con.prepareStatement(SQL3);
-                stmt4.setString(1, arquivoEscolhido);
-                stmt4.setString(2, codigo.getText());
-                stmt4.execute();
-                System.out.println("[DEBUG] Atualização na tabela 'imagensUsuarios' concluída.");
+            } catch (SQLException e) {
+                System.err.println("[ERROR] Erro ao atualizar tabela: " + e.getMessage());
             }
 
             con.commit(); // Confirma as alterações no banco de dados

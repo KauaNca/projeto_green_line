@@ -10,18 +10,20 @@ public class TelaInicial extends JFrame {
 
     JMenuBar menuSuperior = new JMenuBar();
     JMenu Cadastro = new JMenu("Cadastro");
-    JMenu Relatorios = new JMenu("Relatórios");
+    JMenu Usuario = new JMenu("Usuário");
     JMenu Produtos = new JMenu("Produtos");
     JMenu Vendas = new JMenu("Vendas");
     JMenu Notificacoes = new JMenu("Notificações");
     JMenu Configuracoes = new JMenu("Configurações");
     JMenu SuaConta = new JMenu("Sua conta");
-    JMenuItem ItemVendas = new JMenuItem("Vendas");
+    JMenuItem ItemVendas = new JMenuItem("Nova venda");
     JMenuItem cadastroUsuario = new JMenuItem("Usuário");
     JMenuItem cadastroProdutos = new JMenuItem("Produtos");
+    JMenuItem pesquisarUsuario = new JMenuItem("Pesquisar");
+    JMenuItem editarUsuario = new JMenuItem("Editar");
     JMenuItem cadastroCategorias = new JMenuItem("Categorias");
-    JMenuItem editarUsuario = new JMenuItem("Usuário");
-    JMenuItem PesquisarEEditar = new JMenuItem("Pesquisar e editar");
+    JMenuItem pesquisarProduto = new JMenuItem("Pesquisar");
+    JMenuItem editarProduto = new JMenuItem("Editar");
     JMenuItem editarCategorias = new JMenuItem("Categorias");
     JMenuItem sair = new JMenuItem("Sair");
     JMenuItem seusDados = new JMenuItem("Seus dados");
@@ -56,9 +58,9 @@ public class TelaInicial extends JFrame {
             dispose();
         }
         if(tipo_usuario.equals("2")){
-            Cadastro.setEnabled(false);
+            
             Vendas.setEnabled(false);
-            Relatorios.setEnabled(false);
+            
         }
         
     }
@@ -111,7 +113,7 @@ public class TelaInicial extends JFrame {
 
         // Personalizando os menus e itens
         personalizacaoJMenu(Cadastro);
-        personalizacaoJMenu(Relatorios);
+        personalizacaoJMenu(Usuario);
         personalizacaoJMenu(Produtos);
         personalizacaoJMenu(Vendas);
         personalizacaoJMenu(Notificacoes);
@@ -121,8 +123,10 @@ public class TelaInicial extends JFrame {
         personalizacaoJMenuItem(cadastroUsuario);
         personalizacaoJMenuItem(cadastroProdutos);
         personalizacaoJMenuItem(cadastroCategorias);
+        personalizacaoJMenuItem(pesquisarUsuario);
         personalizacaoJMenuItem(editarUsuario);
-        personalizacaoJMenuItem(PesquisarEEditar);
+        personalizacaoJMenuItem(pesquisarProduto);
+        personalizacaoJMenuItem(editarProduto);
         personalizacaoJMenuItem(editarCategorias);
         personalizacaoJMenuItem(sair);
         personalizacaoJMenuItem(seusDados);
@@ -131,17 +135,18 @@ public class TelaInicial extends JFrame {
         // Adicionando itens aos menus
         Cadastro.add(cadastroUsuario);
         Cadastro.add(cadastroProdutos);
-        Cadastro.add(cadastroCategorias);
-        Produtos.add(editarUsuario);
-        Produtos.add(PesquisarEEditar);
-        Produtos.add(editarCategorias);
+        Usuario.add(pesquisarUsuario);
+        Usuario.add(editarUsuario);
+        Produtos.add(pesquisarProduto);
+        Produtos.add(editarProduto);
+        Produtos.add(cadastroCategorias);
         SuaConta.add(seusDados);
         SuaConta.add(sair);
         Vendas.add(ItemVendas);
 
         // Adicionando menus à barra de menus
         menuSuperior.add(Cadastro);
-        menuSuperior.add(Relatorios);
+        menuSuperior.add(Usuario);
         menuSuperior.add(Produtos);
         menuSuperior.add(Vendas);
         menuSuperior.add(Notificacoes);
@@ -184,7 +189,7 @@ public class TelaInicial extends JFrame {
     private void configurarEventos() {
         // Eventos para mouse nos menus
         adicionarEventoMouse(Cadastro);
-        adicionarEventoMouse(Relatorios);
+        adicionarEventoMouse(Usuario);
         adicionarEventoMouse(Produtos);
         adicionarEventoMouse(Vendas);
         adicionarEventoMouse(Notificacoes);
@@ -212,9 +217,13 @@ public class TelaInicial extends JFrame {
             centralizarTela(novaTelaVendas);
         });
 
-        PesquisarEEditar.addActionListener(e -> {
-            PesquisaProdutos pesquisa = new PesquisaProdutos();
-            centralizarTela(pesquisa);
+        editarProduto.addActionListener(e -> {
+            EditarProdutos editar = new EditarProdutos();
+            centralizarTela(editar);
+        });
+        pesquisarProduto.addActionListener(e ->{
+            PesquisarProdutos pesquisar = new PesquisarProdutos();
+            centralizarTela(pesquisar);
         });
         seusDados.addActionListener(e->{
             SeusDados conta = new SeusDados(codigo);
