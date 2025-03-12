@@ -229,6 +229,10 @@ public class TelaInicial extends JFrame {
             SeusDados conta = new SeusDados(codigo);
             centralizarTela(conta);
         });
+        pesquisarUsuario.addActionListener(e->{
+            PesquisarUsuario pesquisar = new PesquisarUsuario();
+            centralizarTela(pesquisar);
+        });
     }
 
     private void adicionarEventoMouse(JMenu menu) {
