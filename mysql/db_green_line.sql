@@ -46,6 +46,7 @@ CREATE TABLE ImagensUsuarios (
 
 
 
+
 CREATE TABLE acessos (
     id_acesso INT PRIMARY KEY AUTO_INCREMENT, 
     id_usuario INT NOT NULL,
@@ -55,7 +56,7 @@ CREATE TABLE acessos (
 CREATE TABLE enderecos (
     id_endereco INT PRIMARY KEY AUTO_INCREMENT,
     uf CHAR(2) NOT NULL,
-    cep VARCHAR(9) NOT NULL,
+    cep VARCHAR(12) NOT NULL,
     cidade VARCHAR(20) NOT NULL,
     bairro VARCHAR(50) NULL,
     endereco TEXT NULL,
@@ -262,12 +263,20 @@ VALUES ('BA', '65432-987', 'Salvador', 'Pituba', 'Av. Magalhães Neto, 400', 'Ap
 
 
 
+
 CREATE VIEW dados_pessoais
 AS
 SELECT p.id_pessoa,usuario.id_usuario, nome, email, telefone, cpf_cnpj, rg, idade,uf,cep,cidade,bairro,endereco,complemento,senha,caminho_imagem FROM pessoa p INNER JOIN enderecos e ON p.id_pessoa = e.id_pessoa
 INNER JOIN usuario ON p.id_pessoa = usuario.id_pessoa
 INNER JOIN ImagensUsuarios IU ON IU.id_usuario = usuario.id_usuario;
 
+
+CREATE VIEW dados_pesquisa
+AS
+SELECT p.id_pessoa,usuario.id_usuario, nome, email, telefone, cpf_cnpj, rg, 
+idade,razao_social,tipo_pessoa, nome_fantasia,inscricao_estadual,data_fundacao,setor_atividade, uf,cep,cidade,bairro,endereco,complemento,caminho_imagem FROM pessoa p INNER JOIN enderecos e ON p.id_pessoa = e.id_pessoa
+INNER JOIN usuario ON p.id_pessoa = usuario.id_pessoa
+INNER JOIN ImagensUsuarios IU ON IU.id_usuario = usuario.id_usuario;
 
 INSERT INTO usuario (id_pessoa, id_tipo_usuario, senha, nivel_acesso, situacao) VALUES 
 ((SELECT id_pessoa FROM pessoa WHERE nome = 'Kauã'), 2, '123','Com acesso', 'A'),
@@ -283,11 +292,44 @@ CREATE VIEW login AS
 SELECT us.id_usuario,nome,caminho_imagem FROM usuario us INNER JOIN pessoa ON pessoa.id_pessoa = us.id_pessoa 
 INNER JOIN ImagensUsuarios IU ON IU.id_usuario = us.id_usuario;
 
-SELECT id_pessoa FROM pessoa WHERE nome = "Kauã";
-SELECT * FROM usuario;
-SELECT * FROM ImagensUsuarios;
+CREATE INDEX idx_nome_produto ON produto(nome_produto);
+CREATE INDEX idx_nome_usuario ON pessoa(nome);
 
-SELECT * FROM dados_pessoais;
+-- Inserir dados na tabela pessoa
+INSERT INTO pessoa (nome, email, telefone, cpf_cnpj, rg, genero, idade, tipo_pessoa, razao_social, nome_fantasia, inscricao_estadual, data_fundacao, setor_atividade)
+VALUES
+('Apple Inc.', 'contact@apple.com', '1234567890', '00.000.000/0001-01', NULL, NULL, NULL, 'J', 'Apple Inc.', 'Apple', 'IS12345678', '1976-04-01', 'Tecnologia'),
+('Microsoft Corporation', 'contact@microsoft.com', '0987654321', '00.000.000/0002-02', NULL, NULL, NULL, 'J', 'Microsoft Corporation', 'Microsoft', 'IS87654321', '1975-04-04', 'Tecnologia'),
+('Amazon.com, Inc.', 'contact@amazon.com', '1122334455', '00.000.000/0003-03', NULL, NULL, NULL, 'J', 'Amazon.com, Inc.', 'Amazon', 'IS11223344', '1994-07-05', 'Comércio eletrônico'),
+('Google LLC', 'contact@google.com', '6677889900', '00.000.000/0004-04', NULL, NULL, NULL, 'J', 'Google LLC', 'Google', 'IS99887766', '1998-09-04', 'Tecnologia'),
+('Tesla, Inc.', 'contact@tesla.com', '4455667788', '00.000.000/0005-05', NULL, NULL, NULL, 'J', 'Tesla, Inc.', 'Tesla', 'IS55443322', '2003-07-01', 'Automobilístico');
+
+-- Inserir dados na tabela usuario
+INSERT INTO usuario (id_pessoa, id_tipo_usuario, senha, nivel_acesso, situacao)
+VALUES
+(6, 2, 'senhaApple123', "Sem acesso", 'A'),
+(7, 2, 'senhaMicrosoft123',"Sem acesso", 'A'),
+(8, 2, 'senhaAmazon123', "Sem acesso", 'A'),
+(9, 2, 'senhaGoogle123', "Sem acesso", 'A'),
+(10, 2, 'senhaTesla123', "Sem acesso", 'A');
+
+INSERT INTO ImagensUsuarios (id_usuario,caminho_imagem)
+ VALUES(6,"apple.jpeg"),(7,"microsoft.jpeg"),(8,"amazon.png"),(9,"google.png"),(10,"tesla.png");
+ 
+ 
+ -- Inserir dados na tabela enderecos
+INSERT INTO enderecos (uf, cep, cidade, bairro, endereco, complemento, situacao, id_pessoa)
+VALUES
+('CA', '94016-000', 'Cupertino', 'Santa Clara', '1 Infinite Loop', NULL, 'A', 6), -- Apple Inc.
+('WA', '98052-6399', 'Redmond', 'King County', '1 Microsoft Way', NULL, 'A', 7), -- Microsoft Corporation
+('WA', '98109-5210', 'Seattle', 'South Lake Union', '410 Terry Ave N', NULL, 'A', 8), -- Amazon.com, Inc.
+('CA', '94043-1351', 'Mountain View', 'Santa Clara', '1600 Amphitheatre Parkway', NULL, 'A', 9), -- Google LLC
+('CA', '94304-1111', 'Palo Alto', 'Santa Clara', '3500 Deer Creek Road', NULL, 'A', 10); -- Tesla, Inc.
+
+
+
+
+
 
 
 
