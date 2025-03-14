@@ -1,12 +1,16 @@
 
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
@@ -20,6 +24,8 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
     CardLayout card;
     ArrayList<String> usuarios;
     JPopupMenu caixaDeNomes = new JPopupMenu();
+    ArrayList<String> filtro;
+    Font fonteItem = new Font("Arial", Font.PLAIN, 15);
 
     public PesquisarUsuario() {
         initComponents();
@@ -29,12 +35,13 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         rdPessoa.setSelected(true);
         desativarTextField(painelPessoa);
         desativarTextField(painelEmpresa);
+        nomesUsuarios();
 
     }
-    
-    public void desativarTextField(JPanel painel){
-        for(Component component : painel.getComponents()){
-            if(component instanceof JTextField){
+
+    public void desativarTextField(JPanel painel) {
+        for (Component component : painel.getComponents()) {
+            if (component instanceof JTextField) {
                 component.setEnabled(false);
             }
         }
@@ -42,6 +49,13 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         email.setEnabled(true);
         cnpj.setEnabled(true);
         emailEmpresa.setEnabled(true);
+    }
+
+    public ImageIcon redimensionamentoDeImagem(ImageIcon imagem, int largura, int altura) {
+        Image pegarImagem = imagem.getImage();
+        Image redimensionando = pegarImagem.getScaledInstance(largura, altura, Image.SCALE_SMOOTH);
+        ImageIcon imagemRedimensionada = new ImageIcon(redimensionando);
+        return imagemRedimensionada;
     }
 
     public void nomesUsuarios() {
@@ -52,6 +66,10 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
             while (rs.next()) {
                 usuarios.add(rs.getString("nome"));
             }
+            for (String nomes : usuarios) {
+                System.out.println(nomes);
+            }
+
             rs.close();
             stmt.close();
             con.close();
@@ -62,6 +80,36 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
 
     public void pesquisarNome() {
         String texto = tfPesquisar.getText();
+        filtro = new ArrayList<>();
+        filtro.clear();
+        if (!texto.isEmpty()) {
+            for (String nome : usuarios) {
+                if (nome.contains(texto)) {
+                    filtro.add(nome);
+                }
+            }
+            caixaDeNomes.removeAll();
+            if (!filtro.isEmpty()) {
+                for (String nome : filtro) {
+                    JMenuItem item = new JMenuItem(nome);
+                    item.addActionListener(e -> {
+                        tfPesquisar.setText(nome);
+                        item.setFont(fonteItem);
+                        caixaDeNomes.setVisible(false);
+                    });
+                    caixaDeNomes.add(item);
+                }
+                caixaDeNomes.setVisible(true);
+                caixaDeNomes.show(tfPesquisar, 0, tfPesquisar.getHeight());
+            } else {
+                caixaDeNomes.setVisible(false);
+            }
+
+        } else {
+
+            caixaDeNomes.removeAll();
+            caixaDeNomes.setVisible(false);
+        }
 
     }
 
@@ -104,7 +152,7 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         jLabel13 = new javax.swing.JLabel();
         codigoUsuario = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        bairro1 = new javax.swing.JTextField();
+        complemento = new javax.swing.JTextField();
         btComprasUsuario = new javax.swing.JButton();
         painelEmpresa = new javax.swing.JPanel();
         perfil1 = new javax.swing.JLabel();
@@ -142,6 +190,14 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         setTitle("Pesquisar Usuários");
 
         tfPesquisar.setFont(new java.awt.Font("Arial", 0, 17)); // NOI18N
+        tfPesquisar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfPesquisarFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfPesquisarFocusLost(evt);
+            }
+        });
         tfPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tfPesquisarKeyReleased(evt);
@@ -152,6 +208,11 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         btnProcurar.setFont(new java.awt.Font("Arial", 0, 17)); // NOI18N
         btnProcurar.setForeground(new java.awt.Color(255, 255, 255));
         btnProcurar.setText("Procurar");
+        btnProcurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProcurarActionPerformed(evt);
+            }
+        });
 
         tipoPessoa.add(rdEmpresa);
         rdEmpresa.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -177,23 +238,28 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         jLabel1.setText("Nome");
 
         nome.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        nome.setSelectedTextColor(new java.awt.Color(51, 51, 51));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 19)); // NOI18N
         jLabel2.setText("E-mail");
 
         email.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        email.setSelectedTextColor(new java.awt.Color(51, 51, 51));
 
         cpf.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        cpf.setSelectedTextColor(new java.awt.Color(51, 51, 51));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 19)); // NOI18N
         jLabel3.setText("Cadastro de Pessoa Física (CPF)");
 
         rg.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        rg.setSelectedTextColor(new java.awt.Color(51, 51, 51));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 19)); // NOI18N
         jLabel4.setText("Registro Geral (RG)");
 
         telefone.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        telefone.setSelectedTextColor(new java.awt.Color(51, 51, 51));
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 19)); // NOI18N
         jLabel5.setText("Telefone");
@@ -202,8 +268,10 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         jLabel6.setText("Idade");
 
         idade.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        idade.setSelectedTextColor(new java.awt.Color(51, 51, 51));
 
         dataNascimento.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        dataNascimento.setSelectedTextColor(new java.awt.Color(51, 51, 51));
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 19)); // NOI18N
         jLabel7.setText("Data de nascimento");
@@ -212,23 +280,28 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         jLabel8.setText("Estado");
 
         estado.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        estado.setSelectedTextColor(new java.awt.Color(51, 51, 51));
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 19)); // NOI18N
         jLabel9.setText("CEP");
 
         cep.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        cep.setSelectedTextColor(new java.awt.Color(51, 51, 51));
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 19)); // NOI18N
         jLabel10.setText("Cidade");
 
         cidade.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        cidade.setSelectedTextColor(new java.awt.Color(51, 51, 51));
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 19)); // NOI18N
         jLabel11.setText("Bairro");
 
         bairro.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        bairro.setSelectedTextColor(new java.awt.Color(51, 51, 51));
 
         endereco.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        endereco.setSelectedTextColor(new java.awt.Color(51, 51, 51));
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 19)); // NOI18N
         jLabel12.setText("Endereço");
@@ -237,11 +310,21 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         jLabel13.setText("Código");
 
         codigoUsuario.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        codigoUsuario.setSelectedTextColor(new java.awt.Color(51, 51, 51));
+        codigoUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                codigoUsuarioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                codigoUsuarioFocusLost(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Arial", 0, 19)); // NOI18N
         jLabel14.setText("Complemento");
 
-        bairro1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        complemento.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        complemento.setSelectedTextColor(new java.awt.Color(51, 51, 51));
 
         btComprasUsuario.setBackground(new java.awt.Color(255, 165, 0));
         btComprasUsuario.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -280,7 +363,7 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(painelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(bairro)
-                                    .addComponent(bairro1)
+                                    .addComponent(complemento)
                                     .addGroup(painelPessoaLayout.createSequentialGroup()
                                         .addGroup(painelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel11)
@@ -324,13 +407,12 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
             painelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelPessoaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(painelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(painelPessoaLayout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(estado, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(painelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(painelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(painelPessoaLayout.createSequentialGroup()
+                            .addComponent(jLabel8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(estado, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(painelPessoaLayout.createSequentialGroup()
                             .addGroup(painelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(painelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -385,7 +467,8 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(painelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addComponent(perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(painelPessoaLayout.createSequentialGroup()
@@ -395,7 +478,7 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
                     .addGroup(painelPessoaLayout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bairro1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(complemento, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btComprasUsuario)
                 .addContainerGap(30, Short.MAX_VALUE))
@@ -685,24 +768,83 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_rdPessoaActionPerformed
 
     private void tfPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisarKeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            String texto = tfPesquisar.getText();
-            if (rdPessoa.isSelected()) {
-                try (Connection con = Conexao.conexaoBanco()) {
-                    PreparedStatement stmt = con.prepareStatement("SELECT nome FROM pessoa WHERE nome = ?");
+        pesquisarNome();
+    }//GEN-LAST:event_tfPesquisarKeyReleased
 
-                } catch (Exception e) {
-                    e.printStackTrace();
+    private void btnProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarActionPerformed
+        codigoUsuario.setEnabled(false);
+        email.setEnabled(false);
+        cpf.setEnabled(false);
+        if (rdPessoa.isSelected()) {
+            try {
+                Connection con = Conexao.conexaoBanco();
+                PreparedStatement stmt = con.prepareStatement("SELECT * FROM dados_pesquisa WHERE nome = ?");
+                stmt.setString(1, tfPesquisar.getText());
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    codigoUsuario.setText(rs.getString("id_usuario"));
+                    nome.setText(rs.getString("nome"));
+                    email.setText(rs.getString("email"));
+                    telefone.setText(rs.getString("telefone"));
+                    cpf.setText(rs.getString("cpf_cnpj"));
+                    rg.setText(rs.getString("rg"));
+                    idade.setText(rs.getString("idade"));
+                    estado.setText(rs.getString("uf"));
+                    cep.setText(rs.getString("cep"));
+                    cidade.setText(rs.getString("cidade"));
+                    bairro.setText(rs.getString("bairro"));
+                    endereco.setText(rs.getString("endereco"));
+                    complemento.setText(rs.getString("complemento"));
+
+                    ImageIcon foto = new ImageIcon("imagens/usuarios/" + rs.getString("caminho_imagem"));
+                    perfil.setIcon(redimensionamentoDeImagem(foto, 205, 233));
+
                 }
+                rs.close();
+                stmt.close();
+                con.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "<html> <h3> Não foi possível encontrar este nome</h3> </html>");
             }
         }
-    }//GEN-LAST:event_tfPesquisarKeyReleased
+    }//GEN-LAST:event_btnProcurarActionPerformed
+
+    private void tfPesquisarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfPesquisarFocusGained
+        codigoUsuario.setEnabled(false);
+        email.setEnabled(false);
+        cpf.setEnabled(false);
+
+    }//GEN-LAST:event_tfPesquisarFocusGained
+
+    private void tfPesquisarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfPesquisarFocusLost
+        if (!tfPesquisar.getText().isEmpty()) {
+            codigoUsuario.setEnabled(false);
+            email.setEnabled(false);
+            cpf.setEnabled(false);
+        }
+
+    }//GEN-LAST:event_tfPesquisarFocusLost
+
+    private void codigoUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_codigoUsuarioFocusGained
+        tfPesquisar.setEnabled(false);
+        email.setEnabled(false);
+        cpf.setEnabled(false);
+    }//GEN-LAST:event_codigoUsuarioFocusGained
+
+    private void codigoUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_codigoUsuarioFocusLost
+        if (!codigoUsuario.getText().isEmpty()) {
+            tfPesquisar.setEnabled(false);
+            email.setEnabled(false);
+            cpf.setEnabled(false);
+        }
+
+    }//GEN-LAST:event_codigoUsuarioFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JCard;
     private javax.swing.JTextField bairro;
-    private javax.swing.JTextField bairro1;
     private javax.swing.JTextField bairro2;
     private javax.swing.JTextField bairro3;
     private javax.swing.JButton btCompras;
@@ -715,6 +857,7 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JTextField cnpj;
     private javax.swing.JTextField codigoUsuario;
     private javax.swing.JTextField codigoUsuario1;
+    private javax.swing.JTextField complemento;
     private javax.swing.JTextField cpf;
     private javax.swing.JTextField dataNascimento;
     private javax.swing.JTextField dataNascimento1;
