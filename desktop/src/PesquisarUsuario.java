@@ -25,7 +25,7 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
     ArrayList<String> usuarios;
     JPopupMenu caixaDeNomes = new JPopupMenu();
     ArrayList<String> filtro;
-    Font fonteItem = new Font("Arial", Font.PLAIN, 15);
+    Font fonteItem = new Font("Arial", Font.PLAIN, 19);
 
     public PesquisarUsuario() {
         initComponents();
@@ -135,7 +135,7 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
                     complemento.setText(rs.getString("complemento"));
 
                     ImageIcon foto = new ImageIcon("imagens/usuarios/" + rs.getString("caminho_imagem"));
-                    perfil.setIcon(redimensionamentoDeImagem(foto, 205, 233));
+                    perfil.setIcon(redimensionamentoDeImagem(foto, 247, 227));
 
                 }
                 rs.close();
@@ -169,7 +169,7 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
                     setorAtividade.setText(rs.getString("setor_atividade"));
 
                     ImageIcon foto = new ImageIcon("imagens/usuarios/" + rs.getString("caminho_imagem"));
-                    perfil.setIcon(redimensionamentoDeImagem(foto, 205, 233));
+                    perfil1.setIcon(redimensionamentoDeImagem(foto, 247, 227));
 
                 }
                 rs.close();
@@ -634,8 +634,8 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         painelEmpresaLayout.setHorizontalGroup(
             painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelEmpresaLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(perfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(perfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelEmpresaLayout.createSequentialGroup()
@@ -717,7 +717,6 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
                 .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(painelEmpresaLayout.createSequentialGroup()
                         .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(perfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(painelEmpresaLayout.createSequentialGroup()
                                 .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -774,7 +773,8 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
                                         .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(estado1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(cep1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(17, 17, 17)))))
+                                        .addGap(17, 17, 17))))
+                            .addComponent(perfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel26)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
