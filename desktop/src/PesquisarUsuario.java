@@ -35,7 +35,6 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         rdPessoa.setSelected(true);
         desativarTextField(painelPessoa);
         desativarTextField(painelEmpresa);
-        nomesUsuarios();
 
     }
 
@@ -58,10 +57,12 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         return imagemRedimensionada;
     }
 
-    public void nomesUsuarios() {
+    public void nomesUsuarios(String tipo_pessoa) {
+        usuarios.clear();
         try {
             Connection con = Conexao.conexaoBanco();
-            PreparedStatement stmt = con.prepareStatement("SELECT nome FROM pessoa");
+            PreparedStatement stmt = con.prepareStatement("SELECT nome FROM pessoa WHERE tipo_pessoa = ?");
+            stmt.setString(1,tipo_pessoa);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 usuarios.add(rs.getString("nome"));
@@ -112,6 +113,74 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         }
 
     }
+    private void pesquisarPessoa(){
+        try {
+                Connection con = Conexao.conexaoBanco();
+                PreparedStatement stmt = con.prepareStatement("SELECT * FROM dados_pesquisa WHERE nome = ? AND tipo_pessoa = 'F'");
+                stmt.setString(1, tfPesquisar.getText());
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    codigoUsuario.setText(rs.getString("id_usuario"));
+                    nome.setText(rs.getString("nome"));
+                    email.setText(rs.getString("email"));
+                    telefone.setText(rs.getString("telefone"));
+                    cpf.setText(rs.getString("cpf_cnpj"));
+                    rg.setText(rs.getString("rg"));
+                    idade.setText(rs.getString("idade"));
+                    estado.setText(rs.getString("uf"));
+                    cep.setText(rs.getString("cep"));
+                    cidade.setText(rs.getString("cidade"));
+                    bairro.setText(rs.getString("bairro"));
+                    endereco.setText(rs.getString("endereco"));
+                    complemento.setText(rs.getString("complemento"));
+
+                    ImageIcon foto = new ImageIcon("imagens/usuarios/" + rs.getString("caminho_imagem"));
+                    perfil.setIcon(redimensionamentoDeImagem(foto, 205, 233));
+
+                }
+                rs.close();
+                stmt.close();
+                con.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "<html> <h3> Não foi possível encontrar este nome</h3> </html>");
+            
+    }
+    }
+    private void pesquisarEmpresa(){
+        try {
+                Connection con = Conexao.conexaoBanco();
+                PreparedStatement stmt = con.prepareStatement("SELECT * FROM dados_pesquisa WHERE nome = ? AND tipo_pessoa = 'J'");
+                stmt.setString(1, tfPesquisar.getText());
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    codigoUsuario1.setText(rs.getString("id_usuario"));
+                    nomeEmpresa.setText(rs.getString("razao_social"));
+                    emailEmpresa.setText(rs.getString("email"));
+                    telefoneEmpresa.setText(rs.getString("telefone"));
+                    cnpj.setText(rs.getString("cpf_cnpj"));
+                    nomeFantasia.setText(rs.getString("nome"));
+                    dataFundacao.setText(rs.getString("data_fundacao"));
+                    estado1.setText(rs.getString("uf"));
+                    cep1.setText(rs.getString("cep"));
+                    cidade1.setText(rs.getString("cidade"));
+                    bairroEmpresa.setText(rs.getString("bairro"));
+                    endereco1.setText(rs.getString("endereco"));
+                    setorAtividade.setText(rs.getString("setor_atividade"));
+
+                    ImageIcon foto = new ImageIcon("imagens/usuarios/" + rs.getString("caminho_imagem"));
+                    perfil.setIcon(redimensionamentoDeImagem(foto, 205, 233));
+
+                }
+                rs.close();
+                stmt.close();
+                con.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "<html> <h3> Não foi possível encontrar este nome</h3> </html>");
+            
+    }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -157,16 +226,16 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         painelEmpresa = new javax.swing.JPanel();
         perfil1 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        empresa = new javax.swing.JTextField();
+        nomeEmpresa = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         emailEmpresa = new javax.swing.JTextField();
         cnpj = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         inscricaoEstadual = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        telefone1 = new javax.swing.JTextField();
+        telefoneEmpresa = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        dataNascimento1 = new javax.swing.JTextField();
+        dataFundacao = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         estado1 = new javax.swing.JTextField();
@@ -175,16 +244,16 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         jLabel24 = new javax.swing.JLabel();
         cidade1 = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
-        bairro2 = new javax.swing.JTextField();
+        bairroEmpresa = new javax.swing.JTextField();
         endereco1 = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         codigoUsuario1 = new javax.swing.JTextField();
-        jLabel28 = new javax.swing.JLabel();
-        bairro3 = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         setorAtividade = new javax.swing.JTextField();
         btCompras = new javax.swing.JButton();
+        nomeFantasia = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Pesquisar Usuários");
@@ -481,7 +550,7 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
                         .addComponent(complemento, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btComprasUsuario)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         JCard.add(painelPessoa, "painelPessoa");
@@ -489,7 +558,7 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         jLabel15.setFont(new java.awt.Font("Arial", 0, 19)); // NOI18N
         jLabel15.setText("Empresa");
 
-        empresa.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        nomeEmpresa.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
 
         jLabel16.setFont(new java.awt.Font("Arial", 0, 19)); // NOI18N
         jLabel16.setText("E-mail");
@@ -506,12 +575,12 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         jLabel18.setFont(new java.awt.Font("Arial", 0, 19)); // NOI18N
         jLabel18.setText("Inscrição Estadual");
 
-        telefone1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        telefoneEmpresa.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
 
         jLabel19.setFont(new java.awt.Font("Arial", 0, 19)); // NOI18N
         jLabel19.setText("Telefone");
 
-        dataNascimento1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        dataFundacao.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
 
         jLabel21.setFont(new java.awt.Font("Arial", 0, 19)); // NOI18N
         jLabel21.setText("Data de fundação");
@@ -534,7 +603,7 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         jLabel25.setFont(new java.awt.Font("Arial", 0, 19)); // NOI18N
         jLabel25.setText("Bairro");
 
-        bairro2.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        bairroEmpresa.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
 
         endereco1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
 
@@ -546,11 +615,6 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
 
         codigoUsuario1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
 
-        jLabel28.setFont(new java.awt.Font("Arial", 0, 19)); // NOI18N
-        jLabel28.setText("Complemento");
-
-        bairro3.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-
         jLabel29.setFont(new java.awt.Font("Arial", 0, 19)); // NOI18N
         jLabel29.setText("Setor de atividade");
 
@@ -560,6 +624,11 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         btCompras.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btCompras.setText("Compras");
 
+        nomeFantasia.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+
+        jLabel30.setFont(new java.awt.Font("Arial", 0, 19)); // NOI18N
+        jLabel30.setText("Nome fantasia");
+
         javax.swing.GroupLayout painelEmpresaLayout = new javax.swing.GroupLayout(painelEmpresa);
         painelEmpresa.setLayout(painelEmpresaLayout);
         painelEmpresaLayout.setHorizontalGroup(
@@ -568,37 +637,11 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
                 .addGap(47, 47, 47)
                 .addComponent(perfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelEmpresaLayout.createSequentialGroup()
                         .addComponent(setorAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                         .addComponent(btCompras))
-                    .addGroup(painelEmpresaLayout.createSequentialGroup()
-                        .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16)
-                            .addComponent(emailEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inscricaoEstadual)
-                            .addGroup(painelEmpresaLayout.createSequentialGroup()
-                                .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel18)
-                                    .addComponent(jLabel21))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(dataNascimento1)))
-                    .addGroup(painelEmpresaLayout.createSequentialGroup()
-                        .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel27)
-                            .addComponent(codigoUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(empresa, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel19)
-                            .addComponent(telefone1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel17)
                     .addGroup(painelEmpresaLayout.createSequentialGroup()
                         .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -607,101 +650,139 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
                                     .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel22)
                                         .addComponent(estado1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(cep1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(30, 30, 30)
+                                    .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(painelEmpresaLayout.createSequentialGroup()
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jLabel23)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jLabel23)
+                                            .addGap(177, 177, 177))
+                                        .addGroup(painelEmpresaLayout.createSequentialGroup()
+                                            .addComponent(cep1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                     .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel24)
                                         .addComponent(cidade1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addComponent(jLabel29, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(jLabel26)
                             .addComponent(cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel28)
-                            .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(bairro2)
-                                .addComponent(bairro3)
+                            .addGroup(painelEmpresaLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bairroEmpresa)
+                                    .addGroup(painelEmpresaLayout.createSequentialGroup()
+                                        .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel25)
+                                            .addComponent(jLabel18))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(inscricaoEstadual)))
+                            .addGroup(painelEmpresaLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(dataFundacao))))
+                    .addGroup(painelEmpresaLayout.createSequentialGroup()
+                        .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelEmpresaLayout.createSequentialGroup()
+                                .addGap(461, 461, 461)
+                                .addComponent(jLabel21))
+                            .addComponent(jLabel17)
+                            .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(painelEmpresaLayout.createSequentialGroup()
-                                    .addComponent(jLabel25)
-                                    .addGap(0, 0, Short.MAX_VALUE))))))
-                .addContainerGap(16, Short.MAX_VALUE))
+                                    .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(painelEmpresaLayout.createSequentialGroup()
+                                            .addComponent(jLabel30)
+                                            .addGap(0, 0, Short.MAX_VALUE))
+                                        .addComponent(nomeFantasia))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(emailEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel16)))
+                                .addGroup(painelEmpresaLayout.createSequentialGroup()
+                                    .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel27)
+                                        .addComponent(codigoUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(26, 26, 26)
+                                    .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(nomeEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel15))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel19)
+                                        .addComponent(telefoneEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(16, 16, 16))
         );
         painelEmpresaLayout.setVerticalGroup(
             painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelEmpresaLayout.createSequentialGroup()
-                .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(painelEmpresaLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(perfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(painelEmpresaLayout.createSequentialGroup()
                                 .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(painelEmpresaLayout.createSequentialGroup()
                                             .addComponent(jLabel19)
                                             .addGap(35, 35, 35))
-                                        .addComponent(telefone1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(telefoneEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(painelEmpresaLayout.createSequentialGroup()
                                         .addComponent(jLabel15)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(empresa, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(nomeEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(painelEmpresaLayout.createSequentialGroup()
                                         .addComponent(jLabel27)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(codigoUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelEmpresaLayout.createSequentialGroup()
+                                        .addComponent(jLabel30)
+                                        .addGap(47, 47, 47))
+                                    .addGroup(painelEmpresaLayout.createSequentialGroup()
                                         .addComponent(jLabel16)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(emailEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(dataNascimento1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelEmpresaLayout.createSequentialGroup()
-                                        .addComponent(jLabel21)
-                                        .addGap(35, 35, 35)))
+                                            .addComponent(nomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                 .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(painelEmpresaLayout.createSequentialGroup()
+                                            .addComponent(jLabel17)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jLabel24)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(cidade1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(painelEmpresaLayout.createSequentialGroup()
+                                            .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(dataFundacao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelEmpresaLayout.createSequentialGroup()
+                                                    .addComponent(jLabel21)
+                                                    .addGap(35, 35, 35)))
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jLabel18)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(inscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelEmpresaLayout.createSequentialGroup()
-                                        .addComponent(jLabel17)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelEmpresaLayout.createSequentialGroup()
-                                        .addComponent(jLabel18)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(inscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel25)
-                                    .addComponent(jLabel24))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(bairro2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cidade1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(perfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(painelEmpresaLayout.createSequentialGroup()
-                        .addContainerGap(210, Short.MAX_VALUE)
-                        .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel22)
-                            .addComponent(jLabel23))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(estado1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cep1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(17, 17, 17)))
-                .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(painelEmpresaLayout.createSequentialGroup()
+                                        .addGap(70, 70, 70)
+                                        .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel22)
+                                            .addComponent(jLabel23))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(painelEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(estado1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cep1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(17, 17, 17)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel26)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(endereco1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(painelEmpresaLayout.createSequentialGroup()
-                        .addComponent(jLabel28)
+                        .addComponent(jLabel25)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bairro3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(bairroEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel29)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -757,14 +838,14 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
 
     private void rdEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdEmpresaActionPerformed
         card = (CardLayout) JCard.getLayout();
-
         card.show(JCard, "painelEmpresa");
+        nomesUsuarios("J");
     }//GEN-LAST:event_rdEmpresaActionPerformed
 
     private void rdPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdPessoaActionPerformed
         card = (CardLayout) JCard.getLayout();
-
         card.show(JCard, "painelPessoa");
+        nomesUsuarios("F");
     }//GEN-LAST:event_rdPessoaActionPerformed
 
     private void tfPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisarKeyReleased
@@ -776,37 +857,10 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
         email.setEnabled(false);
         cpf.setEnabled(false);
         if (rdPessoa.isSelected()) {
-            try {
-                Connection con = Conexao.conexaoBanco();
-                PreparedStatement stmt = con.prepareStatement("SELECT * FROM dados_pesquisa WHERE nome = ?");
-                stmt.setString(1, tfPesquisar.getText());
-                ResultSet rs = stmt.executeQuery();
-                if (rs.next()) {
-                    codigoUsuario.setText(rs.getString("id_usuario"));
-                    nome.setText(rs.getString("nome"));
-                    email.setText(rs.getString("email"));
-                    telefone.setText(rs.getString("telefone"));
-                    cpf.setText(rs.getString("cpf_cnpj"));
-                    rg.setText(rs.getString("rg"));
-                    idade.setText(rs.getString("idade"));
-                    estado.setText(rs.getString("uf"));
-                    cep.setText(rs.getString("cep"));
-                    cidade.setText(rs.getString("cidade"));
-                    bairro.setText(rs.getString("bairro"));
-                    endereco.setText(rs.getString("endereco"));
-                    complemento.setText(rs.getString("complemento"));
-
-                    ImageIcon foto = new ImageIcon("imagens/usuarios/" + rs.getString("caminho_imagem"));
-                    perfil.setIcon(redimensionamentoDeImagem(foto, 205, 233));
-
-                }
-                rs.close();
-                stmt.close();
-                con.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(null, "<html> <h3> Não foi possível encontrar este nome</h3> </html>");
-            }
+            pesquisarPessoa();
+        }
+        else{
+            pesquisarEmpresa();
         }
     }//GEN-LAST:event_btnProcurarActionPerformed
 
@@ -845,8 +899,7 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JCard;
     private javax.swing.JTextField bairro;
-    private javax.swing.JTextField bairro2;
-    private javax.swing.JTextField bairro3;
+    private javax.swing.JTextField bairroEmpresa;
     private javax.swing.JButton btCompras;
     private javax.swing.JButton btComprasUsuario;
     private javax.swing.JButton btnProcurar;
@@ -859,11 +912,10 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JTextField codigoUsuario1;
     private javax.swing.JTextField complemento;
     private javax.swing.JTextField cpf;
+    private javax.swing.JTextField dataFundacao;
     private javax.swing.JTextField dataNascimento;
-    private javax.swing.JTextField dataNascimento1;
     private javax.swing.JTextField email;
     private javax.swing.JTextField emailEmpresa;
-    private javax.swing.JTextField empresa;
     private javax.swing.JTextField endereco;
     private javax.swing.JTextField endereco1;
     private javax.swing.JTextField estado;
@@ -889,9 +941,9 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -899,6 +951,8 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField nome;
+    private javax.swing.JTextField nomeEmpresa;
+    private javax.swing.JTextField nomeFantasia;
     private javax.swing.JPanel painelEmpresa;
     private javax.swing.JPanel painelPessoa;
     private javax.swing.JLabel perfil;
@@ -908,7 +962,7 @@ public class PesquisarUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JTextField rg;
     private javax.swing.JTextField setorAtividade;
     private javax.swing.JTextField telefone;
-    private javax.swing.JTextField telefone1;
+    private javax.swing.JTextField telefoneEmpresa;
     private javax.swing.JTextField tfPesquisar;
     private javax.swing.ButtonGroup tipoPessoa;
     // End of variables declaration//GEN-END:variables
