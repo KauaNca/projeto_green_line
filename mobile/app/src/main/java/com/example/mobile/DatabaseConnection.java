@@ -11,12 +11,16 @@ public class DatabaseConnection {
 
     public static Connection getConnection() {
         try {
-            return DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Tentando conectar ao banco de dados...");
+            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Conexão estabelecida!");
+            return connection;
         } catch (SQLException e) {
+            System.err.println("Erro ao conectar ao banco: " + e.getMessage());
             e.printStackTrace();
             return null;
-        }
-        catch(Exception e){
+        } catch (Exception e) {
+            System.err.println("Erro inesperado: " + e.getMessage());
             e.printStackTrace();
             return null;
         }

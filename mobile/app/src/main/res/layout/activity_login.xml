@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <EditText
-            android:id="@+id/editTextText2"
+            android:id="@+id/campoSenha"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="59dp"
@@ -57,10 +57,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+            app:layout_constraintTop_toBottomOf="@+id/usuario" />
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/usuario"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="59dp"
@@ -90,7 +90,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+            app:layout_constraintTop_toBottomOf="@+id/campoSenha" />
 
         <Button
             android:id="@+id/btnEntrar"
@@ -106,7 +106,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+            app:layout_constraintTop_toBottomOf="@+id/campoSenha" />
 
         <TextView
             android:id="@+id/textView9"
