@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,18 +15,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.mobile.ui.home.HomeFragment;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.xml.transform.Result;
-
 public class Login extends AppCompatActivity {
 private Button btnEntrar;
-private EditText email,senha;
+private EditText usuario,senha;
+private TextView cadastro;
 
 
     @SuppressLint("MissingInflatedId")
@@ -39,20 +38,33 @@ private EditText email,senha;
             return insets;
         });
     btnEntrar = findViewById(R.id.btnEntrar);
-    email = findViewById(R.id.usuario);
+    usuario = findViewById(R.id.usuario);
     senha = findViewById(R.id.campoSenha);
+    cadastro = findViewById(R.id.cadastrar);
     btnEntrar.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if(!email.getText().toString().isBlank() && !senha.getText().toString().isBlank()){
-                Connection con = DatabaseConnection.getConnection();
+            if(!usuario.getText().toString().isBlank() && !senha.getText().toString().isBlank()){
+                if (!isEmailValid(usuario.getText().toString()) && !isNameValid(usuario.getText().toString())){
+                    Toast.makeText(getApplicationContext(),"Por gentileza, insira email ou nome válidos.",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                Connection con = Conexao.conectar();
                 if(con == null){
                     System.out.println("Conexao nula");
+                    return;
                 }
                 try {
-                    PreparedStatement stmt = con.prepareStatement("SELECT nome,senha " +
-                            "FROM usuario INNER JOIN pessoa ON pessoa.id_pessoa = usuario.id_pessoa WHERE nome = ? AND senha = ?");
-                    stmt.setString(1,email.getText().toString());
+                    PreparedStatement stmt = null;
+                    if(isEmailValid(usuario.getText().toString())){
+                        stmt = con.prepareStatement("SELECT email,senha " +
+                                "FROM mobile_login WHERE email = ? AND senha = ?");
+                    }else if(isNameValid(usuario.getText().toString())){
+                       stmt = con.prepareStatement("SELECT nome,senha " +
+                                "FROM mobile_login WHERE nome = ? AND senha = ?");
+                    }
+
+                    stmt.setString(1, usuario.getText().toString());
                     stmt.setString(2,senha.getText().toString());
                     ResultSet rs = stmt.executeQuery();
                     if(rs.next()){
@@ -60,11 +72,47 @@ private EditText email,senha;
                         startActivity(home);
                         finish();
                     }
+                    else{
+                        Toast.makeText(getApplicationContext(),"Usuário e senha estão errados ou não existem.",Toast.LENGTH_LONG).show();
+
+                    }
+                    rs.close();
+                    stmt.close();
+                    con.close();
                 } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
                 }
+
+
+            }
+            else {
+                Toast.makeText(getApplicationContext(),"Campos de usuário e senha estão vazios",Toast.LENGTH_LONG).show();
+
             }
         }
     });
+    cadastro.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent cadastro = new Intent(Login.this,CadastroUsuario.class);
+            startActivity(cadastro);
+            finish();
+        }
+    });
+    }
+    /**
+     * Valida se o texto inserido é um e-mail válido.
+     */
+    private boolean isEmailValid(String email) {
+        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        return email.matches(emailRegex);
+    }
+
+    /**
+     * Valida se o texto inserido é um nome válido (apenas letras).
+     */
+    private boolean isNameValid(String name) {
+        String nameRegex = "^[a-zA-Z\\s]+$"; // Somente letras e espaços
+        return name.matches(nameRegex);
     }
 }

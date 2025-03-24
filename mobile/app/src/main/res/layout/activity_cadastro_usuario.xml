@@ -236,7 +236,7 @@
         <LinearLayout
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center|center_horizontal"
             android:layout_marginTop="18dp"
             android:orientation="vertical"
             tools:ignore="MissingConstraints"
@@ -245,8 +245,9 @@
 
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="56dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="5dp"
                 android:layout_weight="0.5"
                 android:background="@drawable/button_background"
@@ -256,7 +257,7 @@
                 <ImageView
                     android:id="@+id/google"
                     android:layout_width="50dp"
-                    android:layout_height="30dp"
+                    android:layout_height="33dp"
                     android:layout_gravity="center"
                     android:layout_margin="1dp"
                     android:layout_weight="0"
@@ -264,40 +265,11 @@
 
                 <TextView
                     android:id="@+id/logarGoole"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:gravity="center"
                     android:padding="5dp"
                     android:text="Continuar com google"
-                    android:textColor="@color/verdeEscuro"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_weight="0.5"
-                android:background="@drawable/button_background"
-                android:orientation="horizontal">
-
-
-                <ImageView
-                    android:id="@+id/facebook"
-                    android:layout_width="50dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="1dp"
-                    android:layout_weight="0"
-                    app:srcCompat="@drawable/facebook" />
-
-                <TextView
-                    android:id="@+id/logarFacebook"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="Continuar com facebook"
                     android:textColor="@color/verdeEscuro"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -339,14 +311,11 @@
             </LinearLayout>
 
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
                 android:layout_marginBottom="15dp"
-                >
-
+                android:orientation="horizontal">
 
 
                 <TextView
@@ -356,15 +325,16 @@
                     android:layout_weight="0.5"
                     android:gravity="center"
                     android:text="Já possui uma conta?" />
+
                 <TextView
                     android:id="@+id/entre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="-20dp"
                     android:layout_weight="0.5"
                     android:gravity="left"
                     android:text="Entre"
-                    android:textColor="@color/azulLink"
-                    />
+                    android:textColor="@color/azulLink" />
 
             </LinearLayout>
 

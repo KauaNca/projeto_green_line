@@ -4,7 +4,7 @@
         <shape android:shape="rectangle">
             <solid android:color="@color/white"/>
             <corners android:radius="10dp"/>
-            <stroke android:color="@color/preto" android:width="1dp"/>
+            <stroke android:color="@color/cinza" android:width="1dp"/>
 
         </shape>
     </item>
