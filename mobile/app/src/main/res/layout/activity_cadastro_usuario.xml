@@ -327,7 +327,7 @@
                     android:text="Já possui uma conta?" />
 
                 <TextView
-                    android:id="@+id/entre"
+                    android:id="@+id/entrar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="-20dp"
