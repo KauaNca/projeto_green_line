@@ -2,6 +2,8 @@ package com.example.mobile;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,10 +39,15 @@ private TextView cadastro;
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
     btnEntrar = findViewById(R.id.btnEntrar);
     usuario = findViewById(R.id.usuario);
     senha = findViewById(R.id.campoSenha);
     cadastro = findViewById(R.id.cadastrar);
+
+        if(usuario.getText().toString().isBlank() && senha.getText().toString().isBlank()) {
+            btnEntrar.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#D7D6D7")));
+        }
     btnEntrar.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {

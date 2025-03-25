@@ -2,10 +2,14 @@ package com.example.mobile;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.method.KeyListener;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +26,9 @@ import java.sql.ResultSet;
 public class CadastroUsuario extends AppCompatActivity {
     private TextView login;
     private EditText nome,email,cpf,telefone,senha,repetirSenha;
-    private Button btCadastrar;
+    private Button btCadastrar,btCancelar;
+
+    private LinearLayout camposDeCadastro;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +58,19 @@ public class CadastroUsuario extends AppCompatActivity {
         senha = findViewById(R.id.senha);
         repetirSenha = findViewById(R.id.senha2);
         btCadastrar = findViewById(R.id.btCadastrar);
+        btCancelar = findViewById(R.id.btCancelar);
+        camposDeCadastro = findViewById(R.id.camposDeCadastro);
 
-        btCadastrar.setOnClickListener(new View.OnClickListener() {
+        new Mascaras().nome(nome);
+        new Mascaras().cpf(cpf);
+        new Mascaras().email(email);
+        new Mascaras().telefone(telefone);
+
+    btCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String id_pessoa;
-                ViewGroup view = findViewById(R.id.main);
+                ViewGroup view = findViewById(R.id.camposDeCadastro);
                 if(componentesVazios(view)){
                     if(senhaDupla()){
                         try {
@@ -76,12 +89,31 @@ public class CadastroUsuario extends AppCompatActivity {
                             stmt2.setString(2,senha.getText().toString());
                             stmt2.execute();
 
+                            stmt.close();
+                            stmt2.close();
+                            con.close();
+
                         }
                         catch (Exception e){
 
                         }
                     }
 
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"Campos vazios. Preencha-os",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        btCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for(int x = 0; x < camposDeCadastro.getChildCount();x++){
+                    View view = camposDeCadastro.getChildAt(x);
+                    if(view instanceof EditText){
+                        EditText campo = (EditText) view;
+                        campo.setText("");
+                    }
                 }
             }
         });
@@ -94,7 +126,7 @@ public class CadastroUsuario extends AppCompatActivity {
             if(view instanceof EditText){
                 EditText campo = (EditText) view;
                 String texto = campo.getText().toString().trim();
-                if(texto.isBlank()){
+                if(texto.isEmpty()){
                     campo.setError("Campo obrigatório");
                     camposPreenchidos = false;
                 }
@@ -131,4 +163,6 @@ public class CadastroUsuario extends AppCompatActivity {
         }
         return senhasIguais;
     }
+
+
 }
