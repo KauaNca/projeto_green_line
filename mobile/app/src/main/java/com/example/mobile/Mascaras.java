@@ -22,7 +22,10 @@ public class Mascaras {
             }
         }
     });}
-    public void cpf(EditText editText){
+    public void cpf(EditText editText) {
+        // Configurar limite de caracteres no EditText
+        editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(14)});
+
         editText.addTextChangedListener(new TextWatcher() {
             private boolean isUpdating = false;
             private final String mask = "###.###.###-##";
@@ -35,10 +38,11 @@ public class Mascaras {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (isUpdating || s.length() > 14) return;
+                if (isUpdating) return; // Evita loops
                 isUpdating = true;
 
-                String unmasked = s.toString().replaceAll("\\D", ""); // Remove tudo que não for número
+                // Remove tudo que não for número
+                String unmasked = s.toString().replaceAll("\\D", "");
                 StringBuilder masked = new StringBuilder();
 
                 int i = 0;
@@ -57,9 +61,11 @@ public class Mascaras {
                 isUpdating = false;
             }
         });
-
     }
-    public void telefone(EditText editText){
+    public void telefone(EditText editText) {
+        // Configurar limite de caracteres no EditText
+        editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(15)});
+
         editText.addTextChangedListener(new TextWatcher() {
             private boolean isUpdating = false;
             private final String mask8 = "(##) ####-####";  // Telefone fixo
@@ -73,11 +79,13 @@ public class Mascaras {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (isUpdating || s.length() > 15) return;
+                if (isUpdating) return; // Evita loops desnecessários
                 isUpdating = true;
 
-                String unmasked = s.toString().replaceAll("\\D", ""); // Remove tudo que não for número
-                String mask = unmasked.length() > 10 ? mask9 : mask8; // Escolhe a máscara certa
+                // Remove tudo que não for número
+                String unmasked = s.toString().replaceAll("\\D", "");
+                // Escolhe a máscara apropriada com base no tamanho do texto
+                String mask = unmasked.length() > 10 ? mask9 : mask8;
 
                 StringBuilder masked = new StringBuilder();
                 int i = 0;
@@ -96,7 +104,6 @@ public class Mascaras {
                 isUpdating = false;
             }
         });
-
     }
     public void email(EditText editText){
         editText.setFilters(new InputFilter[]{

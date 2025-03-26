@@ -2,9 +2,6 @@ package com.example.mobile;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.method.KeyListener;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -13,11 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,32 +18,17 @@ import java.sql.ResultSet;
 
 public class CadastroUsuario extends AppCompatActivity {
     private TextView login;
-    private EditText nome,email,cpf,telefone,senha,repetirSenha;
-    private Button btCadastrar,btCancelar;
-
+    private EditText nome, email, cpf, telefone, senha, repetirSenha;
+    private Button btCadastrar, btCancelar;
     private LinearLayout camposDeCadastro;
-    @Override
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_cadastro_usuario);
 
-        // Inicialize o TextView usando findViewById
+        // Inicialize os componentes
         login = findViewById(R.id.entrar);
-
-        // Configure o listener somente após a inicialização
-        login.setOnClickListener(v -> {
-            Intent telaLogin = new Intent(CadastroUsuario.this, com.example.mobile.Login.class);
-            startActivity(telaLogin);
-            finish();
-        });
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
         nome = findViewById(R.id.nome);
         email = findViewById(R.id.email);
         cpf = findViewById(R.id.cpf);
@@ -61,72 +39,88 @@ public class CadastroUsuario extends AppCompatActivity {
         btCancelar = findViewById(R.id.btCancelar);
         camposDeCadastro = findViewById(R.id.camposDeCadastro);
 
+        // Configurações de máscara
         new Mascaras().nome(nome);
         new Mascaras().cpf(cpf);
         new Mascaras().email(email);
         new Mascaras().telefone(telefone);
 
-    btCadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String id_pessoa;
-                ViewGroup view = findViewById(R.id.camposDeCadastro);
-                if(componentesVazios(view)){
-                    if(senhaDupla()){
-                        try {
-                            Connection con = Conexao.conectar();
-                            PreparedStatement stmt = con.prepareStatement("INSERT INTO pessoa(nome,email,cpf,telefone) VALUES (?,?,?,?)");
-                            stmt.setString(1,nome.getText().toString().trim());
-                            stmt.setString(2,email.getText().toString().trim());
-                            stmt.setString(3,cpf.getText().toString().trim());
-                            stmt.setString(4,telefone.getText().toString().trim());
-                            stmt.execute();
-                            id_pessoa = pegarIdPessoa();
-
-                            PreparedStatement stmt2 = con.prepareStatement("INSERT INTO usuario(id_pessoa,id_tipo_usuario,senha,nivel_acesso,situacao)" +
-                                    "VALUES(?,3,?,Sem acesso,A)");
-                            stmt2.setString(1,id_pessoa);
-                            stmt2.setString(2,senha.getText().toString());
-                            stmt2.execute();
-
-                            stmt.close();
-                            stmt2.close();
-                            con.close();
-
-                        }
-                        catch (Exception e){
-
-                        }
-                    }
-
-                }
-                else {
-                    Toast.makeText(getApplicationContext(),"Campos vazios. Preencha-os",Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-        btCancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int x = 0; x < camposDeCadastro.getChildCount();x++){
-                    View view = camposDeCadastro.getChildAt(x);
-                    if(view instanceof EditText){
-                        EditText campo = (EditText) view;
-                        campo.setText("");
-                    }
-                }
-            }
+        // Listener para abrir a tela de login
+        login.setOnClickListener(v -> {
+            Intent telaLogin = new Intent(CadastroUsuario.this, com.example.mobile.Login.class);
+            startActivity(telaLogin);
+            finish();
         });
 
+        btCadastrar.setOnClickListener(v -> cadastrarUsuario());
+        btCancelar.setOnClickListener(v -> limparCampos(camposDeCadastro));
     }
-    private boolean componentesVazios(ViewGroup viewGroup){
-       boolean camposPreenchidos = true;
-        for(int x = 0; x< viewGroup.getChildCount();x++){
+
+    private void cadastrarUsuario() {
+        if (!componentesVazios(camposDeCadastro)) {
+            Toast.makeText(getApplicationContext(), "Campos vazios. Preencha-os", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (!senhaDupla()) return;
+
+        try {
+            Connection con = Conexao.conectar();
+            if (con == null) {
+                Toast.makeText(this, "Erro na conexão com o banco de dados", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            // Inserir na tabela pessoa
+            String sqlPessoa = "INSERT INTO pessoa(nome, email, cpf_cnpj, telefone) VALUES (?, ?, ?, ?)";
+            PreparedStatement stmtPessoa = con.prepareStatement(sqlPessoa);
+            stmtPessoa.setString(1, nome.getText().toString().trim());
+            stmtPessoa.setString(2, email.getText().toString().trim());
+            stmtPessoa.setString(3, cpf.getText().toString().trim());
+            stmtPessoa.setString(4, telefone.getText().toString().trim());
+            stmtPessoa.execute();
+
+            // Recuperar ID da pessoa
+            String idPessoa = pegarIdPessoa(con);
+            if (idPessoa == null) {
+                Toast.makeText(this, "Erro ao recuperar ID da pessoa", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            // Inserir na tabela usuario
+            String sqlUsuario = "INSERT INTO usuario(id_pessoa, id_tipo_usuario, senha, nivel_acesso, situacao) " +
+                    "VALUES (?, 3, ?, 'Sem acesso', 'A')";
+            PreparedStatement stmtUsuario = con.prepareStatement(sqlUsuario);
+            stmtUsuario.setString(1, idPessoa);
+            stmtUsuario.setString(2, senha.getText().toString());
+            stmtUsuario.execute();
+
+            // Fechar recursos
+            stmtPessoa.close();
+            stmtUsuario.close();
+            con.close();
+
+            limparCampos(camposDeCadastro);
+            Toast.makeText(getApplicationContext(), "Cadastro concluído.", Toast.LENGTH_SHORT).show();
+
+            // Navegar para a tela de login
+            Intent telaLogin = new Intent(CadastroUsuario.this, com.example.mobile.Login.class);
+            startActivity(telaLogin);
+            finish();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Erro ao cadastrar: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private boolean componentesVazios(ViewGroup viewGroup) {
+        boolean camposPreenchidos = true;
+        for (int x = 0; x < viewGroup.getChildCount(); x++) {
             View view = viewGroup.getChildAt(x);
-            if(view instanceof EditText){
+            if (view instanceof EditText) {
                 EditText campo = (EditText) view;
                 String texto = campo.getText().toString().trim();
-                if(texto.isEmpty()){
+                if (texto.isEmpty()) {
                     campo.setError("Campo obrigatório");
                     camposPreenchidos = false;
                 }
@@ -134,35 +128,38 @@ public class CadastroUsuario extends AppCompatActivity {
         }
         return camposPreenchidos;
     }
-    private String pegarIdPessoa(){
-        String id_pessoa = null;
+
+    private String pegarIdPessoa(Connection con) {
+        String idPessoa = null;
         try {
-            Connection con = Conexao.conectar();
-            PreparedStatement stmt = con.prepareStatement("SELECT id_pessoa FROM pessoa ORDER BY id_pessoa DESC LIMIT 1;");
+            PreparedStatement stmt = con.prepareStatement("SELECT id_pessoa FROM pessoa ORDER BY id_pessoa DESC LIMIT 1");
             ResultSet rs = stmt.executeQuery();
-            if(rs.next()){
-                id_pessoa = rs.getString("id_pessoa");
+            if (rs.next()) {
+                idPessoa = rs.getString("id_pessoa");
             }
-            else{
-                Toast.makeText(this,"ID pessoa não encontrado",Toast.LENGTH_LONG).show();
-            }
-        }
-        catch (Exception e){
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return id_pessoa;
-    }
-    private boolean senhaDupla(){
-        boolean senhasIguais = true;
-        if(senha.getText().toString()!=repetirSenha.getText().toString()){
-            Toast.makeText(this,"Senhas diferentes.Preencha novamente",Toast.LENGTH_SHORT).show();
-            senhasIguais = false;
-        }
-        else {
-            senhasIguais = true;
-        }
-        return senhasIguais;
+        return idPessoa;
     }
 
+    private boolean senhaDupla() {
+        if (!senha.getText().toString().equals(repetirSenha.getText().toString())) {
+            Toast.makeText(this, "Senhas diferentes. Preencha novamente", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
 
+    private void limparCampos(ViewGroup viewGroup) {
+        for (int x = 0; x < viewGroup.getChildCount(); x++) {
+            View view = viewGroup.getChildAt(x);
+            if (view instanceof EditText) {
+                EditText campo = (EditText) view;
+                campo.setText("");
+            }
+        }
+    }
 }

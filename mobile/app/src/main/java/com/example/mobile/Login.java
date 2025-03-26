@@ -44,10 +44,6 @@ private TextView cadastro;
     usuario = findViewById(R.id.usuario);
     senha = findViewById(R.id.campoSenha);
     cadastro = findViewById(R.id.cadastrar);
-
-        if(usuario.getText().toString().isBlank() && senha.getText().toString().isBlank()) {
-            btnEntrar.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#D7D6D7")));
-        }
     btnEntrar.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
