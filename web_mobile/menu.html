@@ -4,23 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Header E-commerce GreenLine</title>
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome para ícones -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <style>
-        /* Estilo geral do header */
+        body {
+            overflow-x: hidden; /* Impede rolagem lateral */
+        }
+
         .holo-header {
             position: relative;
             background: linear-gradient(135deg, #064e3b, #059669, #34d399);
             color: #ffffff;
             padding: 1rem 0;
-            overflow: hidden;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
             z-index: 1000;
+            overflow: visible; /* Permite que o dropdown se estenda */
         }
 
-        /* Camada de fundo com linhas diagonais minimalistas */
+        .navbar {
+            position: relative;
+            z-index: 1050; /* Acima do header, mas abaixo do dropdown */
+        }
+
         .holo-header::before {
             content: '';
             position: absolute;
@@ -28,14 +33,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0 100L100 0M20 100L120 0" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/></svg>') repeat;
-            opacity: 0.3; /* Mais sutil */
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0 100L100 0M10 100L110 0M20 100L120 0" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/></svg>') repeat;
+            opacity: 0.3;
             animation: holo-move 15s linear infinite;
-            pointer-events: none; /* Impede bloqueio de interações */
-            z-index: 1; /* Abaixo dos elementos interativos */
+            pointer-events: none;
         }
 
-        /* Camada adicional para efeito 3D */
         .holo-header::after {
             content: '';
             position: absolute;
@@ -44,39 +47,26 @@
             width: 100%;
             height: 100%;
             background: radial-gradient(circle, rgba(52, 211, 153, 0.2) 0%, transparent 70%);
-            opacity: 0.4;
+            opacity: 0.5;
             animation: pulse 10s ease-in-out infinite;
-            pointer-events: none; /* Impede bloqueio de interações */
-            z-index: 1; /* Abaixo dos elementos interativos */
+            pointer-events: none;
         }
 
-        /* Animação para o fundo de linhas diagonais */
         @keyframes holo-move {
             0% { background-position: 0 0; }
-            100% { background-position: 200px -200px; }
+            100% { background-position: 100px -100px; }
         }
 
-        /* Animação para o efeito 3D radial */
         @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.4; }
-            50% { transform: scale(1.2); opacity: 0.2; }
-            100% { transform: scale(1); opacity: 0.4; }
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.3; }
+            100% { transform: scale(1); opacity: 0.5; }
         }
 
-        /* Garante que elementos interativos estejam acima */
-        .navbar, .search-bar, .nav-link, .icon-btn, .navbar-brand {
-            position: relative;
-            z-index: 2;
-        }
-
-        input::placeholder{
-            color: white !important;;
-        }
-
-        /* Efeito 3D nos links do menu */
         .nav-link {
             color: #e6fffa !important;
             font-weight: 600;
+            position: relative;
             transition: all 0.3s ease;
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
             cursor: pointer;
@@ -88,17 +78,40 @@
             text-shadow: 0 0 15px rgba(52, 211, 153, 0.9), 0 4px 10px rgba(0, 0, 0, 0.4);
         }
 
-        /* Estilo do campo de busca com profundidade */
+        .dropdown-menu {
+            background: rgba(6, 78, 59, 0.9);
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1100;
+            position: absolute; /* Garante que o dropdown se posicione corretamente */
+        }
+
+        .dropdown-item {
+            color: #e6fffa !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-item:hover {
+            background: rgba(52, 211, 153, 0.3);
+            color: #ffffff !important;
+            transform: translateX(5px);
+            text-shadow: 0 0 10px rgba(52, 211, 153, 0.9);
+        }
+
         .search-bar {
             max-width: 400px;
             position: relative;
+            z-index: 1100;
         }
 
         .search-bar input {
             background: rgba(255, 255, 255, 0.15);
             border: 1px solid rgba(52, 211, 153, 0.3);
             border-radius: 25px;
-            color: #ffffff;
+            color: #ffffff !important;
             padding-right: 40px;
             transition: all 0.3s ease;
             box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -122,7 +135,6 @@
             cursor: pointer;
         }
 
-        /* Ícones de carrinho e login com efeito 3D */
         .icon-btn {
             color: #e6fffa !important;
             font-size: 1.3rem;
@@ -137,7 +149,6 @@
             text-shadow: 0 0 15px rgba(52, 211, 153, 0.9);
         }
 
-        /* Logo com efeito neon 3D */
         .navbar-brand {
             color: #ffffff !important;
             font-size: 2rem;
@@ -152,108 +163,68 @@
             transform: scale(1.05);
         }
 
-        /* Ajustes para dispositivos menores */
         @media (max-width: 991px) {
-            .navbar-collapse {
-                background: rgba(5, 150, 105, 0.95); /* Fundo verde escuro para a sidebar */
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 250px; /* Largura fixa para a sidebar */
-                height: 100vh; /* Ocupa toda a altura da tela */
-                padding: 1rem;
-                margin: 0;
-                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
-                z-index: 2000; /* Acima de outros elementos */
-                transform: translateX(0); /* Garante que fique visível */
+            .navbar {
+                padding: 0.5rem; /* Reduzir o padding */
             }
 
-            /* Ajusta a transição do menu colapsado */
-            .navbar-collapse.collapsing,
-            .navbar-collapse.show {
-                transition: transform 0.3s ease-in-out;
+            .nav-link {
+                font-size: 0.9rem; /* Diminuir o tamanho da fonte */
             }
 
-            /* Botão toggler alinhado à direita */
-            .navbar-toggler {
-                margin-left: auto;
+            .nav-link:hover {
+                transform: none; /* Remove o transform no hover */
             }
 
-            /* Ajusta a barra de busca */
             .search-bar {
                 max-width: 100%;
-                margin: 1rem 0;
+                margin: 0.5rem 0; /* Ajustar a margem */
             }
 
-            /* Alinhamento dos links no menu colapsado */
-            .navbar-nav {
-                padding: 1rem 0;
+            .dropdown-menu {
+                left: 0; /* Garantir que o dropdown comece na borda esquerda */
+                right: auto; /* Remover qualquer ajuste automático à direita */
             }
 
-            .nav-item {
-                margin: 0.5rem 0;
+            .dropdown-item:hover {
+                transform: none; /* Remove o transform no hover */
             }
 
-            .nav-link {
-                font-size: 1.1rem;
-                padding: 0.5rem 1rem;
+            .icon-btn:hover {
+                transform: none; /* Remove o transform no hover */
             }
 
-            /* Ícones de carrinho e login no menu colapsado */
-            .icon-btn {
-                font-size: 1.2rem;
-                padding: 0.5rem 1rem;
-            }
-
-            /* Logo em telas menores */
-            .navbar-brand {
-                font-size: 1.5rem;
-                margin-right: 0.5rem;
-            }
-
-            /* Garante que o contêiner não cause deslocamento */
-            .container {
-                padding-left: 15px;
-                padding-right: 15px;
-            }
-        }
-
-        /* Ajuste para telas muito pequenas (ex.: < 576px) */
-        @media (max-width: 576px) {
-            .navbar-collapse {
-                width: 200px; /* Reduz a largura para telas muito pequenas */
-            }
-
-            .navbar-brand {
-                font-size: 1.2rem;
-            }
-
-            .nav-link {
-                font-size: 1rem;
+            .navbar-brand:hover {
+                transform: none; /* Remove o transform no hover */
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header com Navbar -->
     <header class="holo-header">
         <nav class="navbar navbar-expand-lg container">
-            <!-- Logo -->
-             <img src="img/logo.png" alt="">
+            <img src="img/logo.png" alt="">
             <a class="navbar-brand" href="#">GreenLine</a>
-            <!-- Botão para menu mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <!-- Conteúdo da Navbar -->
             <div class="collapse navbar-collapse" id="navbarContent">
-                <!-- Menu de navegação -->
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="#">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Categorias</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="produtosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Produtos
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="produtosDropdown">
+                            <li><a class="dropdown-item" href="#">Produtos Ecológicos</a></li>
+                            <li><a class="dropdown-item" href="#">Roupas</a></li>
+                            <li><a class="dropdown-item" href="#">Cuidados Pessoais</a></li>
+                            <li><a class="dropdown-item" href="#">Artigos Esportivos</a></li>
+                            <li><a class="dropdown-item" href="#">Eletrônicos</a></li>
+                            <li><a class="dropdown-item" href="#">Livros</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Ofertas</a>
@@ -265,12 +236,10 @@
                         <a class="nav-link" href="#">Contato</a>
                     </li>
                 </ul>
-                <!-- Barra de busca -->
                 <div class="search-bar d-flex align-items-center mx-lg-3">
-                    <input type="text" class="form-control text-white " placeholder="Buscar produtos...">
+                    <input type="text" class="form-control" placeholder="Buscar produtos...">
                     <i class="fas fa-search"></i>
                 </div>
-                <!-- Ícones de carrinho e login -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link icon-btn" href="#"><i class="fas fa-shopping-cart"></i></a>
@@ -282,8 +251,6 @@
             </div>
         </nav>
     </header>
-
-    <!-- Bootstrap 5 JS e Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
