@@ -1,78 +1,65 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Estilizando o footer */
+        footer {
+            background-color: #ffffff; /* Fundo branco */
+        }
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+        /* Estilizando os links */
+        .nav-link {
+            position: relative;
+            color: #787e83 !important; /* Cor padrão do text-muted */
+            transition: all 0.3s ease; /* Transição suave para o efeito */
+        }
+
+        /* Efeito 3D ao passar o mouse */
+        .nav-link:hover {
+            color: #28a745 !important; /* Verde ao passar o mouse (tema GreenLine) */
+            transform: translateY(-5px) scale(1.1); /* Salto para cima e leve aumento */
+            text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5), /* Sombra para profundidade */
+                        0 0 5px rgba(40, 167, 69, 0.5); /* Brilho verde */
+        }
+
+        /* Linha inferior do footer */
+        .border-bottom {
+            border-color: #dee2e6 !important; /* Cinza padrão do Bootstrap */
+        }
+
+        /* Texto inferior */
+        .text-muted {
+            color: #787e83 !important;
+        }
+    </style>
 </head>
-
 <body>
-    <header>
-        <!-- place navbar here -->
-    </header>
-    <main>
-
-        <p class="text-primary fs-3 fw-bold">RODAPÉ - FABRÍCIO</p>
-    </main>
-    <footer>
-        <section id="rodape">
-            <div id="caixa_alta"><a href="#">Voltar ao início</a></div>
-            <div id="caixapreta">
-
-                <div id="caixap01">
-                    <h3>CONTATO</h3>
-                    <ul>
-                        <li><a href="https://www.instagram.com/">Instagram</a></li>
-                        <li><a href="https://web.whatsapp.com/">Whatsapp</a></li>
-                        <li><a href="https://criarmeulink.com.br/u/1727178228">Email</a></li>
-                        <li><a href="">Telegram</a></li>
-                    </ul>
-                </div>
-
-                <div id="caixap02">
-                    <h3>INSTITUCIONAL</h3>
-                    <ul>
-                        <li>Nossa história</li>
-                        <li>Sobre os produtos</li>
-                        <li>Responsabilidade social</li>
-                        <li>Política de privacidade</li>
-                        <li>Política de envio de prazo</li>
-                        <li>Termos de uso</li>
-                        <li>Fale conosco</li>
-                    </ul>
-                </div>
-
-                <div id="caixap03">
-                    <h3>PAGAMENTO</h3>
-                    <ul>
-                        <li>Meios de pagamento</li>
-                        <li>Compre com pontos</li>
-                        <li>Cartão de credito</li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <div id="cb01">
-                <div id="caixa_baixa"> _______________________________________________________</div>
-
-                <div id="cbnomes">
-                    <p>Green Line | CNPJ : 74.707.730/0001-63</p>
-                    <p>71080-020 - Guará II, Brasília-DF</p>
-                </div>
-
-            </div>
-        </section>
-    </footer>
-
+    <div class="container">
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item">
+                    <a href="#" class="nav-link px-2 text-muted">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link px-2 text-muted">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link px-2 text-muted">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link px-2 text-muted">FAQs</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link px-2 text-muted">About</a>
+                </li>
+            </ul>
+            <p class="text-center text-muted">© 2025 GreenLine</p>
+        </footer>
+    </div>
 </body>
-
 </html>
