@@ -1,3 +1,17 @@
 #body{
     justify-content: space-evenly;
 }
+
+
+  .product-name {
+    transition: color 0.1s ease-in-out, text-decoration 0.3s ease-in-out;
+  }
+
+  .product-name:hover {
+    color: #0e6cd1;
+    text-decoration: underline;
+  }
+
+  .sell{
+    color: greenyellow;
+  }
