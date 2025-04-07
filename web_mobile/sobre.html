@@ -13,69 +13,37 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <style>
-        @media(min-width:500px) {
+        @media(min-width:500px) {}
 
-            .texto-inicial {
-                font-size: 14px !important;
-            }
-
-        }
-
-        @media(min-width:624px) {
-
-            .texto-inicial {
-                font-size: 14px !important;
-            }
-
-        }
-
-        @media(min-width:768px) {
-            .texto-inicial {
-                font-size: 14px !important;
-            }
-            .texto-sobre{
-                font-size: 16px;
-            }
-        }
-
-        @media(min-width: 1000px) {
-            .texto-inicial {
-                font-size: 16px !important;
-            }
-            .texto-sobre{
+        @media(min-width:576px) {
+            .texto_inicial{
                 font-size: 18px;
             }
         }
 
+        @media(min-width:992px) {
+            .texto_inicial{
+                font-size: 20px;
+            }
+            .titulo_inicial{
+                font-size: 35px !important; 
+            }
+        }
         @media(min-width:1200px) {
-            #titulo {
-                font-size: 25px;
-            }
-
-            .texto-inicial {
-                font-size: 18px !important;
-            }
-            .texto-sobre{
-                font-size: 19px;
-            }
+            .texto_inicial{
+                font-size: 24px;
+            } 
         }
 
         @media(min-width: 1400px) {
-            #titulo {
-                font-size: 30px;
-            }
-
-            .texto-inicial {
-                font-size: 20px !important;
-            }
-            .texto-sobre{
-                font-size: 20px;
-            }
+            .texto_inicial{
+                font-size: 26px;
+            } 
         }
 
         .img-height {
-            height: 200px;
-            object-fit: cover;
+            height: 224px;
+            object-fit:contain;
         }
     </style>
 </head>
@@ -86,68 +54,90 @@
     </header>
     <main>
         <!--TEXTO INICIAL-->
-        <section class="container-fluid bg-success text-center pt-3 pb-5">
-            <p id="titulo" class="lead text-white fw-bold">Faça do meio ambiente seu meio de vida</p>
-            <div class="container-fluid text-white fs-5 " style="text-align: justify;">
-                <div id="texto-inicial" class="row fs-6 justify-content-center">
-                    <div class="col-xxl-3 col-xl-5 col-lg-5 col-md-5 col-sm-8 mb-3">
-                        <text class="texto-sobre">
-                            A Green Line é uma empresa que promove um estilo de vida sustentável através do e-commerce,
-                            oferecendo uma ampla gama de produtos ecológicos e éticos para consumidores conscientes,
-                            visando reduzir o impacto ambiental e promover práticas de consumo responsáveis.
-                        </text>
-                    </div>
-                    <div class="col-xxl-3 col-xl-5 col-lg-5 col-md-5 col-sm-8">
-                        <text class="texto-sobre">
-                            Nesse sentido, empresa especializada em e-commerce, com um tema voltado ao verde, e contendo
-                            também uma parte apenas voltada para produtos ecológicos e sustentáveis. O diferencial é que
-                            mesmo com o tema voltado para o sustentável, também apresentarão páginas de comércio com
-                            produtos comuns.
-                        </text>
-                    </div>
+        <section class="container-fluid text-bg-success px-3 py-3 ">
+            <div class="row justify-content-center">
+                <div class="col-12 text-center">
+                    <h1 class="lead fs-4 titulo_inicial">Faça do meio ambiente o seu meio de vida</h1>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xxl-3 texto_inicial" style="text-align: justify;">
+                    <p>
+                        A Green Line é uma empresa que promove um estilo de vida sustentável através do e-commerce,
+                        oferecendo uma ampla gama de produtos ecológicos e éticos para consumidores conscientes, visando
+                        reduzir o impacto ambiental e promover práticas de consumo responsáveis.
+                    </p>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xxl-3 texto_inicial" style="text-align: justify;">
+                    <p>
+                        Nesse sentido, empresa especializada em e-commerce, com um tema voltado ao verde, e contendo
+                        também uma parte apenas voltada para produtos ecológicos e sustentáveis. O diferencial é que
+                        mesmo com o tema voltado para o sustentável, também apresentarão páginas de comércio com
+                        produtos comuns.
+                    </p>
                 </div>
             </div>
         </section>
         <!--NOSSA EQUIPE-->
-        <section class="container-fluid mt-3">
-            <div class="container fs-5">
-                <div class="row justify-content-center text-center">
-                    <p class="display-6">Nossa equipe</p>
-                    <div class="col-xxl-3 col-sm-8 col-xl-4 col-lg-5 col-md-5 col-6 bg-light p-3 me-4 mb-2">
-                        <img src="img/kaua.jpg" class="img-fluid rounded img-height mb-2 ">
-                        <p class="lead">Kauã Nunes</p>
-                        <p class="text-dark texto-inicial">Estudante de desenvolvimento de sistemas</p>
-                    </div>
-                    <div class="col-xxl-3 col-sm-8 col-xl-4 col-lg-5 col-md-5 col-6 bg-light p-3 me-4 mb-2">
-                        <img src="img/gabriel.jpeg" class="img-fluid rounded img-height mb-2">
-                        <p class="lead">Gabriel</p>
-                        <p class="text-dark texto-inicial">Desenvolvedor Full-Stack e Buxa da equipe
-                        </p>
-                    </div>
-                    <div class="col-xxl-3 col-sm-8 col-xl-4 col-lg-5 col-md-5 col-6 bg-light p-3 me-4 mb-2">
-                        <img src="img/guii.jpg" class="img-fluid rounded img-height mb-2">
-                        <p class="lead">Guilherme</p>
-                        <p class="text-dark texto-inicial">Designer, estudante de desenvolvimento de sistema, jogador do Barcelona FC,
-                            body builder profissional
-                        </p>
-                    </div>
-                    <div class="col-xxl-3 col-sm-8 col-xl-4 col-lg-5 col-md-5 col-6 bg-light p-3 me-4 mb-2">
-                        <img src="img/fabricio.jpg" class="img-fluid rounded img-height mb-2">
-                        <p class="lead">Fabricio</p>
-                        <p class="text-dark texto-inicial">Gerente, designer, apaixonado, flamenguista.
-                        </p>
-                    </div>
-                    <div class="col-xxl-3 col-sm-8 col-xl-4 col-lg-5 col-md-5 col-6 bg-light p-3 me-4 mb-2">
-                        <img src="img/edenilson.jpg" class="img-fluid rounded img-height mb-2">
-                        <p class="lead">Edenilson</p>
-                        <p class="text-dark texto-inicial">Estudante de Desenvolvimento de Sistemas e Desenvolvedor Front-End Jr
-
-                        </p>
-                    </div>
+        <section class="container-fluid px-3 py-3">
+            <div class="row justify-content-center text-center">
+                <div class="col-12">
+                    <figure class="figure">
+                        <img src="img/kaua2.png" class="rounded" alt="Foto de Kauã">
+                        <figcaption>
+                            <h3>Kauã</h3>
+                            <p>Estudante de Desenvolvimento <br> de Sistemas</p>
+                        </figcaption>
+                    </figure>
                 </div>
             </div>
+            <div class="row justify-content-center text-center">
+                <div class="col-12">
+                    <figure class="figure">
+                        <img src="img/gabriel.jpeg" class="rounded img-fluid" alt="Foto de Kauã">
+                        <figcaption>
+                            <h3>Gabriel</h3>
+                            <p>Estudante de Desenvolvimento <br> de Sistemas</p>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="col-12">
+                    <figure class="figure">
+                        <img src="img/kaua2.png" class="rounded" alt="Foto de Kauã">
+                        <figcaption>
+                            <h3>Kauã</h3>
+                            <p>Estudante de Desenvolvimento <br> de Sistemas</p>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="col-12">
+                    <figure class="figure">
+                        <img src="img/kaua2.png" class="rounded" alt="Foto de Kauã">
+                        <figcaption>
+                            <h3>Kauã</h3>
+                            <p>Estudante de Desenvolvimento <br> de Sistemas</p>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="col-12">
+                    <figure class="figure">
+                        <img src="img/kaua2.png" class="rounded" alt="Foto de Kauã">
+                        <figcaption>
+                            <h3>Kauã</h3>
+                            <p>Estudante de Desenvolvimento <br> de Sistemas</p>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="col-12">
+                    <figure class="figure">
+                        <img src="img/kaua2.png" class="rounded" alt="Foto de Kauã">
+                        <figcaption>
+                            <h3>Kauã</h3>
+                            <p>Estudante de Desenvolvimento <br> de Sistemas</p>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+            
         </section>
-        <!--NOSSO VALORES-->
     </main>
     <footer>
         <!-- place footer here -->
