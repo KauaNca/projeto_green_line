@@ -8,10 +8,208 @@
   }
 
   .product-name:hover {
-    color: #0e6cd1;
+    color: #0c5aad;
     text-decoration: underline;
   }
 
-  .sell{
-    color: greenyellow;
+  .custom-btn {
+    background-color: #4A148C;
+    color: white;
+    border: none;
   }
+  
+  .custom-btn:hover {
+    background-color: #6A1B9A;
+  }
+
+  body {
+    overflow-x: hidden; /* Impede rolagem lateral */
+}
+
+.holo-header {
+    position: relative;
+    background: linear-gradient(135deg, #064e3b, #059669, #34d399);
+    color: #ffffff;
+    padding: 1rem 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    overflow: visible; /* Permite que o dropdown se estenda */
+}
+
+.navbar {
+    position: relative;
+    z-index: 1050; /* Acima do header, mas abaixo do dropdown */
+}
+
+.holo-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0 100L100 0M10 100L110 0M20 100L120 0" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/></svg>') repeat;
+    opacity: 0.3;
+    animation: holo-move 15s linear infinite;
+    pointer-events: none;
+}
+
+.holo-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(52, 211, 153, 0.2) 0%, transparent 70%);
+    opacity: 0.5;
+    animation: pulse 10s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes holo-move {
+    0% { background-position: 0 0; }
+    100% { background-position: 100px -100px; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 0.3; }
+    100% { transform: scale(1); opacity: 0.5; }
+}
+
+.nav-link {
+    color: #e6fffa !important;
+    font-weight: 600;
+    position: relative;
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    color: #ffffff !important;
+    transform: translateY(-3px) scale(1.05);
+    text-shadow: 0 0 15px rgba(52, 211, 153, 0.9), 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.dropdown-menu {
+    background: rgba(6, 78, 59, 0.9);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1100;
+    position: absolute; /* Garante que o dropdown se posicione corretamente */
+}
+
+.dropdown-item {
+    color: #e6fffa !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-item:hover {
+    background: rgba(52, 211, 153, 0.3);
+    color: #ffffff !important;
+    transform: translateX(5px);
+    text-shadow: 0 0 10px rgba(52, 211, 153, 0.9);
+}
+
+.search-bar {
+    max-width: 400px;
+    position: relative;
+    z-index: 1100;
+}
+
+.search-bar input {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+    border-radius: 25px;
+    color: #ffffff !important;
+    padding-right: 40px;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: text;
+}
+
+.search-bar input:focus {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 15px rgba(52, 211, 153, 0.7), inset 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-color: #34d399;
+    outline: none;
+}
+
+.search-bar .fa-search {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #e6fffa;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.icon-btn {
+    color: #e6fffa !important;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.icon-btn:hover {
+    color: #ffffff !important;
+    transform: translateY(-3px) scale(1.1);
+    text-shadow: 0 0 15px rgba(52, 211, 153, 0.9);
+}
+
+.navbar-brand {
+    color: #ffffff !important;
+    font-size: 2rem;
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(52, 211, 153, 0.8), 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.navbar-brand:hover {
+    text-shadow: 0 0 25px rgba(52, 211, 153, 1), 0 6px 15px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05);
+}
+
+@media (max-width: 991px) {
+    .navbar {
+        padding: 0.5rem; /* Reduzir o padding */
+    }
+
+    .nav-link {
+        font-size: 0.9rem; /* Diminuir o tamanho da fonte */
+    }
+
+    .nav-link:hover {
+        transform: none; /* Remove o transform no hover */
+    }
+
+    .search-bar {
+        max-width: 100%;
+        margin: 0.5rem 0; /* Ajustar a margem */
+    }
+
+    .dropdown-menu {
+        left: 0; /* Garantir que o dropdown comece na borda esquerda */
+        right: auto; /* Remover qualquer ajuste automático à direita */
+    }
+
+    .dropdown-item:hover {
+        transform: none; /* Remove o transform no hover */
+    }
+
+    .icon-btn:hover {
+        transform: none; /* Remove o transform no hover */
+    }
+
+    .navbar-brand:hover {
+        transform: none; /* Remove o transform no hover */
+    }
+}

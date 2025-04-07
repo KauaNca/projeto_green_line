@@ -15,63 +15,113 @@
 
 <body>
     <header>
-        <!-- place navbar here -->
-    </header>
-    <main>
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12 col-md-5">
-                    <form class="d-flex justify-content-start">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                            <button class="btn btn-danger" type="submit">
-                                Procurar
-                            </button>
-                        </div>
-                    </form>
+          <div class="row">
+            <div class="col-12 col-md-7 mx-auto">
+              <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img class="d-block w-100" src="#" alt="First slide">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="#" alt="Second slide">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="#" alt="Third slide">
+                  </div>
                 </div>
-                <div class="col-12 col-md-7 d-flex justify-content-end">
-                    <form class="me-3 d-inline-block">
-                        <h4 class="mb-0">Ordem por:</h4> <!-- H4 indicando a ordem -->
-                        <select class="form-select form-select-sm">
-                            <option>Todos os produtos</option>
-                            <option>Menor preço</option>
-                            <option>Maior preço</option>
-                            <option>Produto</option>
-                        </select>
-                    </form>
-                    <nav class="d-inline-block"> 
-                        <h4 class="mb-0">Páginas:</h4> 
-                        <ul class="pagination pagination-sm mb-0">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">1</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item"><a class="page-link" href="#">6</a></li>
-                        </ul>
-                    </nav>
-                </div>
+              </div>
             </div>
+          </div>
+        </div>
+      </header>
+      <div class="container">
+        <div class="row">
+          <!-- Coluna esquerda: filtros -->
+          <div class="col-12 col-md-3 mb-4">
+            <h5>Filtrar por:</h5>
+            <form>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="promocao" id="checkPromocao">
+                <label class="form-check-label" for="checkPromocao">
+                  Promoção
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="frete" id="checkFrete">
+                <label class="form-check-label" for="checkFrete">
+                  Frete grátis
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="estoque" id="checkEstoque">
+                <label class="form-check-label" for="checkEstoque">
+                  Em estoque
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="avaliacao" id="checkAvaliacao">
+                <label class="form-check-label" for="checkAvaliacao">
+                  Avaliação 4★+
+                </label>
+              </div>
+            </form>
+          </div>
+    
+          <!-- Coluna direita: busca + ordenação + cards -->
+          <div class="col-12 col-md-9">
+            <!-- busca e filtros -->
+            <div class="row align-items-center mb-3">
+              <div class="col-12 col-md-6">
+                <form class="d-flex justify-content-start">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <button class="btn custom-btn" type="submit">Procurar</button>
+                  </div>
+                </form>
+              </div>
+              <div class="col-12 col-md-6 d-flex justify-content-end">
+                <form class="me-3 d-inline-block">
+                  <h4 class="mb-0">Ordem por:</h4>
+                  <select class="form-select form-select-sm">
+                    <option>Todos os produtos</option>
+                    <option>Menor preço</option>
+                    <option>Maior preço</option>
+                    <option>Produto</option>
+                  </select>
+                </form>
+                <nav class="d-inline-block">
+                  <h4 class="mb-0">Páginas:</h4>
+                  <ul class="pagination pagination-sm mb-0">
+                    <li class="page-item disabled"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+    
             <hr class="mt-3">
+    
+            <!-- Cards de produtos -->
             <div class="row">
+              <div class="col-6 col-md-4 col-lg-3 mb-4">
                 <a href="#" class="text-decoration-none text-dark">
-                    <!-- style do card -->
-                    <div class="card" style="width: 13rem; border: 1px solid rgba(0, 0, 0, 0.1);">
-                      <!-- Card img --> 
-                      <img src="/web_mobile/img/0d2718b1-5bc3-437c-aeb2-570da553d057.jpg" class="card-img-top" alt="Produto">
-                      <!-- style body card -->
-                      <div class="card-body p-2"> 
-                        <h6 class="card-title mb-1 product-name">Nome do Produto</h6>
-                        <p class="text-warning mb-1">★★★★☆ <span class="text-secondary">1.245 avaliações</span></p>
-                        <small class="text-secondary">Muito calor</small>
-                        <p class="fw-bold fs-7 text-dark mb-0 ">R$199,99</p>
-                      </div>
+                  <div class="card" style="border: 1px solid rgba(0, 0, 0, 0.1);">
+                    <img src="/web_mobile/img/0d2718b1-5bc3-437c-aeb2-570da553d057.jpg" class="card-img-top" alt="Produto">
+                    <div class="card-body p-2">
+                      <h6 class="card-title mb-1 product-name">Nome do Produto</h6>
+                      <p class="text-warning mb-1">★★★★☆ <span class="text-secondary">1.245 avaliações</span></p>
+                      <small class="text-secondary">Muito calor</small>
+                      <p class="fw-bold fs-7 text-dark mb-0">R$199,99</p>
                     </div>
-                  </a>   
-    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
