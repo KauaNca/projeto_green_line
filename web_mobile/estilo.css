@@ -13,13 +13,19 @@
   }
 
   .custom-btn {
-    background-color: #4A148C;
-    color: white;
+    background-color: black;
+    color: rgb(255, 255, 255);
     border: none;
+    border-radius: 10%;
   }
   
   .custom-btn:hover {
-    background-color: #6A1B9A;
+    background-color: #21bb28;
+  }
+
+  .margem {
+    margin-top: 100px !important;
+    
   }
 
   body {

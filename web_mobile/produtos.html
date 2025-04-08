@@ -38,7 +38,7 @@
       <div class="container">
         <div class="row">
           <!-- Coluna esquerda: filtros -->
-          <div class="col-12 col-md-3 mb-4">
+          <div class="col-12 col-md-3 mb-4 margem">
             <h5>Filtrar por:</h5>
             <form>
               <div class="form-check">
@@ -67,7 +67,6 @@
               </div>
             </form>
           </div>
-    
           <!-- Coluna direita: busca + ordenação + cards -->
           <div class="col-12 col-md-9">
             <!-- busca e filtros -->
@@ -76,10 +75,11 @@
                 <form class="d-flex justify-content-start">
                   <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search">
-                    <button class="btn custom-btn" type="submit">Procurar</button>
+                    <button class="custom-btn" type="submit">Procurar</button>
                   </div>
                 </form>
               </div>
+              
               <div class="col-12 col-md-6 d-flex justify-content-end">
                 <form class="me-3 d-inline-block">
                   <h4 class="mb-0">Ordem por:</h4>
@@ -93,19 +93,22 @@
                 <nav class="d-inline-block">
                   <h4 class="mb-0">Páginas:</h4>
                   <ul class="pagination pagination-sm mb-0">
-                    <li class="page-item disabled"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="?pagina=1">1</a></li>
+                    <li class="page-item"><a class="page-link" href="?pagina=2">2</a></li>
+                    <li class="page-item"><a class="page-link" href="?pagina=3">3</a></li>
+                    <li class="page-item"><a class="page-link" href="?pagina=4">4</a></li>
                   </ul>
+                  <div id="conteudo-pagina"></div>
                 </nav>
               </div>
             </div>
     
+
+            
             <hr class="mt-3">
-    
             <!-- Cards de produtos -->
             <div class="row">
-              <div class="col-6 col-md-4 col-lg-3 mb-4">
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                 <a href="#" class="text-decoration-none text-dark">
                   <div class="card" style="border: 1px solid rgba(0, 0, 0, 0.1);">
                     <img src="/web_mobile/img/0d2718b1-5bc3-437c-aeb2-570da553d057.jpg" class="card-img-top" alt="Produto">
@@ -126,6 +129,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+        <script>
+          const urlParams = new URLSearchParams(window.location.search);
+          const pagina = urlParams.get('pagina') || '1'; // se não tiver nada, assume "1"
+        
+          const conteudo = document.getElementById('conteudo-pagina');
+          conteudo.innerHTML = `<p>Você está na página ${pagina}</p>`;
+        
+          // Ativar a página atual
+          const links = document.querySelectorAll('.page-link');
+          links.forEach(link => {
+            if (link.href.includes(`?pagina=${pagina}`)) {
+              link.parentElement.classList.add('disabled');
+            }
+          });
+        </script>
+        
         
     </main>
     <footer>
