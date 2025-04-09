@@ -6,76 +6,76 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="estilo.css">
-    <style>
-        html {
-            font-size: 1.2rem;
-        }
-
-        @include media-breakpoint-up(sm) {
-            html {
-                font-size: 1.4rem;
-            }
-        }
-
-        @include media-breakpoint-up(md) {
-            html {
-                font-size: 1.6rem;
-            }
-        }
-
-        @include media-breakpoint-up(lg) {
-            html {
-                font-size: 1.9rem;
-            }
-        }
-
-        .img-height {
-            max-width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-
-        .img_dimensões_n_valores {
-            height: 80px;
-            width: max-content;
-        }
-
-        .altura_largura_bl-nossos_valores {
-            height: 320px;
-            width: 320px;
-        }
-
-        .background-nossa-equipe {
-            background-color: #F5F5DC;
-            color: #2F4F4F;
-        }
-
-        .text-justify {
-            text-align: justify;
-        }
-
-        .background-nossos-valores {
-            background-color: #47EBB4;
-            opacity: 0.7;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body>
-    <main class="">
+    <header class="holo-header">
+        <nav class="navbar navbar-expand-lg container bg-dark.bg-gradient">
+            <img src="img/logo.png" alt="">
+            <a class="navbar-brand" href="#">GreenLine</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Início</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="produtosDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Produtos
+                        </a>
+                        <ul class="dropdown-menu bg-white" aria-labelledby="produtosDropdown">
+                            <li><a class="dropdown-item" href="/web_mobile/produtos.html">Produtos Ecológicos</a></li>
+                            <li><a class="dropdown-item" href="#">Roupas</a></li>
+                            <li><a class="dropdown-item" href="#">Cuidados Pessoais</a></li>
+                            <li><a class="dropdown-item" href="#">Artigos Esportivos</a></li>
+                            <li><a class="dropdown-item" href="#">Eletrônicos</a></li>
+                            <li><a class="dropdown-item" href="#">Livros</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Ofertas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contato</a>
+                    </li>
+                </ul>
+                <div class="search-bar d-flex align-items-center mx-lg-3">
+                    <input type="text" class="form-control" placeholder="Buscar produtos...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link icon-btn" href="#"><i class="bi bi-cart"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link icon-btn" href="#"><i class="bi bi-person"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main id="sobre_nos-pagina">
+        <div class="invisivel invisible"></div>
         <!--TEXTO INICIAL-->
         <section id="sobre_nos"
-            class="container-fluid d-flex flex-column justify-content-center flex-lg-row-reverse text-bg-success px-3 py-3 vh-100 border border-1 border-warning"
-            ; style="height:100vh; text-align: justify;">
+            class="container-fluid d-flex flex-column justify-content-center flex-lg-row-reverse text-bg-success px-3" ;
+            style="text-align: justify;">
             <div
-                class="container d-flex flex-column align-item-center w-100 w-lg-50 justify-content-lg-center border border-1 border-danger">
+                class="pt-5 pt-md-0 pt-lg-4 container d-flex flex-column align-item-center w-100 w-lg-50 justify-content-lg-center">
                 <div class="">
                     <h2 class="mb-3 fs-2 lead text-center">Faça do meio ambiente o seu meio de vida</h2>
                     <p class="">
@@ -93,7 +93,7 @@
                     </p>
                 </div>
             </div>
-            <div class="container w-100 w-lg-50 d-sm-flex align-items-lg-center border border-1 border-danger">
+            <div class="pb-sm-2 container w-100 w-lg-50 d-sm-flex align-items-lg-center">
                 <iframe width="560" height="365" src="https://www.youtube.com/embed/cwHg1i2Tprw?si=QA7Q1AK3AIEEHAN0"
                     title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -145,16 +145,16 @@
                             body builder profissional
                         </p>
                     </div>
-            </div>
-            <div class="card border-0 p-0 mb-2" style="width: 16rem; height: 470px;">
-                <img class="card-img-top" src="img/edenilson.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title text-start">Edenilson</h5>
-                    <p class="card-text">Estudante de Desenvolvimento de Sistemas e Desenvolvedor
-                        Front-End Jr
-                    </p>
                 </div>
-            </div>
+                <div class="card border-0 p-0 mb-2" style="width: 16rem; height: 470px;">
+                    <img class="card-img-top" src="img/edenilson.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title text-start">Edenilson</h5>
+                        <p class="card-text">Estudante de Desenvolvimento de Sistemas e Desenvolvedor
+                            Front-End Jr
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
         <!--NOSSOS VALORES-->
@@ -250,8 +250,7 @@
 
         </section>
     </main>
-    <footer>
-        <!-- place footer here -->
+    <footer class="position-fixed-bottom">
     </footer>
 </body>
 

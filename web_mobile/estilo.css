@@ -1,50 +1,58 @@
-#body{
+/* GABRIEL */
+#body {
     justify-content: space-evenly;
 }
 
 
-  .product-name {
+.product-name {
     transition: color 0.1s ease-in-out, text-decoration 0.3s ease-in-out;
-  }
+}
 
-  .product-name:hover {
+.product-name:hover {
     color: #0c5aad;
     text-decoration: underline;
-  }
+}
 
-  .custom-btn {
+.custom-btn {
     background-color: black;
     color: rgb(255, 255, 255);
     border: none;
     border-radius: 10%;
-  }
-  
-  .custom-btn:hover {
-    background-color: #21bb28;
-  }
-
-  .margem {
-    margin-top: 100px !important;
-    
-  }
-
-  body {
-    overflow-x: hidden; /* Impede rolagem lateral */
 }
 
+.custom-btn:hover {
+    background-color: #21bb28;
+}
+
+.margem {
+    margin-top: 100px !important;
+
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* GUILHERME */
+
 .holo-header {
-    position: relative;
-    background: linear-gradient(135deg, #064e3b, #059669, #34d399);
-    color: #ffffff;
+    position: absolute;
+    width: 100%;
+    /*background: linear-gradient(135deg, #064e3b, #059669, #34d399);*/
+    background: white;
+    color: black;
     padding: 1rem 0;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     z-index: 1000;
-    overflow: visible; /* Permite que o dropdown se estenda */
+    top: 0;
+    overflow: visible;
+    /* Permite que o dropdown se estenda */
 }
 
 .navbar {
     position: relative;
-    z-index: 1050; /* Acima do header, mas abaixo do dropdown */
+    z-index: 1050;
+    /* Acima do header, mas abaixo do dropdown */
 }
 
 .holo-header::before {
@@ -74,18 +82,34 @@
 }
 
 @keyframes holo-move {
-    0% { background-position: 0 0; }
-    100% { background-position: 100px -100px; }
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100px -100px;
+    }
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); opacity: 0.5; }
-    50% { transform: scale(1.2); opacity: 0.3; }
-    100% { transform: scale(1); opacity: 0.5; }
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
 }
 
 .nav-link {
-    color: #e6fffa !important;
+    color: black !important;
     font-weight: 600;
     position: relative;
     transition: all 0.3s ease;
@@ -94,7 +118,7 @@
 }
 
 .nav-link:hover {
-    color: #ffffff !important;
+    color: gray !important;
     transform: translateY(-3px) scale(1.05);
     text-shadow: 0 0 15px rgba(52, 211, 153, 0.9), 0 4px 10px rgba(0, 0, 0, 0.4);
 }
@@ -105,11 +129,12 @@
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     z-index: 1100;
-    position: absolute; /* Garante que o dropdown se posicione corretamente */
+    position: absolute;
+    /* Garante que o dropdown se posicione corretamente */
 }
 
 .dropdown-item {
-    color: #e6fffa !important;
+    color: black !important;
     font-weight: 500;
     transition: all 0.3s ease;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -132,7 +157,7 @@
     background: rgba(255, 255, 255, 0.15);
     border: 1px solid rgba(52, 211, 153, 0.3);
     border-radius: 25px;
-    color: #ffffff !important;
+    color: black !important;
     padding-right: 40px;
     transition: all 0.3s ease;
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -151,13 +176,13 @@
     right: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #e6fffa;
+    color: black;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     cursor: pointer;
 }
 
 .icon-btn {
-    color: #e6fffa !important;
+    color: black !important;
     font-size: 1.3rem;
     transition: all 0.3s ease;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -165,13 +190,13 @@
 }
 
 .icon-btn:hover {
-    color: #ffffff !important;
+    color: gray !important;
     transform: translateY(-3px) scale(1.1);
     text-shadow: 0 0 15px rgba(52, 211, 153, 0.9);
 }
 
 .navbar-brand {
-    color: #ffffff !important;
+    color: black !important;
     font-size: 2rem;
     font-weight: 700;
     text-shadow: 0 0 15px rgba(52, 211, 153, 0.8), 0 4px 10px rgba(0, 0, 0, 0.4);
@@ -186,36 +211,115 @@
 
 @media (max-width: 991px) {
     .navbar {
-        padding: 0.5rem; /* Reduzir o padding */
+        padding: 0.5rem;
+        /* Reduzir o padding */
     }
 
     .nav-link {
-        font-size: 0.9rem; /* Diminuir o tamanho da fonte */
+        font-size: 0.9rem;
+        /* Diminuir o tamanho da fonte */
     }
 
     .nav-link:hover {
-        transform: none; /* Remove o transform no hover */
+        transform: none;
+        /* Remove o transform no hover */
     }
 
     .search-bar {
         max-width: 100%;
-        margin: 0.5rem 0; /* Ajustar a margem */
+        margin: 0.5rem 0;
+        /* Ajustar a margem */
     }
 
     .dropdown-menu {
-        left: 0; /* Garantir que o dropdown comece na borda esquerda */
-        right: auto; /* Remover qualquer ajuste automático à direita */
+        left: 0;
+        /* Garantir que o dropdown comece na borda esquerda */
+        right: auto;
+        /* Remover qualquer ajuste automático à direita */
     }
 
     .dropdown-item:hover {
-        transform: none; /* Remove o transform no hover */
+        transform: none;
+        /* Remove o transform no hover */
     }
 
     .icon-btn:hover {
-        transform: none; /* Remove o transform no hover */
+        transform: none;
+        /* Remove o transform no hover */
     }
 
     .navbar-brand:hover {
-        transform: none; /* Remove o transform no hover */
+        transform: none;
+        /* Remove o transform no hover */
     }
 }
+
+/* KAUÃ */
+#sobre_nos-pagina {
+    font-size: 1.2rem;
+}
+
+.invisivel {
+    height: 6.7rem;
+}
+
+@include media-breakpoint-up(sm) {
+    #sobre_nos-pagina {
+        font-size: 1.4rem;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    #sobre_nos-pagina {
+        font-size: 1.6rem;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    #sobre_nos-pagina {
+        font-size: 1.9rem;
+    }
+
+}
+
+@media (min-width: 1200px) {
+    #sobre_nos {
+        height: 100vh;
+    }
+
+    .invisivel {
+        height: 3rem;
+    }
+}
+
+.img-height {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.img_dimensões_n_valores {
+    height: 80px;
+    width: max-content;
+}
+
+.altura_largura_bl-nossos_valores {
+    height: 320px;
+    width: 320px;
+}
+
+.background-nossa-equipe {
+    background-color: #F5F5DC;
+    color: #2F4F4F;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.background-nossos-valores {
+    background-color: #47EBB4;
+    opacity: 0.7;
+}
+
+/* FABRÍCIO */
