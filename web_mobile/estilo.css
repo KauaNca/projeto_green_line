@@ -1,8 +1,37 @@
+/* PADRÃO */
+html {
+    font-size: 1.2rem;
+}
+
+@include media-breakpoint-up(sm) {
+    html {
+        font-size: 1.4rem;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    html {
+        font-size: 1.6rem;
+    }
+    
+}
+
+@include media-breakpoint-up(lg) {
+    html {
+        font-size: 1.9rem;
+    }
+}
+
+body {
+    overflow-x: hidden;
+}
+
+
+
 /* GABRIEL */
 #body {
     justify-content: space-evenly;
 }
-
 
 .product-name {
     transition: color 0.1s ease-in-out, text-decoration 0.3s ease-in-out;
@@ -29,13 +58,11 @@
 
 }
 
-body {
-    overflow-x: hidden;
-}
+
 
 /* GUILHERME */
 
-.holo-header {
+.menu_green_line.holo-header {
     position: absolute;
     width: 100%;
     /*background: linear-gradient(135deg, #064e3b, #059669, #34d399);*/
@@ -49,13 +76,13 @@ body {
     /* Permite que o dropdown se estenda */
 }
 
-.navbar {
+.menu_green_line .navbar {
     position: relative;
     z-index: 1050;
     /* Acima do header, mas abaixo do dropdown */
 }
 
-.holo-header::before {
+.menu_green_line .holo-header::before {
     content: '';
     position: absolute;
     top: 0;
@@ -68,7 +95,7 @@ body {
     pointer-events: none;
 }
 
-.holo-header::after {
+.menu_green_line .holo-header::after {
     content: '';
     position: absolute;
     top: 0;
@@ -108,7 +135,7 @@ body {
     }
 }
 
-.nav-link {
+.menu_green_line .nav-link {
     color: black !important;
     font-weight: 600;
     position: relative;
@@ -117,13 +144,13 @@ body {
     cursor: pointer;
 }
 
-.nav-link:hover {
+.menu_green_line .nav-link:hover {
     color: gray !important;
     transform: translateY(-3px) scale(1.05);
     text-shadow: 0 0 15px rgba(52, 211, 153, 0.9), 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
-.dropdown-menu {
+.menu_green_line .dropdown-menu {
     background: rgba(6, 78, 59, 0.9);
     border: none;
     border-radius: 10px;
@@ -133,27 +160,27 @@ body {
     /* Garante que o dropdown se posicione corretamente */
 }
 
-.dropdown-item {
+.menu_green_line .dropdown-item {
     color: black !important;
     font-weight: 500;
     transition: all 0.3s ease;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.dropdown-item:hover {
+.menu_green_line .dropdown-item:hover {
     background: rgba(52, 211, 153, 0.3);
     color: #ffffff !important;
     transform: translateX(5px);
     text-shadow: 0 0 10px rgba(52, 211, 153, 0.9);
 }
 
-.search-bar {
+.menu_green_line .search-bar {
     max-width: 400px;
     position: relative;
     z-index: 1100;
 }
 
-.search-bar input {
+.menu_green_line .search-bar input {
     background: rgba(255, 255, 255, 0.15);
     border: 1px solid rgba(52, 211, 153, 0.3);
     border-radius: 25px;
@@ -164,14 +191,14 @@ body {
     cursor: text;
 }
 
-.search-bar input:focus {
+.menu_green_line .search-bar input:focus {
     background: rgba(255, 255, 255, 0.25);
     box-shadow: 0 0 15px rgba(52, 211, 153, 0.7), inset 0 2px 5px rgba(0, 0, 0, 0.2);
     border-color: #34d399;
     outline: none;
 }
 
-.search-bar .fa-search {
+.menu_green_line .search-bar .fa-search {
     position: absolute;
     right: 15px;
     top: 50%;
@@ -181,7 +208,7 @@ body {
     cursor: pointer;
 }
 
-.icon-btn {
+.menu_green_line .icon-btn {
     color: black !important;
     font-size: 1.3rem;
     transition: all 0.3s ease;
@@ -189,13 +216,13 @@ body {
     cursor: pointer;
 }
 
-.icon-btn:hover {
+.menu_green_line .icon-btn:hover {
     color: gray !important;
     transform: translateY(-3px) scale(1.1);
     text-shadow: 0 0 15px rgba(52, 211, 153, 0.9);
 }
 
-.navbar-brand {
+.menu_green_line .navbar-brand {
     color: black !important;
     font-size: 2rem;
     font-weight: 700;
@@ -204,82 +231,59 @@ body {
     cursor: pointer;
 }
 
-.navbar-brand:hover {
+.menu_green_line .navbar-brand:hover {
     text-shadow: 0 0 25px rgba(52, 211, 153, 1), 0 6px 15px rgba(0, 0, 0, 0.5);
     transform: scale(1.05);
 }
 
 @media (max-width: 991px) {
-    .navbar {
+    .menu_green_line .navbar {
         padding: 0.5rem;
         /* Reduzir o padding */
     }
 
-    .nav-link {
+    .menu_green_line .nav-link {
         font-size: 0.9rem;
         /* Diminuir o tamanho da fonte */
     }
 
-    .nav-link:hover {
+    .menu_green_line .nav-link:hover {
         transform: none;
         /* Remove o transform no hover */
     }
 
-    .search-bar {
+    .menu_green_line .search-bar {
         max-width: 100%;
         margin: 0.5rem 0;
         /* Ajustar a margem */
     }
 
-    .dropdown-menu {
+    .menu_green_line .dropdown-menu {
         left: 0;
         /* Garantir que o dropdown comece na borda esquerda */
         right: auto;
         /* Remover qualquer ajuste automático à direita */
     }
 
-    .dropdown-item:hover {
+    .menu_green_line .dropdown-item:hover {
         transform: none;
         /* Remove o transform no hover */
     }
 
-    .icon-btn:hover {
+    .menu_green_line .icon-btn:hover {
         transform: none;
         /* Remove o transform no hover */
     }
 
-    .navbar-brand:hover {
+    .menu_green_line .navbar-brand:hover {
         transform: none;
         /* Remove o transform no hover */
     }
 }
 
 /* KAUÃ */
-#sobre_nos-pagina {
-    font-size: 1.2rem;
-}
-
-.invisivel {
-    height: 6.7rem;
-}
-
-@include media-breakpoint-up(sm) {
-    #sobre_nos-pagina {
-        font-size: 1.4rem;
-    }
-}
-
-@include media-breakpoint-up(md) {
-    #sobre_nos-pagina {
-        font-size: 1.6rem;
-    }
-}
-
-@include media-breakpoint-up(lg) {
-    #sobre_nos-pagina {
-        font-size: 1.9rem;
-    }
-
+#sobre_nos_pagina .invisivel {
+    height: 4rem;
 }
 
 @media (min-width: 1200px) {
@@ -292,34 +296,75 @@ body {
     }
 }
 
-.img-height {
+#sobre_nos_pagina .img-height {
     max-width: 100%;
     height: auto;
     object-fit: cover;
 }
 
-.img_dimensões_n_valores {
+#sobre_nos_pagina .img_dimensões_n_valores {
     height: 80px;
     width: max-content;
 }
 
-.altura_largura_bl-nossos_valores {
+#sobre_nos_pagina .altura_largura_bl-nossos_valores {
     height: 320px;
     width: 320px;
 }
 
-.background-nossa-equipe {
+#sobre_nos_pagina .background-nossa-equipe {
     background-color: #F5F5DC;
     color: #2F4F4F;
 }
 
-.text-justify {
+#sobre_nos_pagina .text-justify {
     text-align: justify;
 }
 
-.background-nossos-valores {
+#sobre_nos_pagina .background-nossos-valores {
     background-color: #47EBB4;
     opacity: 0.7;
 }
+#sobre_nos_pagina .invisivel-rodape{
+    height: 55rem;
+}
 
 /* FABRÍCIO */
+
+/* Estilizando o footer */
+footer.rodape {
+    background-color: black;
+    /* Fundo preto */
+}
+
+/* Estilizando os links */
+.rodape .nav-link {
+    position: relative;
+    color: #787e83 !important;
+    /* Cor padrão do text-muted */
+    transition: all 0.3s ease;
+    /* Transição suave para o efeito */
+}
+
+/* Efeito 3D ao passar o mouse */
+.rodape .nav-link:hover {
+    color: #28a745 !important;
+    /* Verde ao passar o mouse (tema GreenLine) */
+    transform: translateY(-5px) scale(1.1);
+    /* Salto para cima e leve aumento */
+    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5),
+        /* Sombra para profundidade */
+        0 0 5px rgba(40, 167, 69, 0.5);
+    /* Brilho verde */
+}
+
+/* Linha inferior do footer */
+.rodape .border-bottom {
+    border-color: #dee2e6 !important;
+    /* Cinza padrão do Bootstrap */
+}
+
+/* Texto inferior */
+.rodape .text-muted {
+    color: white !important;
+}
