@@ -1,0 +1,367 @@
+body{
+    min-width: 700px;
+}
+.cont-header{
+    text-align: center;
+    font-family: "Inter";
+}
+
+.cont-h1{
+    color: #000000;
+    font-size: 3rem;
+    padding-bottom: 10px;
+    margin-top: 100px;
+}
+
+
+
+
+fieldset{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    background: #E9F2E8;
+    max-width: 100%;
+    border: none;
+    padding: 15px;
+}
+
+legend{
+    font-size: 38px;
+    text-align: center;
+    padding-top: 40px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+
+}
+
+#cont-P{
+    text-align: center;
+    font-size: 16px;
+    color: 000000;
+    margin-left: 10px;
+}
+
+.formulario label{
+    text-align: left;
+    margin-left: 5px;
+    font-size: 22px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+
+.formulario input[type="text"],
+.formulario input[type="email"]{
+    max-width: 100%;
+    height: 45px;
+    border-radius: 20px;
+    background-color: #FFF;
+    border: none;
+    font-size: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 5px;
+}
+
+.form-text{
+    padding: 15px;
+    color: #006C3F;
+}
+
+#assunto{
+    text-align: center;
+}
+
+.formulario textarea{
+    max-width: 100%;
+    max-height: 50%;
+    border-radius: 20px;
+    background-color: #FFF;
+    border: none;
+    font-size: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.formulario input[type="submit"]{
+    max-width: 100%;
+    height: 55px;
+    background-color: #006C3F;
+    color: #FFF;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 30px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+    padding: 5px;
+}
+
+#txtNome{
+    position: relative;
+    top: -50px;
+    left: 65px;
+    font-size: 19px;
+}
+
+.cal{
+    width: 100%;
+    height: 700px;
+    overflow: auto;
+  }
+
+.contato-img{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0;
+    width: 50%;
+    height: auto;
+    
+}
+
+.contato-img img{
+    width: 500px;
+    height: 400px;
+    margin-left: 20%;
+}
+
+#cont-caixa{
+    display: flex;
+    justify-content:space-evenly;
+    margin-top: 50px;
+    max-width: 500%;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 10px;
+    align-items: center;
+}
+
+.cont-caixas{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    padding-top: 15px;
+    height: auto;
+}
+
+.caixa{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    box-shadow: 1px 5px 5px black;
+    border-radius: 5px;
+    background: #E9F2E8;
+}
+
+.contato-img #ico{
+    width: 55px;
+    height: 55px;
+    margin-right: 30px;
+    padding: 10px;
+}
+
+.contato-img #ico-email{
+    width: 55px;
+    height: 55px;
+    margin-right: 30px;
+    padding: 10px;
+}
+
+.contato-img a{
+    color: #000000;
+    text-decoration: none;
+    font-size: 20px;
+    margin-top: 5px;
+    padding: 5px;
+}
+.cont-pA{
+    font-size: 1.5rem;
+}
+
+
+@media screen and (max-width: 1266px) and (min-width: 851px){
+    
+
+    #main-contato{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        margin-top: 66px;
+        width: 100%;
+        height: 100%;
+    }
+    .contato-img{
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    .contato-img #img1{
+        width: 60%;
+        height: 60%;
+        margin-bottom: 0;
+        margin: 0 auto;
+    }
+
+    #cont-caixa{
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-bottom: 25px;
+        margin-top: 25px;
+        margin-left: 0;
+        margin-right: 5px;
+    }
+
+    .cont-caixas{
+        margin-bottom: 15px;
+        margin-left: 25px;
+    }
+
+    
+    .contato-form{
+       
+        width: 98%;
+        height: 100%;
+    }
+
+    .contato-form fieldset{
+        width: 95%;
+        margin-right: 10px;
+        padding: 10px;
+    }
+
+  #cont-P{
+        margin-right: 50px;
+    }
+    .cont-pA{
+        font-size: 1.4rem;
+    }
+   
+    .contato-form input[type="text"],
+    .contato-form input[type="email"]{
+        width: 100%;
+        height: 50px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        
+    }
+
+    .contato-form textarea{
+        width: 100%;
+        height: 200px;
+        margin-right: 10px;
+    
+    }
+
+    .contato-form input[type="submit"]{
+        width: 100%;
+        height: 65px;
+        margin-right: 10px;
+       
+    }
+
+
+}
+
+
+@media screen and (max-width: 850px){
+
+  
+    .cont-h1{
+        color: #000000;
+        font-size: 32px;
+        padding-bottom: 29px;
+        text-align: center;
+    }
+    .cont-pA{
+        font-size: 1.1rem;
+    }
+
+    #main-contato{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        margin-top: 66px;
+        height: 100%;
+        padding-left: 0;
+    }
+
+    .contato-img #img1{
+        width: 95%;
+        height: 95%;
+         margin-left: 5%;
+        margin-bottom: 0;
+    }
+
+    #cont-caixa{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 25px;
+        margin-top: 25px;
+        margin-left: 0;
+    }
+
+    .cont-caixas{
+        margin-bottom: 15px;
+    }
+
+    
+    .contato-form{
+        width: 80%;
+        height: 100%;
+        margin-left: 0;
+    }
+
+    .contato-form fieldset{
+        width: 100%;
+        margin-right: 10px;
+        padding-right: 10px;
+    }
+
+  #cont-P{
+        margin-right: 50px;
+    }
+
+    .contato-form input[type="text"],
+    .contato-form input[type="email"]{
+        width: 100%;
+        height: 60px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        
+    }
+
+    .contato-form textarea{
+        width: 100%;
+        height: 200px;
+        margin-right: 10px;
+    
+    }
+
+    .contato-form input[type="submit"]{
+        width: 100%;
+        height: 65px;
+        margin-right: 10px;
+       
+    }
+}
+
