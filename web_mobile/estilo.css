@@ -13,6 +13,9 @@ html {
     html {
         font-size: 1.6rem;
     }
+    .margem-sobre_nos{
+        margin-top: 0 !important;
+    }
     
 }
 
@@ -173,7 +176,7 @@ body {
     transform: translateX(5px);
     text-shadow: 0 0 10px rgba(52, 211, 153, 0.9);
 }
-
+/*
 .menu_green_line .search-bar {
     max-width: 400px;
     position: relative;
@@ -206,7 +209,7 @@ body {
     color: black;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-}
+}*/
 
 .menu_green_line .icon-btn {
     color: black !important;
@@ -282,10 +285,17 @@ body {
 }
 
 /* KAUÃ */
+#sobre_nos_pagina{
+    margin-bottom: 1200px;
+}
 #sobre_nos_pagina .invisivel {
     height: 4rem;
 }
-
+@media (min-width: 768px){
+    #sobre_nos_pagina{
+        margin-bottom: 70px;
+    }
+}
 @media (min-width: 1200px) {
     #sobre_nos {
         height: 100vh;
@@ -293,6 +303,14 @@ body {
 
     .invisivel {
         height: 3rem;
+    }
+    #sobre_nos_pagina{
+        margin-bottom: 70px;
+    }
+}
+@media (min-width: 1400px) {
+    #sobre_nos_pagina{
+        margin-bottom: 60px;
     }
 }
 
@@ -324,9 +342,6 @@ body {
 #sobre_nos_pagina .background-nossos-valores {
     background-color: #47EBB4;
     opacity: 0.7;
-}
-#sobre_nos_pagina .invisivel-rodape{
-    height: 55rem;
 }
 
 /* FABRÍCIO */
