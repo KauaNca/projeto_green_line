@@ -6,18 +6,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./reset.css" />
     <link rel="stylesheet" href="contato.css" />
+    <link rel="stylesheet" href="menu_rodape.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
 
     <title>Contatos</title>
 </head>
 
-<body>
-    
+<body class="position-relative d-flex flex-column">
+    <header class="holo-header menu_green_line border-bottom border-dark">
+        <nav class="navbar navbar-expand-lg container bg-dark.bg-gradient">
+            <img src="img/logo.png" alt="">
+            <a class="navbar-brand" href="#">GreenLine</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Início</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="produtosDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Produtos
+                        </a>
+                        <ul class="dropdown-menu bg-white" aria-labelledby="produtosDropdown">
+                            <li><a class="dropdown-item" href="/web_mobile/produtos.html">Produtos Ecológicos</a></li>
+                            <li><a class="dropdown-item" href="#">Roupas</a></li>
+                            <li><a class="dropdown-item" href="#">Cuidados Pessoais</a></li>
+                            <li><a class="dropdown-item" href="#">Artigos Esportivos</a></li>
+                            <li><a class="dropdown-item" href="#">Eletrônicos</a></li>
+                            <li><a class="dropdown-item" href="#">Livros</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Ofertas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sobre.html">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contato.html"><u>Contato</u></a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link icon-btn" href="#"><i class="bi bi-cart"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link icon-btn" href="#"><i class="bi bi-person"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="invisivel invisible"></div> <!--EMPURRAR O CONTEÚDO PARA QUE O MENU NÃO O SOBREPOEM-->
     <header class="cont-header">
         <h1 class="cont-h1">Contate-nos</h1>
         <p class="cont-pA">
@@ -25,59 +76,61 @@
         </p>
     </header>
     <main class="principal">
-    <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
-        <div class="dropdown-menu d-block position-static p-2 mx-0 shadow rounded-3 w-340px up" data-bs-theme="light">
-            <div class="d-grid gap-1">
-                <div class="cal">
-                    <div>
-                        <form class="formulario">
-                            <fieldset>
-                                <legend>Entrar em Contato</legend>
-                                <p id="cont-P">
-                                    Tem um inquérito ou algum feedbak para nós? Preencha o
-                                    formulário abaixo para entrar em contato com nossa equipe.
-                                </p>
-                                <label for="nome">Nome:</label>
-                                <input type="text" id="nome" name="nome" onkeyup="validaNome()" />
-                                <label for="email">Email</label>
-                                <input type="email" />
-                                <div id="emailHelp" class="form-text">
-                                    Nunca compartilharemos seu e-mail com mais ninguém.
-                                </div>
-                                <label for="assunto" id="assunto">Como podemos ajudar?</label>
-                                <textarea name="assunto" id="assunto" onkeyup="validaAssunto()"></textarea>
-                                <input type="submit" value="Enviar" onclick="enviar()" />
-                            </fieldset>
-                        </form>
+        <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
+            <div class="dropdown-menu d-block position-static p-2 mx-0 shadow rounded-3 w-340px up"
+                data-bs-theme="light">
+                <div class="d-grid gap-1">
+                    <div class="cal">
+                        <div>
+                            <form class="formulario">
+                                <fieldset>
+                                    <legend>Entrar em Contato</legend>
+                                    <p id="cont-P">
+                                        Tem um inquérito ou algum feedbak para nós? Preencha o
+                                        formulário abaixo para entrar em contato com nossa equipe.
+                                    </p>
+                                    <label for="nome">Nome:</label>
+                                    <input type="text" id="nome" name="nome" onkeyup="validaNome()" />
+                                    <label for="email">Email</label>
+                                    <input type="email" />
+                                    <div id="emailHelp" class="form-text">
+                                        Nunca compartilharemos seu e-mail com mais ninguém.
+                                    </div>
+                                    <label for="assunto" id="assunto">Como podemos ajudar?</label>
+                                    <textarea name="assunto" id="assunto" onkeyup="validaAssunto()"></textarea>
+                                    <input type="submit" value="Enviar" onclick="enviar()" />
+                                </fieldset>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="dropdown-menu d-block position-static p-2 mx-0 shadow rounded-3 w-340px" data-bs-theme="dark">
-            <div class="d-grid gap-1">
-                <div class="cal">
-                    <div class="contato-img bd-placeholder-img">
-                        <img id="img1" src="./img/retorno-tel.png" alt="imagem contato" max-width="100%"
-                            max-height="100%" />
+            <div class="dropdown-menu d-block position-static p-2 mx-0 shadow rounded-3 w-340px" data-bs-theme="dark">
+                <div class="d-grid gap-1">
+                    <div class="cal">
+                        <div class="contato-img bd-placeholder-img">
+                            <img id="img1" src="./img/retorno-tel.png" alt="imagem contato" max-width="100%"
+                                max-height="100%" />
 
-                        <div id="cont-caixa">
-                            <div class="cont-caixas">
-                                <div class="caixa">
-                                    <img id="ico" src="./img/celular.png" alt="incone de celular" />
-                                    <a href="#">
-                                        <h6>Telefone</h6>
-                                    </a>
-                                    <a href="#">(00) 99999-9999</a>
+                            <div id="cont-caixa">
+                                <div class="cont-caixas">
+                                    <div class="caixa">
+                                        <img id="ico" src="./img/celular.png" alt="incone de celular" />
+                                        <a href="#">
+                                            <h6>Telefone</h6>
+                                        </a>
+                                        <a href="#">(00) 99999-9999</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="cont-caixas">
-                                <div class="caixa">
-                                    <img id="ico-email" src="./img/o-email.png" alt="incone de email" />
-                                    <a href="#">
-                                        <h6>Email</h6>
-                                    </a>
-                                    <a href="#">MeuEmail@email.com</a>
+                                <div class="cont-caixas">
+                                    <div class="caixa">
+                                        <img id="ico-email" src="./img/o-email.png" alt="incone de email" />
+                                        <a href="#">
+                                            <h6>Email</h6>
+                                        </a>
+                                        <a href="#">MeuEmail@email.com</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -85,9 +138,23 @@
                 </div>
             </div>
         </div>
-    </div>
-</main>
-    
+    </main>
+    <footer class="container-fluid py-3 rodape position-absolute bottom-0">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item">
+                <a href="#" class="nav-link px-2 text-muted fs-4"><i class="bi bi-house"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link px-2 text-muted fs-4"><i class="bi bi-building"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link px-2 text-muted fs-4"><i class="bi bi-envelope"></i> </a>
+            </li>
+        </ul>
+        <p class="text-center text-muted">71080-020 | CNPJ : 74.707.730/0001-63 | Ceilândia, Brasília-DF</p>
+        <p class="text-center text-muted">© 2025 GreenLine</p>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="contato.js"></script>
 </body>

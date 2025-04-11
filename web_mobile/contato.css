@@ -1,6 +1,15 @@
 body{
     min-width: 700px;
 }
+.invisivel {
+    height: 4rem;
+}
+@media (min-width: 372px){
+    .principal {
+        margin-bottom: 210px;
+    }
+}
+
 .cont-header{
     text-align: center;
     font-family: "Inter";
@@ -363,5 +372,6 @@ legend{
         margin-right: 10px;
        
     }
+
 }
 
