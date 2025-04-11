@@ -1,0 +1,29 @@
+/* GABRIEL */
+#body {
+    justify-content: space-evenly;
+}
+
+.product-name {
+    transition: color 0.1s ease-in-out, text-decoration 0.3s ease-in-out;
+}
+
+.product-name:hover {
+    color: #0c5aad;
+    text-decoration: underline;
+}
+
+.custom-btn {
+    background-color: black;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 10%;
+}
+
+.custom-btn:hover {
+    background-color: #21bb28;
+}
+
+.margem {
+    margin-top: 100px !important;
+
+}

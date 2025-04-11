@@ -28,41 +28,6 @@ html {
 body {
     overflow-x: hidden;
 }
-
-
-
-/* GABRIEL */
-#body {
-    justify-content: space-evenly;
-}
-
-.product-name {
-    transition: color 0.1s ease-in-out, text-decoration 0.3s ease-in-out;
-}
-
-.product-name:hover {
-    color: #0c5aad;
-    text-decoration: underline;
-}
-
-.custom-btn {
-    background-color: black;
-    color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 10%;
-}
-
-.custom-btn:hover {
-    background-color: #21bb28;
-}
-
-.margem {
-    margin-top: 100px !important;
-
-}
-
-
-
 /* GUILHERME */
 
 .menu_green_line.holo-header {
@@ -282,66 +247,6 @@ body {
         transform: none;
         /* Remove o transform no hover */
     }
-}
-
-/* KAUÃ */
-#sobre_nos_pagina{
-    margin-bottom: 1200px;
-}
-#sobre_nos_pagina .invisivel {
-    height: 4rem;
-}
-@media (min-width: 768px){
-    #sobre_nos_pagina{
-        margin-bottom: 70px;
-    }
-}
-@media (min-width: 1200px) {
-    #sobre_nos {
-        height: 100vh;
-    }
-
-    .invisivel {
-        height: 3rem;
-    }
-    #sobre_nos_pagina{
-        margin-bottom: 70px;
-    }
-}
-@media (min-width: 1400px) {
-    #sobre_nos_pagina{
-        margin-bottom: 60px;
-    }
-}
-
-#sobre_nos_pagina .img-height {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-#sobre_nos_pagina .img_dimensões_n_valores {
-    height: 80px;
-    width: max-content;
-}
-
-#sobre_nos_pagina .altura_largura_bl-nossos_valores {
-    height: 320px;
-    width: 320px;
-}
-
-#sobre_nos_pagina .background-nossa-equipe {
-    background-color: #F5F5DC;
-    color: #2F4F4F;
-}
-
-#sobre_nos_pagina .text-justify {
-    text-align: justify;
-}
-
-#sobre_nos_pagina .background-nossos-valores {
-    background-color: #47EBB4;
-    opacity: 0.7;
 }
 
 /* FABRÍCIO */

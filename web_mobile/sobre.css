@@ -1,0 +1,51 @@
+/* KAUÃ */
+#sobre_nos_pagina .invisivel {
+    height: 4rem;
+}
+@media (min-width: 372px){
+    #sobre_nos_pagina{
+        margin-bottom: 250px;
+    }
+}
+@media (min-width: 1200px) {
+    #sobre_nos {
+        height: 100vh;
+    }
+
+    .invisivel {
+        height: 3rem;
+    }
+}
+@media (min-width: 1400px) {
+
+}
+
+#sobre_nos_pagina .img-height {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+#sobre_nos_pagina .img_dimensões_n_valores {
+    height: 80px;
+    width: max-content;
+}
+
+#sobre_nos_pagina .altura_largura_bl-nossos_valores {
+    height: 320px;
+    width: 320px;
+}
+
+#sobre_nos_pagina .background-nossa-equipe {
+    background-color: #F5F5DC;
+    color: #2F4F4F;
+}
+
+#sobre_nos_pagina .text-justify {
+    text-align: justify;
+}
+
+#sobre_nos_pagina .background-nossos-valores {
+    background-color: #47EBB4;
+    opacity: 0.7;
+}
