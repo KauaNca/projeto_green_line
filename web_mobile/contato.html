@@ -75,63 +75,52 @@
             Alguma dúvida ou observação? Basta nos escrever uma mensagem!
         </p>
     </header>
+    <!-- formulario de contato -->
+
     <main class="principal">
-        <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
-            <div class="dropdown-menu d-block position-static p-2 mx-0 shadow rounded-3 w-340px up"
-                data-bs-theme="light">
-                <div class="d-grid gap-1">
-                    <div class="cal">
-                        <div>
-                            <form class="formulario">
-                                <fieldset>
-                                    <legend>Entrar em Contato</legend>
-                                    <p id="cont-P">
-                                        Tem um inquérito ou algum feedbak para nós? Preencha o
-                                        formulário abaixo para entrar em contato com nossa equipe.
-                                    </p>
-                                    <label for="nome">Nome:</label>
-                                    <input type="text" id="nome" name="nome" onkeyup="validaNome()" />
-                                    <label for="email">Email</label>
-                                    <input type="email" />
-                                    <div id="emailHelp" class="form-text">
-                                        Nunca compartilharemos seu e-mail com mais ninguém.
-                                    </div>
-                                    <label for="assunto" id="assunto">Como podemos ajudar?</label>
-                                    <textarea name="assunto" id="assunto" onkeyup="validaAssunto()"></textarea>
-                                    <input type="submit" value="Enviar" onclick="enviar()" />
-                                </fieldset>
-                            </form>
+        <div class="container-contato">
+            <div class="form-container">
+                <form class="formulario">
+                    <fieldset>
+                        <legend>Entrar em Contato</legend>
+                        <p id="cont-P">
+                            Tem um inquérito ou algum feedback para nós? Preencha o
+                            formulário abaixo para entrar em contato com nossa equipe.
+                        </p>
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" onkeyup="validaNome()" />
+                        <label for="email">Email</label>
+                        <input type="email" />
+                        <div id="emailHelp" class="form-text">
+                            Nunca compartilharemos seu e-mail com mais ninguém.
                         </div>
-                    </div>
-                </div>
+                        <label for="assunto" id="assunto">Como podemos ajudar?</label>
+                        <textarea name="assunto" id="assunto" onkeyup="validaAssunto()"></textarea>
+                        <input type="submit" value="Enviar" onclick="enviar()" />
+                    </fieldset>
+                </form>
             </div>
-
-            <div class="dropdown-menu d-block position-static p-2 mx-0 shadow rounded-3 w-340px" data-bs-theme="dark">
-                <div class="d-grid gap-1">
-                    <div class="cal">
-                        <div class="contato-img bd-placeholder-img">
-                            <img id="img1" src="./img/retorno-tel.png" alt="imagem contato" max-width="100%"
-                                max-height="100%" />
-
-                            <div id="cont-caixa">
-                                <div class="cont-caixas">
-                                    <div class="caixa">
-                                        <img id="ico" src="./img/celular.png" alt="incone de celular" />
-                                        <a href="#">
-                                            <h6>Telefone</h6>
-                                        </a>
-                                        <a href="#">(00) 99999-9999</a>
-                                    </div>
-                                </div>
-                                <div class="cont-caixas">
-                                    <div class="caixa">
-                                        <img id="ico-email" src="./img/o-email.png" alt="incone de email" />
-                                        <a href="#">
-                                            <h6>Email</h6>
-                                        </a>
-                                        <a href="#">MeuEmail@email.com</a>
-                                    </div>
-                                </div>
+    <!-- imagen e contato  -->
+            <div class="img-container">
+                <div class="contato-img">
+                    <img id="img1" src="./img/retorno-tel.png" alt="imagem contato" />
+                    <div id="cont-caixa">
+                        <div class="cont-caixas">
+                            <div class="caixa">
+                                <img id="ico" src="./img/celular.png" alt="ícone de celular" />
+                                <a href="#">
+                                    <h6>Telefone</h6>
+                                </a>
+                                <a href="#">(00) 99999-9999</a>
+                            </div>
+                        </div>
+                        <div class="cont-caixas">
+                            <div class="caixa">
+                                <img id="ico-email" src="./img/o-email.png" alt="ícone de email" />
+                                <a href="#">
+                                    <h6>Email</h6>
+                                </a>
+                                <a href="#">MeuEmail@email.com</a>
                             </div>
                         </div>
                     </div>
@@ -139,6 +128,8 @@
             </div>
         </div>
     </main>
+
+    <!-- rodape -->
     <footer class="container-fluid py-3 rodape position-absolute bottom-0">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <li class="nav-item">
