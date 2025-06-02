@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - GreenLine</title>
+    <meta name="description" content="Cadastre-se na GreenLine para acessar produtos ecológicos e sustentáveis">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- CSS Personalizados -->
+    <link rel="stylesheet" href="../css/login_cadastro.css">
+</head>
+
+<body>
+    <!-- Estrutura principal -->
+    <div id="cadastro" class="p-0 m-0">
+        <div class="d-md-flex half">
+
+            <!-- Lado esquerdo com imagem de fundo -->
+            <div class="bg d-none d-md-block" style="background-image: url('../img/wallpaper_cadastro.jpg')!important;" aria-hidden="true">
+                <button class="mt-2 ms-3 btn btn-warning d-flex justify-content-center align-items-center rounded-circle"
+                    style="width: 48px; height: 48px;" aria-label="Voltar para página inicial">
+                    <a href="../index.html" class="text-decoration-none text-white">
+                        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+                    </a>
+                </button>
+            </div>
+
+            <!-- Lado direito com formulário -->
+            <div class="contents">
+                <div class="container p-0">
+                    <div class="row justify-content-center align-items-center align-items-md-center">
+                        <div class="col-md-12">
+
+                            <!-- Botão para voltar (visível em telas menores) -->
+                            <button class="btn d-block d-md-none text-start" aria-label="Voltar para página inicial">
+                                <a href="../index.html" class="text-dark">
+                                    <i class="bi bi-arrow-bar-left" aria-hidden="true"></i>
+                                </a>
+                            </button>
+
+                            <!-- Bloco do formulário -->
+                            <div class="form-block mx-auto">
+                                <div class="text-center -sm-3">
+                                    <h1 class="h3">Torne-se um <strong>Green Line</strong></h1>
+                                </div>
+                                <span id="mensagem-superior" class="d-none" role="alert" aria-live="assertive">Email e CPF já cadastrados. <br>Faça login novamente para próximos passos.</span>
+
+                                <!-- Formulário de cadastro -->
+                                <form id="formularioCadastro" aria-label="Formulário de cadastro">
+
+                                    <!-- Campo Nome -->
+                                    <div class="input-group">
+                                        <span class="alert d-block bi bi-person text-bg-success"
+                                            data-bs-toggle="tooltip" title="Nome" id="nomeErro" aria-hidden="true"></span>
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control input" id="username" placeholder=" "
+                                                pattern="[a-zA-Z\s]+" maxlength="60"
+                                                title="Somente letras e espaços são permitidos." required
+                                                aria-required="true">
+                                            <label class="form-label" for="username">Nome</label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Campo CPF -->
+                                    <div class="input-group">
+                                        <span class="alert d-block bi bi-card-list text-bg-success" id="cpfErro" aria-hidden="true"></span>
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control input" id="cpf" placeholder=" "
+                                                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" maxlength="14"
+                                                title="Digite o CPF no formato 123.456.789-00" onchange="verificarCPF()"
+                                                required aria-required="true">
+                                            <label class="form-label" for="cpf">CPF</label>
+                                        </div>
+                                    </div>
+                                    <span id="cpfCadastrado" class="d-none text-danger fw-bold-0 text-end" style="font-size: 0.6rem;" role="alert">CPF cadastrado.</span>
+
+                                    <!-- Campo E-mail -->
+                                    <div class="input-group">
+                                        <span class="alert d-block bi bi-envelope-fill text-bg-success"
+                                            id="emailErro" aria-hidden="true"></span>
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control input" id="email" placeholder=" "
+                                                maxlength="60" onchange="verificarEmail()"
+                                                required aria-required="true">
+                                            <label class="form-label" for="email">E-mail</label>
+                                        </div>
+                                    </div>
+                                    <span id="emailCadastrado" class="d-none text-danger fw-bold-0 text-end" style="font-size: 0.6rem;" role="alert">E-mail cadastrado.</span>
+
+                                    <!-- Campo Telefone -->
+                                    <div class="input-group">
+                                        <span class="alert d-block bi bi-telephone-fill text-bg-success"
+                                            id="telefoneErro" aria-hidden="true"></span>
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control input" id="telefone" placeholder=" "
+                                                pattern="\(\d{2}\)\s9\d{4}-\d{4}" maxlength="15"
+                                                title="Digite o telefone no formato brasileiro: (11) 99999-9999"
+                                                required aria-required="true">
+                                            <label class="form-label" for="telefone">Telefone</label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Campo Senha -->
+                                    <div class="input-group">
+                                        <span class="alert d-block bi bi-lock-fill text-bg-success"
+                                            id="senhaErro" aria-hidden="true"></span>
+                                        <div class="form-floating">
+                                            <input type="password" class="form-control input" id="password"
+                                                placeholder=" " pattern="(?=.*\d)(?=.*[a-zA-Z]).{5,}"
+                                                title="A senha deve ter pelo menos 5 caracteres, incluindo ao menos 1 número e 1 letra."
+                                                maxlength="5" required aria-required="true">
+                                            <label class="form-label" for="password">Senha</label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Link para login -->
+                                    <div class="d-sm-flex -2 align-items-center justify-content-end mb-2">
+                                        <span class="ms-2 ml-auto"><a href="login.html"
+                                                class="forgot-pass text-decoration-none">Já possui conta?
+                                                <u>Entre</u></a></span>
+                                    </div>
+
+                                    <!-- Botão de envio -->
+                                    <button type="submit" class="btn btn-block btn-success" aria-label="Cadastrar nova conta">
+                                        Cadastrar
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    
+    <!-- JavaScript personalizado -->
+    <script src="../js/frontendCadastro.js" defer></script>
+</body>
+
+</html>

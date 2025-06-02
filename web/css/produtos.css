@@ -1,0 +1,281 @@
+/* Estilo geral do corpo da página */
+body {
+    font-family: "Roboto", sans-serif; /* Define a fonte principal como Roboto, com fallback para sans-serif */
+    background-color: #fff; /* Define a cor de fundo como branco */
+    overflow-x: hidden; /* Remove o deslocamento horizontal caso o conteúdo exceda a largura */
+}
+
+/* Classe para margens personalizadas */
+.margem {
+    margin-top: 100px !important; /* Adiciona uma margem superior de 100px, com prioridade devido ao uso de !important */
+}
+
+/* Estilo para imagens dentro do carrossel */
+#carouselExampleSlidesOnly .carousel-inner img {
+    height: 200px; /* Define uma altura fixa para as imagens */
+    object-fit: cover; /* Faz com que as imagens ocupem todo o espaço, mantendo suas proporções */
+}
+
+.pagination {
+    background-color: #f8f9fa; /* Cor de fundo da paginação */
+    border-radius: 0.25rem; /* Arredondar os cantos */
+}
+
+.pagination .page-item {
+    margin: 0.1rem; /* Espaçamento entre os itens */
+}
+
+.pagination .page-link {
+    color: #ffffff; /* Cor do texto */
+    background-color: #2e8b56cc; /* Cor de fundo dos links */
+    border: 35px #2E8B57; /* Borda dos links */
+}
+
+.pagination .page-link:hover {
+    color: #ffffffc2; /* Cor do texto ao passar o mouse */
+    background-color: #6FC933; /* Cor de fundo ao passar o mouse */
+    border-color: #40A82F; /* Borda ao passar o mouse */
+}
+
+.pagination .active .page-link {
+    color: #fff; /* Cor do texto do item ativo */
+    background-color: #3fa82f; /* Cor de fundo do item ativo */
+    border-color: #FFF2CF; /* Borda do item ativo */
+}
+
+.pagination .disabled .page-link {
+    color: #6c757d; /* Cor do texto do item desativado */
+    background-color: transparent; /* Cor de fundo do item desativado */
+    border-color: #dee2e6; /* Borda do item desativado */
+}
+
+.col-12.filter-container {
+    margin-top: 4.5rem; /* Ajuste o valor conforme necessário */
+}
+
+/* Cabeçalho da seção de filtros: exibe o título e ícones com espaçamento */
+.filter-header {
+    display: flex;                  /* Alinha os elementos lado a lado */
+    align-items: center;           /* Centraliza verticalmente */
+    gap: 0.5rem;                   /* Espaço entre os itens (ex: ícone e texto) */
+    font-size: 1.125rem;           /* Tamanho da fonte (18px) */
+    font-weight: 400;             /* Peso normal da fonte */
+    margin-bottom: 0.5rem;         /* Espaço abaixo do cabeçalho */
+}
+
+/* Linha separadora abaixo do cabeçalho ou seções */
+.filter-hr {
+    border-color: #d1d5db;         /* Cor do traço (cinza claro) */
+    margin-bottom: 1rem;           /* Espaço abaixo da linha */
+    margin-top: 0;                 /* Remove espaço acima */
+}
+
+/* Título de subseções de filtros (como "Categorias") */
+.filter-section-title {
+    font-size: 0.875rem;           /* Tamanho pequeno da fonte (14px) */
+    font-weight: 400;             /* Peso normal */
+    margin-bottom: 0.5rem;         /* Espaço inferior */
+}
+
+/* Container onde aparecem os filtros aplicados como tags */
+.filter-applied {
+    display: flex;                 /* Layout horizontal */
+    flex-wrap: wrap;              /* Quebra para a próxima linha se precisar */
+    gap: 0.25rem;                 /* Espaço entre as tags */
+    border-bottom: 1px solid #d1d5db; /* Linha inferior */
+    padding-bottom: 0.5rem;        /* Espaço interno inferior */
+    margin-bottom: 1rem;           /* Espaço externo inferior */
+}
+
+/* Estilo das tags de filtros aplicados */
+.filter-tag {
+    background-color: #e5e7eb;     /* Fundo cinza claro */
+    color: #374151;                /* Texto cinza escuro */
+    font-size: 0.75rem;            /* Fonte pequena (12px) */
+    border-radius: 0.25rem;        /* Cantos arredondados */
+    padding: 0.125rem 0.5rem;      /* Espaço interno (vertical e horizontal) */
+    display: flex;                 /* Alinha texto e botão lado a lado */
+    align-items: center;           /* Alinha verticalmente */
+    gap: 0.25rem;                  /* Espaço entre texto e botão */
+}
+
+/* Botão (ícone de X) dentro da tag de filtro */
+.filter-tag button {
+    border: none;                 /* Remove borda */
+    background: transparent;     /* Fundo transparente */
+    color: #6b7280;              /* Cinza intermediário */
+    padding: 0;
+    margin: 0;
+    cursor: pointer;             /* Mostra ponteiro ao passar por cima */
+}
+
+/* Efeitos ao passar o mouse ou focar no botão */
+.filter-tag button:hover,
+.filter-tag button:focus {
+    color: #374151;              /* Muda a cor do ícone para mais escura */
+    outline: none;               /* Remove a borda azul padrão do foco */
+}
+
+/* Formulário de filtros (categorias, status, etc) */
+.filter-form {
+    display: flex;               /* Alinha elementos em coluna */
+    flex-direction: column;
+    gap: 0.5rem;                 /* Espaço entre filtros */
+    border-bottom: 1px solid #d1d5db;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Label dos filtros (texto + checkbox) */
+.filter-label {
+    display: inline-flex;        /* Alinha checkbox e texto lado a lado */
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;         /* Tamanho de fonte (14px) */
+    font-weight: 400;
+    cursor: pointer;             /* Mostra ponteiro ao passar por cima */
+}
+
+/* Estilo dos checkboxes personalizados */
+.filter-checkbox {
+    width: 1rem;                 /* Largura: 16px */
+    height: 1rem;                /* Altura: 16px */
+    accent-color: #16a34a;       /* Cor verde ao marcar (Tailwind green-600) */
+    background-color: #f3f4f6;   /* Fundo claro quando desmarcado */
+    border: 1px solid #d1d5db;   /* Borda cinza clara */
+    border-radius: 0.25rem;      /* Cantos levemente arredondados */
+}
+
+/* Estilo dos titulos */
+.card-title:hover {
+    text-decoration: underline; 
+    color: #424040;
+}
+
+/* Carrinho */
+  .cart-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: #fff;
+    min-width: 300px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 1000;
+  }
+  .cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .cart-item img {
+    width: 50px;
+    margin-right: 10px;
+  }
+  .cart-item input {
+    width: 50px;
+    margin: 0 10px;
+  }
+
+  .botoes-compra{
+    margin: 1.1rem;
+
+  }
+
+
+  .btn-comprar-agora{
+    background-color: #2BBD31;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  .btn-adicionar-carrinho{
+    background-color: #2BBD31;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  #quantidadeModal {
+    width: 3rem; /* equivalente a w-16 */
+    text-align: center;
+    font-size: 0.75rem; /* text-xs */
+    padding: 0.25rem 0.5rem !important; /* px-2 py-1 */
+    border: 1px solid #d1d5db; /* border-gray-300 */
+    border-radius: 0.375rem; /* rounded */
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  #quantidadeModal:focus {
+    border-color: #6FC933; /* cor */
+  }
+  #btnDiminuir, #btnAumentar {
+ border: 1px solid #6FC933;
+  border-radius: 6px;
+  width: 2rem;
+  height: 1.8rem; /* opcional, se quiser altura igual também */
+  text-align: center;
+  line-height: 1rem; /* centraliza o texto verticalmente */
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  }
+
+#btnDiminuir:hover,
+#btnAumentar:hover {
+  transform: scale(1.1);
+}
+  /* Remove as setinhas no Chrome, Edge, Safari */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+/* Remove as setinhas no Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+
+}
+
+.price-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.discount-price {
+  color: #059669;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.current-price {
+  color: #1f2937;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.discount-badge {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+

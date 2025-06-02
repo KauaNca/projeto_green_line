@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <title>Green Line - Loja de Produtos Ecológicos</title> <!-- Título mais descritivo -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Adicionando meta tag para descrição -->
+  <meta name="description" content="GreenLine - Loja especializada em produtos ecológicos e sustentáveis">
+  <!-- Bootstrap Icons (ícones estilizados) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!--CSS Personalizados -->
+  <link rel="stylesheet" href="css/index.css"> <!-- Estilos específicos para a página -->
+  <link rel="stylesheet" href="css/menu_rodape.css"> <!-- Estilos compartilhados entre o menu e o rodapé -->
+  <link rel="stylesheet" href="css/produtos.css">
+  <!--JavaScript Personalizado -->
+  <script src="js/frontendIndex.js" defer></script>
+  <script src="js/frontendPadrao.js" defer></script>
+</head>
+
+<body>
+  <!-- Cabeçalho -->
+  <nav class="holo-header menu_green_line" role="banner">
+    <nav class="navbar navbar-expand-lg container bg-dark.bg-gradient" aria-label="Navegação principal">
+      <img src="img/logo.png" alt="Logo GreenLine - Folha verde estilizada" width="40" height="40">
+
+      <!-- Título da marca -->
+      <a class="navbar-brand" href="index.html" aria-current="page">GreenLine</a>
+
+      <!-- Botão para dispositivos menores com label melhorado -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+        aria-controls="navbarContent" aria-expanded="false" aria-label="Alternar navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Conteúdo do menu de navegação -->
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="../index.html" aria-current="page">Início</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="produtosDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" aria-haspopup="true">Produtos</a>
+            <ul class="dropdown-menu bg-white" aria-labelledby="produtosDropdown">
+              <li><a class="dropdown-item" href="public/produtos.html">Produtos Ecológicos</a></li>
+              <li><a class="dropdown-item" href="public/manutencao.html">Roupas</a></li>
+              <li><a class="dropdown-item" href="public/manutencao.html">Cuidados Pessoais</a></li>
+              <li><a class="dropdown-item" href="public/manutencao.html">Artigos Esportivos</a></li>
+              <li><a class="dropdown-item" href="public/manutencao.html">Eletrônicos</a></li>
+              <li><a class="dropdown-item" href="public/manutencao.html">Livros</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="public/manutencao.html">Ofertas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="public/sobre.html">Sobre</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="public/contato.html">Contato</a>
+          </li>
+          <li class="nav-item dropdown d-none">
+            <a class="nav-link dropdown-toggle" href="#" id="admDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" aria-haspopup="true">Administração</a>
+            <ul class="dropdown-menu bg-white" aria-labelledby="produtosDropdown">
+              <li><a class="dropdown-item" href="public/cadastroProdutos.html">Cadastrar Produtos</a></li>
+              <li><a class="dropdown-item" href="public/manutencao.html">Cadastro de Administrador</a></li>
+              <li><a class="dropdown-item" href="public/manutencao.html">Cadastro de Categorias</a></li>
+              <li><a class="dropdown-item" href="public/manutencao.html">Dados de venda</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link icon-btn" href="public/carrinho.html" aria-label="Carrinho de compras">
+              <i class="bi bi-cart position-relative" aria-hidden="true">
+                <span
+                  class="badge text-bg-success position-absolute top-0 start-100 translate-middle rounded-circle border border-light badge-sm"
+                  id="badge-carrinho">0</span>
+              </i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link icon-btn" href="public/login.html" id="link-usuario" aria-label="Área do usuário"><i
+                id="icone-usuario" class="bi bi-person" aria-hidden="true"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </nav>
+
+  <!-- Conteúdo Principal -->
+  <main class="p-0" style="margin-top: 6.5rem;">
+    <div class="container-fluid d-none d-sm-block">
+      <div class="carousel slide carousel-fade" data-bs-ride="carousel" id="carousel-index"
+        aria-label="Destaques da loja">
+
+        <!-- Indicadores do carrossel -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carousel-index" data-bs-slide-to="0" class="active"></button>
+          <button type="button" data-bs-target="#carousel-index" data-bs-slide-to="1"></button>
+          <button type="button" data-bs-target="#carousel-index" data-bs-slide-to="2"></button>
+          <button type="button" data-bs-target="#carousel-index" data-bs-slide-to="3"></button>
+        </div>
+
+        <!-- Imagens do carrossel -->
+        <div class="carousel-inner" id="carousel-imagens" role="listbox">
+          <div class="carousel-item active">
+            <img src="img/index_carousel/carrossel1.jpg" class="d-block w-100" style="height: 30rem; object-fit: cover;"
+              alt="Imagem do carrossel 1" loading="lazy" onerror="this.src='${config.fallbackImage}'">
+          </div>
+          <div class="carousel-item">
+            <img src="img/index_carousel/carrossel2.jpg" class="d-block w-100" style="height: 30rem; object-fit: cover;"
+              alt="Imagem do carrossel 2" loading="lazy" onerror="this.src='${config.fallbackImage}'">
+          </div>
+          <div class="carousel-item">
+            <img src="img/index_carousel/carrossel3.jpg" class="d-block w-100" style="height: 30rem; object-fit: cover;"
+              alt="Imagem do carrossel 3" loading="lazy" onerror="this.src='${config.fallbackImage}'">
+          </div>
+          <div class="carousel-item">
+            <img src="img/index_carousel/carrossel4.jpg" class="d-block w-100" style="height: 30rem; object-fit: cover;"
+              alt="Imagem do carrossel 4" loading="lazy" onerror="this.src='${config.fallbackImage}'">
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="h5 text-start my-4 text fw-bold" aria-label="Produtos em promoção">
+      <i class="bi bi-tag-fill me-2" aria-hidden="true"></i>
+      Promoções Imperdíveis
+    </p>
+    <!-- Grid de Produtos - Exibe os cards de produtos dinamicamente -->
+    <div class="row justify-content-center px-5" id="container-produtos" role="list" aria-label="Lista de produtos">
+      <!-- Os cards serão adicionados aqui dinamicamente pelo JavaScript -->
+    </div>
+    <div class="container-fluid d-flex align-items-center mt-3" id="comunidade">
+      <div class="container text-center p-1">
+        <h1 class="lead text-light fw-bold">Junte-se a nossa comunidade Green Line</h1>
+        <p class="text-light">Crie uma conta hoje e seja parte do movimento de mudar o futuro</p>
+        <a href="public/login.html" class="btn btn-light text-dark btn-tamanho-fixo">Entrar</a>
+        <a href="public/cadastro.html" class="btn btn-outline-light btn-tamanho-fixo">Registrar-se</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="container-fluid text-center text-white" style="background-color:black" role="contentinfo">
+    <div class="container">
+      <section>
+        <div class="row text-center d-flex justify-content-center pt-5">
+          <!-- Links do rodapé -->
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="public/politica_privacidade.html" class="text-white">Política de privacidade</a>
+            </h6>
+          </div>
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="public/termos_de_uso.html" class="text-white">Termos de uso</a>
+            </h6>
+          </div>
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="public/trocas_devolucoes.html" class="text-white">Trocas e devoluções</a>
+            </h6>
+          </div>
+        </div>
+      </section>
+      <hr class="my-3" aria-hidden="true" />
+      <section class="mb-1">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8">
+            <p class="text-center">71080-020 | CNPJ: 74.707.730/0001-63 | Ceilândia, Brasília-DF</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- Texto de Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+      <p class="text-center">© 2025 GreenLine</p>
+    </div>
+  </footer>
+  <!-- Modal de Detalhes do Produto -->
+  <div class="modal fade" id="produtoModal" tabindex="-1" aria-labelledby="produtoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 1000px;">
+      <div class="modal-content bg-white text-black">
+        <div class="modal-header border-b border-gray-400">
+          <h2 class="font-bold text-base md:text-lg leading-tight" id="produtoModalLabel">Carregando...</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+
+        <div class="modal-body p-6">
+          <div
+            class="d-none alert alert-danger text-center fw-bold position-absolute top-50 start-50 translate-middle-x w-75"
+            id="item-resultado">
+          </div>
+          <div class="row g-4">
+            <!-- Imagem do produto -->
+            <div class="col-md-6 text-center">
+              <div class="w-full md:w-1/3 flex justify-center items-center mb-6 md:mb-0">
+                <img id="produtoModalImagem" src="" alt="Imagem do produto" class="w-60 h-60 object-cover" height="240"
+                  width="240" />
+              </div>
+            </div>
+            <!-- Detalhes do produto -->
+            <div class="col-md-6">
+              <div class="w-full md:w-2/3">
+                <!-- Avaliação -->
+                <div class="flex items-center space-x-1 mb-1" id="produtoModalAvaliacao">
+                  <i class="fas fa-star text-yellow-400 text-xs"></i>
+                  <i class="fas fa-star text-yellow-400 text-xs"></i>
+                  <i class="fas fa-star text-yellow-400 text-xs"></i>
+                  <i class="fas fa-star text-yellow-400 text-xs"></i>
+                  <i class="fas fa-star-half-alt text-yellow-400 text-xs"></i>
+                  <span class="text-xs text-gray-600">(0)</span>
+                </div>
+
+                <!-- Marca -->
+                <p class="text-xs mb-3" id="produtoModalMarca">Marca não disponível</p>
+
+                <!-- Preço -->
+                <div class="mb-3" id="produtoModalPreco">
+                  <p id="produtoModalPreco">R$ 00,00</p>
+                </div>
+                <p class="text-xs mb-3">ou em até 2x no cartão de crédito</p>
+              </div>
+              <!-- Fim do MD -->
+
+              <!-- Quantidade -->
+              <div id="quantidadeWrapper" class="flex items-center space-x-2 mb-4">
+                <label id="quantidadeLabel" for="quantidadeModal">Quantidade</label>
+                <input id="quantidadeModal" min="1" name="quantidade" type="number" value="1" />
+                <button id="btnDiminuir" aria-label="Diminuir quantidade" type="button"
+                  onclick="adjustQuantity('quantidadeModal', -1)">–</button>
+                <button id="btnAumentar" aria-label="Aumentar quantidade" type="button"
+                  onclick="adjustQuantity('quantidadeModal', 1)">+</button>
+              </div>
+              <!-- Botões principais -->
+              <div class="mb-6">
+                <div class="botoes-compra">
+                  <button class="btn-comprar-agora" id="btnComprarAgora">Comprar agora</button>
+                  <button class="btn-adicionar-carrinho" id="btnAddCarrinho">Adicionar ao carrinho</button>
+                </div>
+              </div>
+            </div>
+            <!-- Descrição -->
+            <div class="mt-6">
+              <hr>
+              <h2 class="text-sm font-semibold border-b border-gray-400 pb-1 mb-2">Descrição</h2>
+              <p class="text-xs mb-3 leading-relaxed" id="produtoModalDescricao">Descrição não disponível.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

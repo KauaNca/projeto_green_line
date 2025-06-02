@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Line - Finalizar Compra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/menu_rodape.css">
+    <link rel="stylesheet" href="../css/vendas.css">
+    <script src="../js/frontendVendas.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <div class="container-fluid d-flex flex-column py-3">
+            <div class="container text-start mb-4">
+                <h1 class="h3 fw-bold text-success">Finalizar compra</h1>
+                <p class="lead">Preencha as informações para que a compra seja efetuada</p>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row gap-3 justify-content-center">
+                    <div class="col-12 col-lg-8 secao-formulario">
+                        <form id="formulario-venda" novalidate>
+                            <fieldset class="mb-4 border rounded-3 px-3 py-2">
+                                <legend class="h5 fw-bold text-success mb-3">Endereço de entrega</legend>
+                                <div class="d-flex gap-3">
+                                    <div class="form-floating mb-3 flex-grow-1">
+                                        <input type="text" name="cep" class="form-control" id="cep"
+                                            placeholder="Digite o CEP" required maxlength="9" 
+                                            oninput="mascaraCEP(this)" autocomplete="postal-code">
+                                        <label for="cep">CEP*</label>
+                                        <div class="invalid-feedback">Por favor, insira um CEP válido.</div>
+                                    </div>
+                                    <div class="form-floating mb-3 flex-grow-1">
+                                        <input type="text" name="bairro" class="form-control" id="bairro"
+                                            placeholder="Digite o seu bairro" maxlength="30" autocomplete="address-level2">
+                                        <label for="bairro">Bairro</label>
+                                        <div class="invalid-feedback"></div>
+                                    </div>
+                                </div>
+                                <div class="form-floating mb-3 flex-grow-1">
+                                    <input type="text" name="endereco" class="form-control" id="endereco"
+                                        placeholder="Digite o seu endereço" required maxlength="60" autocomplete="street-address">
+                                    <label for="endereco">Endereço*</label>
+                                    <div class="invalid-feedback">Por favor, insira um endereço válido.</div>
+                                </div>
+                                <div class="d-flex gap-3">
+                                    <div class="form-floating mb-3 flex-grow-0">
+                                        <input type="text" name="numero" class="form-control" id="numero"
+                                            placeholder="Número" required maxlength="9" autocomplete="address-line2">
+                                        <label for="numero">Número*</label>
+                                        <div class="invalid-feedback">Por favor, insira o número.</div>
+                                    </div>
+                                    <div class="form-floating mb-3 flex-grow-1">
+                                        <input type="text" name="complemento" class="form-control" id="complemento"
+                                            placeholder="Complemento de endereço" maxlength="30">
+                                        <label for="complemento">Complemento</label>
+                                        <div class="invalid-feedback"></div>
+                                    </div>
+                                </div>
+                                <div class="d-flex gap-3">
+                                    <div class="form-floating mb-3 flex-grow-0">
+                                        <input type="text" name="cidade" class="form-control" id="cidade"
+                                            placeholder="Cidade" required maxlength="25" autocomplete="address-level2">
+                                        <label for="cidade">Cidade*</label>
+                                        <div class="invalid-feedback">Por favor, insira a cidade.</div>
+                                    </div>
+                                    
+                                    <div class="form-floating mb-3">
+                                        <select name="estado" class="form-select" id="estado" required autocomplete="address-level1">
+                                            <option value="" selected disabled>Selecione</option>
+                                            <option value="AC">Acre</option>
+                                            <option value="AL">Alagoas</option>
+                                            <option value="AP">Amapá</option>
+                                            <option value="AM">Amazonas</option>
+                                            <option value="BA">Bahia</option>
+                                            <option value="CE">Ceará</option>
+                                            <option value="DF">Distrito Federal</option>
+                                            <option value="ES">Espírito Santo</option>
+                                            <option value="GO">Goiás</option>
+                                            <option value="MA">Maranhão</option>
+                                            <option value="MT">Mato Grosso</option>
+                                            <option value="MS">Mato Grosso do Sul</option>
+                                            <option value="MG">Minas Gerais</option>
+                                            <option value="PA">Pará</option>
+                                            <option value="PB">Paraíba</option>
+                                            <option value="PR">Paraná</option>
+                                            <option value="PE">Pernambuco</option>
+                                            <option value="PI">Piauí</option>
+                                            <option value="RJ">Rio de Janeiro</option>
+                                            <option value="RN">Rio Grande do Norte</option>
+                                            <option value="RS">Rio Grande do Sul</option>
+                                            <option value="RO">Rondônia</option>
+                                            <option value="RR">Roraima</option>
+                                            <option value="SC">Santa Catarina</option>
+                                            <option value="SP">São Paulo</option>
+                                            <option value="SE">Sergipe</option>
+                                            <option value="TO">Tocantins</option>
+                                        </select>
+                                        <label for="estado">Estado*</label>
+                                        <div class="invalid-feedback">Por favor, selecione um estado.</div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="mb-4 border rounded-3 px-3 py-2">
+                                <legend class="h5 fw-bold text-success mb-3">Forma de pagamento</legend>
+                                <div class="form-floating mb-3">
+                                    <select name="pagamento" class="form-select" id="pagamento" required>
+                                        <option value="" selected disabled>Selecione</option>
+                                        <option value="CC">Cartão de crédito</option>
+                                        <option value="PIX">PIX</option>
+                                        <option value="BB">Boleto Bancário</option>
+                                    </select>
+                                    <label for="pagamento">Forma de Pagamento*</label>
+                                    <div class="invalid-feedback">Por favor, selecione uma forma de pagamento.</div>
+                                </div>
+                                <div class="px-2" id="container-pagamentos">
+                                    
+                                </div>
+                            </fieldset>
+
+                            <div class="d-flex justify-content-end mt-4">
+                                <button type="button" class="btn btn-outline-secondary me-3" id="Cancelar">Cancelar</button>
+                                <button type="submit" class="btn btn-success" id="FinalizarCompra">Finalizar Compra</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-12 col-lg-3 d-flex flex-column gap-4">
+                        <div class="border rounded-3 p-3">
+                            <h2 class="h5 mb-3">Resumo do pedido</h2>
+                            <div class="container-produtos-vendas">
+                                <!-- Produtos serão adicionados dinamicamente aqui -->
+                            </div>
+                            
+                            <div class="mt-3">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-muted">Subtotal:</span>
+                                    <span id="contador-subtotal" class="fw-medium">R$ 0,00</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-muted">Frete:</span>
+                                    <span id="contador-frete" class="fw-medium">R$ 0,00</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between">
+                                    <span class="fw-bold">Total:</span>
+                                    <span id="contador-total" class="fw-bold text-success">R$ 0,00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border rounded-3 p-3">
+                            <h2 class="h5 mb-3">Informações importantes</h2>
+                            <ul class="lista-dicas">
+                                <li>Frete calculado no fechamento da compra</li>
+                                <li>Prazos de entrega de 3 a 7 dias úteis</li>
+                                <li>Pagamento via PIX tem 5% de desconto</li>
+                                <li>Entregamos em todo território nacional</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

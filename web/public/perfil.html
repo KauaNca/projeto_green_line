@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/perfil.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <img id="profileAvatar"
+                        src="https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png"
+                        alt="Avatar">
+                    <label class="change-avatar" for="avatarInput">
+                        <i class="fas fa-camera"></i>
+                        <input type="file" id="avatarInput" accept="image/*">
+                    </label>
+                </div>
+                <h2 class="profile-name" id="profileName">Carregando...</h2>
+                <div class="profile-email" id="profileEmail">carregando...</div>
+            </div>
+
+            <div class="nav-menu">
+                <div class="nav-item active" data-section="personal">
+                    <i class="fas fa-user"></i> Informações Pessoais
+                </div>
+                <div class="nav-item" data-section="orders">
+                    <i class="fas fa-shopping-bag"></i> Meus Pedidos
+                </div>
+                <div class="nav-item" data-section="saved">
+                    <i class="fas fa-heart"></i> Produtos Salvos
+                </div>
+                <div class="nav-item" data-section="gears">
+                    <i class="fa-solid fa-gear"></i> Configurações
+                </div>
+                <div class="nav-item" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Seção de Informações Pessoais -->
+            <div id="personal-section">
+                <h2 class="section-title">Informações Pessoais</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Nome Completo</div>
+                        <div class="info-value editable" id="profileFullName">Carregando...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">E-mail</div>
+                        <div class="info-value" id="profileEmailContent">carregando...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Telefone</div>
+                        <div class="info-value editable" id="profilePhone">carregando...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">CPF</div>
+                        <div class="info-value" id="profileCpf">carregando...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Status</div>
+                        <div class="info-value" id="profileStatus">carregando...</div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="savePersonalBtn" style="margin-top: 20px;">Salvar
+                    Alterações</button>
+            </div>
+
+            <!-- Seção de Pedidos -->
+            <div id="orders-section" class="hidden">
+                <h2 class="section-title">Meus Pedidos</h2>
+                <div id="ordersContent">
+                    <p>Seus pedidos aparecerão aqui</p>
+                </div>
+            </div>
+
+            <!-- Seção de Produtos Salvos -->
+            <div id="saved-section" class="hidden">
+                <h2 class="section-title">Produtos Salvos</h2>
+                <div id="savedProductsContent">
+                    <p>Seus produtos salvos aparecerão aqui</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Dados do usuário
+        let usuarioLogado = null;
+        const API_URL = "http://localhost:3008";
+        const AUTH_API_URL = "https://green-line-web.onrender.com";
+        const semPhoto = "https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png";
+
+        // Função para carregar dados do usuário - MODIFICADA
+        async function carregarDadosUsuario() {
+            try {
+                // 1. Obter o ID do usuário da API de autenticação
+                const responseAuth = await fetch(`${AUTH_API_URL}/loginDados`);
+
+                if (!responseAuth.ok) {
+                    throw new Error("Erro ao obter dados de autenticação");
+                }
+
+                const authData = await responseAuth.json();
+                console.log("Dados de autenticação:", authData);
+
+                // Verificação robusta do ID
+                const idPessoa = authData?.id_pessoa ? Number(authData.id_pessoa) : null;
+                if (!idPessoa || isNaN(idPessoa) || idPessoa <= 0) {
+                    console.error("ID inválido recebido:", authData.id_pessoa);
+                    window.location.href = "../index.html";
+                    return;
+                }
+
+
+
+                // 2. Obter os dados completos do usuário
+                const responseUser = await fetch(`${API_URL}/pessoa/${idPessoa}`);
+                if (!responseUser.ok) {
+                    throw new Error("Erro ao carregar dados do usuário");
+                }
+
+                usuarioLogado = await responseUser.json();
+                console.log("Dados do usuário:", usuarioLogado);
+                mostrarPerfil(usuarioLogado);
+
+            } catch (error) {
+                console.error("Erro ao carregar perfil:", error.message);
+                alert("Erro ao carregar perfil. Redirecionando para login...");
+                window.location.href = "../index.html";
+            }
+        }
+
+        // Mostrar perfil com dados do usuário
+        function mostrarPerfil(usuario) {
+            if (!usuario) return;
+
+            document.getElementById("profileName").textContent = usuario.nome || "Nome não informado";
+            document.getElementById("profileEmail").textContent = usuario.email || "Email não informado";
+            document.getElementById("profileEmailContent").textContent = usuario.email || "Email não informado";
+            document.getElementById("profileFullName").textContent = usuario.nome || "Nome não informado";
+            document.getElementById("profilePhone").textContent = usuario.telefone || "Telefone não informado";
+            document.getElementById("profileCpf").textContent = usuario.cpf || "CPF não informado";
+            document.getElementById("profileStatus").textContent = usuario.situacao === "A" ? "Ativo" : "Inativo";
+
+            document.getElementById("profileAvatar").src = usuario.imagem_perfil?.trim() ? usuario.imagem_perfil : semPhoto;
+        }
+
+
+
+        // Configura os event listeners
+        function setupEventListeners() {
+            document.querySelectorAll(".nav-item").forEach(item => {
+                item.addEventListener("click", function () {
+                    document.querySelectorAll(".nav-item").forEach(navItem => navItem.classList.remove("active"));
+                    this.classList.add("active");
+
+                    document.querySelectorAll(".main-content > div").forEach(section => section.classList.add("hidden"));
+                    document.getElementById(`${this.dataset.section}-section`).classList.remove("hidden");
+                });
+            });
+
+            document.getElementById("avatarInput").addEventListener("change", async function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        document.getElementById("profileAvatar").src = event.target.result;
+                        atualizarImagemPerfil(event.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            document.querySelectorAll(".editable").forEach(item => {
+                item.addEventListener("click", function () {
+                    const currentValue = this.textContent.trim();
+                    const fieldName = this.id.replace("profile", "").toLowerCase();
+
+                    const newValue = prompt(`Editar ${fieldName}:`, currentValue);
+                    if (newValue && newValue !== currentValue) {
+                        this.textContent = newValue;
+                    }
+                });
+            });
+
+            document.getElementById("savePersonalBtn").addEventListener("click", async function () {
+                try {
+                    const idPessoa = Number(localStorage.getItem("id_pessoa"));
+                    const updatedData = {
+                        nome: document.getElementById("profileFullName").textContent,
+                        telefone: document.getElementById("profilePhone").textContent
+                    };
+
+                    const response = await fetch(`${API_URL}/pessoa/${idPessoa}`, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(updatedData)
+                    });
+
+                    if (response.ok) {
+                        alert("Dados atualizados com sucesso!");
+                        await carregarDadosUsuario();
+                    } else {
+                        throw new Error("Erro ao atualizar dados");
+                    }
+                } catch (error) {
+                    console.error("Erro ao salvar dados:", error.message);
+                    alert("Erro ao salvar alterações");
+                }
+            });
+        }
+
+        // Atualizar imagem de perfil
+        async function atualizarImagemPerfil(imageData) {
+            try {
+                const idPessoa = localStorage.getItem("id_pessoa");
+                const response = await fetch(`${API_URL}/pessoa/${idPessoa}/imagem`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ imagem_perfil: imageData })
+                });
+
+                if (!response.ok) {
+                    throw new Error("Erro ao atualizar imagem");
+                }
+            } catch (error) {
+                console.error("Erro ao atualizar imagem:", error.message);
+            }
+        }
+
+        // Logout
+        function logout() {
+            localStorage.removeItem("id_pessoa");
+            localStorage.removeItem("usuario");
+            localStorage.removeItem("dadosCompra");
+            fetch(`${AUTH_API_URL}/logout`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                body: JSON.stringify({ codigo: "logout" })
+                }
+                
+            }).finally(() => {
+                localStorage.clear();
+                window.location.href = "../index.html";
+            });
+        }
+
+        // Carrega os dados ao abrir a página
+        document.addEventListener("DOMContentLoaded", async () => {
+            await carregarDadosUsuario();
+            setupEventListeners();
+        });
+
+    </script>
+</body>
+
+</html>

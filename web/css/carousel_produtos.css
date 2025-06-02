@@ -1,0 +1,217 @@
+/* Melhorias específicas para o carrossel */
+.carousel-slide-wrapper {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+
+.carousel-image {
+  height: 400px !important;
+  object-fit: cover;
+  filter: brightness(0.9);
+}
+
+.carousel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: left;
+  padding: 0;
+}
+
+.carousel-content {
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.carousel-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.carousel-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-description {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.carousel-buttons .btn {
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.carousel-buttons .btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+}
+
+.carousel-buttons .btn-outline-light {
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.carousel-buttons .btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: white;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Indicadores melhorados */
+.carousel-indicators button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin: 0 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.carousel-indicators button.active {
+  background-color: #28a745;
+  border-color: #28a745;
+  transform: scale(1.2);
+}
+
+/* Controles melhorados */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  opacity: 1;
+}
+
+/* Melhorias na barra de pesquisa */
+.search-enhanced {
+  padding: 1rem;
+  border-radius: 12px;
+  
+}
+
+.search-enhanced .input-group-text {
+  border-color: #28a745;
+  background: white;
+}
+
+.search-enhanced .form-control {
+  border-color: #28a745;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+}
+
+.search-enhanced .form-control:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.search-enhanced .btn-success {
+  background: #28a745;
+  border-color: #28a745;
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+  min-width: 50px;
+}
+
+/* Animações */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .carousel-slide-wrapper {
+    height: 300px;
+  }
+
+  .carousel-image {
+    height: 300px !important;
+  }
+
+  .carousel-title {
+    font-size: 1.8rem;
+  }
+
+  .carousel-description {
+    font-size: 1rem;
+  }
+
+  .carousel-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-enhanced {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-slide-wrapper {
+    height: 250px;
+  }
+
+  .carousel-image {
+    height: 250px !important;
+  }
+
+  .carousel-title {
+    font-size: 1.5rem;
+  }
+
+  .carousel-description {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+}

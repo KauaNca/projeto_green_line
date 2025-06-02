@@ -1,0 +1,236 @@
+-- Criando a tabela de tipos de usuários
+CREATE TABLE tipo_usuario (
+    id_tipo INT PRIMARY KEY AUTO_INCREMENT,
+    tipo VARCHAR(35) NOT NULL
+);
+
+-- Criando a tabela de pessoas
+CREATE TABLE pessoa (
+    id_pessoa INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(40) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    telefone VARCHAR(15) NOT NULL,
+    cpf VARCHAR(18) NOT NULL UNIQUE,
+    id_tipo_usuario INT NOT NULL, 
+    FOREIGN KEY (id_tipo_usuario) REFERENCES tipo_usuario(id_tipo),
+    senha VARCHAR(255) NOT NULL,
+    situacao ENUM('A','P','I') NOT NULL,
+    imagem_perfil VARCHAR(255) NULL DEFAULT NULL,
+    data_hora TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Criando a tabela de registros de acessos
+CREATE TABLE acessos (
+    id_acesso INT PRIMARY KEY AUTO_INCREMENT, 
+    id_pessoa INT NOT NULL,
+    FOREIGN KEY (id_pessoa) REFERENCES pessoa(id_pessoa) ON DELETE CASCADE,
+    data_hora TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE produto (
+    id_produto INT PRIMARY KEY AUTO_INCREMENT,
+    produto VARCHAR(80) NOT NULL UNIQUE,
+    descricao TEXT NOT NULL,
+    descricao_curta VARCHAR(160) NULL,
+    preco DECIMAL(10,2) NOT NULL,
+    preco_promocional DECIMAL(10,2) NULL,
+    promocao BOOLEAN DEFAULT FALSE,
+    marca VARCHAR(20) NULL DEFAULT NULL,
+    avaliacao DECIMAL(5,2) NULL DEFAULT NULL,
+    quantidade_avaliacoes INT DEFAULT 0,
+    estoque INT NOT NULL,
+    parcelas_permitidas INT NOT NULL DEFAULT 1,
+    peso_kg DECIMAL(6,3) NULL,
+    dimensoes VARCHAR(20) NULL,
+    ativo BOOLEAN DEFAULT TRUE,
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_alteracao DATETIME NULL,
+    imagem_1 VARCHAR(255) NOT NULL,
+    imagem_2 VARCHAR(255) NULL DEFAULT NULL,
+    imagem_3 VARCHAR(255) NULL DEFAULT NULL,
+    imagem_4 VARCHAR(255) NULL DEFAULT NULL,
+    categoria VARCHAR(50) NOT NULL
+);
+
+
+-- Inserindo tipos de usuários
+INSERT INTO tipo_usuario (tipo) VALUES
+('Administrador'),
+('Usuário');
+
+-- Inserindo usuários
+INSERT INTO pessoa (nome, email, telefone, cpf, id_tipo_usuario, senha, situacao, imagem_perfil) VALUES
+('Kauã', 'kaua@email.com', '61999990001', '111.222.333-44', 1, 'senhaKaua', 'A', NULL),
+('Gabriel', 'gabriel@email.com', '61999990002', '222.333.444-55', 1, 'senhaGabriel', 'A', NULL),
+('Edenilson', 'edenilson@email.com', '61999990003', '333.444.555-66', 1, 'senhaEdenilson', 'A', NULL),
+('Guilherme', 'guilherme@email.com', '61999990004', '444.555.666-77', 2, 'senhaGuilherme', 'A', NULL),
+('Fabrício', 'fabricio@email.com', '61999990005', '555.666.777-88', 2, 'senhaFabricio', 'A', NULL);
+
+INSERT INTO produto (
+    produto, 
+    descricao, 
+    descricao_curta, 
+    preco, 
+    preco_promocional, 
+    promocao, 
+    marca, 
+    avaliacao, 
+    quantidade_avaliacoes, 
+    estoque, 
+    parcelas_permitidas, 
+    peso_kg, 
+    dimensoes, 
+    ativo, 
+    imagem_1, 
+    imagem_2, 
+    imagem_3, 
+    imagem_4, 
+    categoria
+) VALUES
+('Camisa Preta', 'Camisa 100% algodão', 'Camisa ecológica de algodão orgânico', 59.99, 49.99, TRUE, 'GreenWear', 4.5, 120, 50, 3, 0.300, '50x70x1', TRUE, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-Apd-5qaDSGuKucXJMEhmqPELT7w_7ywxPA&s', 'https://example.com/camisa2.jpg', 'https://example.com/camisa3.jpg', NULL, 'Moda Sustentável'),
+
+('Tênis Branco', 'Esportivo confortável', 'Tênis sustentável para dia a dia', 199.90, 179.90, TRUE, 'Adidas', 3.7, 85, 0, 6, 0.800, '30x20x10', TRUE, 'https://cdnv2.moovin.com.br/napolitanacalcados/imagens/produtos/det/tenis-adidas-hp5930-649e2a507d880757d804772fd961402d.jpg', 'https://example.com/tenis2.jpg', NULL, NULL, 'Moda Sustentável'),
+
+('Escova de Dentes de Bambu', 'Feita com bambu 100% biodegradável.', 'Escova dental ecológica', 14.90, NULL, FALSE, 'EcoSmile', 4.6, 230, 0, 1, 0.050, '2x2x15', TRUE, 'https://images.tcdn.com.br/img/img_prod/671855/kit_com_10_escovas_de_dente_de_bambu_2079_1_5888ce07ca6053a48a94fa12f2b07d6f.jpg', NULL, NULL, NULL, 'Casa Ecológica'),
+
+('Shampoo Sólido Natural', 'Sem plástico, sem químicas pesadas, Com óleos essenciais e ingredientes naturais.', 'Shampoo zero plástico', 32.00, 28.90, FALSE, 'NatureClean', 4.8, 340, 0, 2, 0.100, '6x6x3', TRUE, 'https://acdn-us.mitiendanube.com/stores/001/492/053/products/14250195559-shampoo-solido-1-cd29735917944cd23016297759347332-1024-1024.jpg', 'https://example.com/shampoo2.jpg', NULL, NULL, 'Cosméticos Naturais'),
+
+('Canudos Reutilizáveis de Inox', 'Chega de plástico descartável! canudos fritos de inox.', 'Kit com 4 canudos de inox', 19.90, 15.90, FALSE, 'EcoStraw', 4.5, 180, 0, 2, 0.200, '15x2x2', TRUE, 'https://images.tcdn.com.br/img/img_prod/1004735/kit_com_4_canudos_inox_reutilizaveis_reto_curvo_com_escova_higienica_75_1_046d7c7267c8fc31f95ee618b4e8fb43.jpg', NULL, NULL, NULL, 'Casa Ecológica'),
+
+('Bee Wrap (Embalagem de Cera de Abelha)', 'Pano de algodão coberto com cera de abelha. Reutilizável, lavável.', 'Substituto ecológico para plástico filme', 29.90, NULL, FALSE, 'BeeEco', 4.3, 150, 0, 3, 0.150, '30x30x0.5', TRUE, 'https://m.media-amazon.com/images/I/81-RFKZmXML._AC_UF894,1000_QL80_.jpg', 'https://example.com/beewrap2.jpg', NULL, NULL, 'Casa Ecológica'),
+
+('Garrafa Térmica Sustentável', 'Design moderno, construção resistente e zero plástico.', 'Garrafa térmica de aço inox', 89.90, 79.90, FALSE, 'EcoBottle', 4.7, 420, 0, 6, 0.450, '8x8x25', TRUE, 'https://70730.cdn.simplo7.net/static/70730/sku/brindes-garrafas-e-squeezes-squeeze-garrafa-termica-sustentavel-550-ml-aco-inox-e-tampa-bambu-brindes-personalizados-bebidas-quentes-e-frias-p-1726872734169.jpg', NULL, NULL, NULL, 'Casa Ecológica'),
+
+('Desodorante Natural em Barra', 'Livre de alumínio e parabenos, Embalagem biodegradável e ingredientes naturais.', 'Desodorante vegano', 24.90, NULL, FALSE, 'PureNature', 4.2, 190, 0, 2, 0.080, '5x5x2', TRUE, 'https://cdn.awsli.com.br/2500x2500/244/244021/produto/111766578/7698b71eca.jpg', NULL, NULL, NULL, 'Cosméticos Naturais'),
+
+('Sacola Reutilizável de Algodão Orgânico', 'Feita com algodão cultivado sem agrotóxicos. Estilo e consciência ecológica em um só produto.', 'Sacola ecológica resistente', 17.50, 14.90, FALSE, 'EcoBag', 4.4, 270, 0, 1, 0.100, '40x40x5', TRUE, 'https://images.tcdn.com.br/img/img_prod/604546/ecobag_sacola_100_algodao_cru_agora_sou_eco_media_1281_1_9e9b6bf5e238586371f9cf21a10ffcc5.jpg', NULL, NULL, NULL, 'Moda Sustentável'),
+
+('Copo Retrátil de Silicone', 'Dobrável, prático e ecológico. Ideal pro dia a dia.', 'Copo ecológico portátil', 21.90, NULL, FALSE, 'CollapsiCup', 4.1, 130, 0, 2, 0.120, '8x8x15', TRUE, 'https://images.tcdn.com.br/img/img_prod/671855/copo_eco_retratil_dobravel_de_silicone_200ml_227_3_20230310111530.jpg', NULL, NULL, NULL, 'Casa Ecológica'),
+
+('Sabonetes Artesanais Veganos', 'Naturais, veganos e sem testes em animais.', 'Kit com 3 sabonetes', 15.90, 12.90, FALSE, 'PureSoap', 4.0, 210, 0, 1, 0.250, '10x5x5', TRUE, 'https://images.tcdn.com.br/img/img_prod/604546/sabonete_natural_artesanal_vegano_ares_do_mato_115g_andiroba_argila_verde_e_capim_limao_901_1_20191118161720.jpg', NULL, NULL, NULL, 'Cosméticos Naturais'),
+
+('Kits de Higiene Pessoal Sustentável', 'Itens essenciais, naturais e sem plástico.', 'Kit completo para higiene', 59.90, 49.90, FALSE, 'EcoCare', 4.3, 180, 0, 6, 0.600, '20x15x10', TRUE, 'https://cdn.awsli.com.br/2500x2500/1293/1293859/produto/97248829/inserir-um-t-tulo--2--q6569ubosb.jpg', 'https://example.com/kit2.jpg', NULL, NULL, 'Cosméticos Naturais'),
+
+('Esponja de Lavar Louça Biodegradável', '100% vegetal e compostável. Substitui esponjas comuns.', 'Pacote com 3 esponjas', 24.90, NULL, FALSE, 'EcoSponge', 3.9, 95, 0, 1, 0.100, '10x10x5', TRUE, 'https://down-br.img.susercontent.com/file/d19117650cf6bfa783cae28cd2269df4', NULL, NULL, NULL, 'Casa Ecológica'),
+
+('Panos Multiuso Reutilizáveis', 'Duráveis, laváveis e sem desperdício', 'Kit com 5 panos', 19.00, 15.90, FALSE, 'CleanEco', 4.1, 160, 0, 1, 0.300, '30x30x1', TRUE, 'https://m.media-amazon.com/images/I/71Xe8ArIhjL.jpg', NULL, NULL, NULL, 'Casa Ecológica'),
+
+('Roupas de Algodão Orgânico', 'Confortáveis, ecológicas e livres de químicas.', 'Conjunto de camiseta e calça', 119.90, 99.90, FALSE, 'OrganicWear', 3.8, 75, 0, 6, 0.700, '30x40x5', TRUE, 'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS4r-3WVbdheERAvrg30D4cZJkBjwKFSHapBeQxyIyKMC8PZ0DbKCH10mApZU2R2F3fDg-ISG3cU2K-Ri2pvrG9r1KNd_z0ftXwzFEhxqfKF8af_hV8ru1BuQ', 'https://example.com/roupa2.jpg', 'https://example.com/roupa3.jpg', NULL, 'Moda Sustentável'),
+
+('Cadernos de Papel Reciclado', 'Papel reciclado, ideal pra estudos e anotações.', 'Caderno A5 96 folhas', 22.90, NULL, FALSE, 'EcoPaper', 4.0, 140, 0, 2, 0.300, '15x21x1', TRUE, 'https://ajg.im/img/produtos/3/Caderno-A5-Papel-Reciclado-19249d4-1716561407.jpg', NULL, NULL, NULL, 'Reciclagem e Reutilização'),
+
+('Carregadores Solares Portáteis', 'Carregue com energia solar. Prático e limpo.', 'Carregador 10.000mAh', 349.90, 299.90, FALSE, 'SunPower', 4.5, 210, 0, 12, 0.350, '15x8x2', TRUE, 'https://m.media-amazon.com/images/I/51yjDO9eeuL._AC_UF1000,1000_QL80_.jpg', 'https://example.com/carregador2.jpg', NULL, NULL, 'Energia Renovável'),
+
+('Velas Ecológicas de Cera Vegetal', 'Cera vegetal e aromas suaves. 100% natural.', 'Vela aromática 200g', 76.90, NULL, FALSE, 'EcoCandle', 3.7, 65, 0, 3, 0.250, '8x8x10', TRUE, 'https://cdn.awsli.com.br/800x800/1682/1682897/produto/263210254/wiskie-cha--branco-vlsss2l8p3.jpg', NULL, NULL, NULL, 'Bem-estar Sustentável'),
+
+('Talheres Reutilizáveis de Bambu', 'Leves, resistentes e ideais pra levar.', 'Kit com garfo, faca e colher', 18.00, 15.00, FALSE, 'BambooEat', 3.9, 110, 0, 1, 0.150, '20x3x3', TRUE, 'https://cdn.awsli.com.br/2500x2500/2626/2626263/produto/229421116/complesto-2qwc2xczyi.jpg', NULL, NULL, NULL, 'Casa Ecológica'),
+
+('Filtros de Café de Pano', 'Reutilizáveis, laváveis e sem plástico', 'Filtro para café tamanho médio', 9.90, NULL, FALSE, 'CoffeeEco', 3.5, 45, 0, 1, 0.050, '15x15x1', TRUE, 'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTxZ-jMOayxx44wbD-3ZlHw2o_RM2x9zFdeL9vcHua_TEYITo7FJG77SDE9K6Qn8yuB-L7hy3AV3pJPYmS5Dxsd2z2Z5ooSgTXuF4y6XIi5HHCLIkmy9sQfbUhE', NULL, NULL, NULL, 'Casa Ecológica'),
+
+('Brinquedos de Madeira Sustentável', 'Seguros, educativos e feitos com madeira eco.', 'Blocos de montar 50 peças', 69.90, 59.90, FALSE, 'EcoToys', 4.2, 180, 0, 6, 1.200, '30x20x15', TRUE, 'https://www.keewe.com.br/media/uploads/162/2024/09/lpGwjI4vaq8AHaoJum3XcKhFt9tsUm9rtKU2zfdk.jpg', 'https://example.com/brinquedo2.jpg', NULL, NULL, 'Reciclagem e Reutilização'),
+
+('Cafeteira Elétrica', 'Uma cafeteira top.', 'Cafeteira elétrica 1.2L', 199.90, 179.90, TRUE, 'EcoBrew', 4.5, 320, 20, 6, 1.500, '20x15x25', TRUE, 'https://www.keewe.com.br/media/uploads/162/2024/09/lpGwjI4vaq8AHaoJum3XcKhFt9tsUm9rtKU2zfdk.jpg', 'https://example.com/cafeteira2.jpg', 'https://example.com/cafeteira3.jpg', NULL, 'Casa Ecológica');
+
+
+
+-- Criando a tabela de pagamentos
+CREATE TABLE pagamento (
+    id_pagamento INT PRIMARY KEY AUTO_INCREMENT,
+tipo ENUM("CRÉDITO","DÉBITO","BOLETO BANCÁRIO","PIX") NOT NULL DEFAULT "CRÉDITO",
+    pagamento_situacao ENUM('Em aberto', 'Pago', 'Cancelado') NOT NULL DEFAULT "Em aberto",
+    valor DECIMAL(10,2) NOT NULL,
+    num_parcelas INT DEFAULT 1,
+    bandeira_cartao VARCHAR(20) NULL,
+);
+
+-- Criando a tabela de pedidos
+CREATE TABLE pedidos (
+    id_pedido INT PRIMARY KEY AUTO_INCREMENT,
+    data_hora TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    situacao CHAR(1) NOT NULL DEFAULT 'P',
+    id_pessoa INT NOT NULL,
+    FOREIGN KEY (id_pessoa) REFERENCES pessoa(id_pessoa),
+    id_pagamento INT NOT NULL,
+    FOREIGN KEY (id_pagamento) REFERENCES pagamento(id_pagamento),
+    cep_entrega TEXT NULL,
+    metodo_entrega VARCHAR(50) NULL
+);
+
+CREATE TABLE carrinho (
+    id_carrinho INT PRIMARY KEY AUTO_INCREMENT,
+    data_hora TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    situacao CHAR(1) NOT NULL DEFAULT 'P', -- 'P' para pendente, 'F' para finalizado
+    id_pessoa INT NOT NULL,
+    FOREIGN KEY (id_pessoa) REFERENCES pessoa(id_pessoa)
+);
+
+CREATE TABLE carrinho_itens (
+    id_item INT PRIMARY KEY AUTO_INCREMENT,
+    id_carrinho INT NOT NULL,
+    FOREIGN KEY (id_carrinho) REFERENCES carrinho(id_carrinho),
+    id_produto INT NOT NULL,
+    FOREIGN KEY (id_produto) REFERENCES produto(id_produto),
+    quantidade INT NOT NULL DEFAULT 1,
+    situacao CHAR(1) NOT NULL DEFAULT 'P' -- 'P' para pendente, 'R' para removido, 'C' para comprado
+);
+
+CREATE TABLE pedido_produto (
+    id_pedido_produto INT PRIMARY KEY AUTO_INCREMENT,
+    id_pedido INT NOT NULL,
+    id_produto INT NOT NULL,
+    quantidade INT NOT NULL DEFAULT 1,
+    preco_unitario DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (id_pedido) REFERENCES pedidos(id_pedido),
+    FOREIGN KEY (id_produto) REFERENCES produto(id_produto)
+);
+
+//VIEWS
+DROP VIEW IF EXISTS view_carrinho_produtos;
+
+CREATE VIEW view_carrinho_produtos AS
+SELECT 
+    c.id_pessoa,
+    ci.id_produto,
+    ci.quantidade,
+    ci.situacao AS situacao_item -- Substituindo situacao por situacao_item
+FROM 
+    carrinho c
+JOIN 
+    carrinho_itens ci ON c.id_carrinho = ci.id_carrinho
+WHERE 
+    c.situacao = 'P';
+
+
+
+CREATE VIEW vw_carrinho_itens_detalhados AS
+SELECT 
+    ci.id_item,
+    ci.id_carrinho,
+    ci.id_produto,
+    p.produto AS nome_produto,
+    p.descricao_curta,
+    ci.quantidade,
+    p.preco AS preco_unitario,
+    p.promocao,
+    p.preco_promocional,
+    (CASE 
+        WHEN p.promocao THEN p.preco_promocional 
+        ELSE p.preco 
+    END) AS preco_final,
+    (ci.quantidade * (CASE 
+        WHEN p.promocao THEN p.preco_promocional 
+        ELSE p.preco 
+    END)) AS subtotal,
+    p.imagem_1 AS imagem_principal,
+    p.marca,
+    p.estoque,
+    c.id_pessoa,
+    c.situacao,
+    c.data_hora AS data_carrinho
+FROM 
+    carrinho_itens ci
+JOIN 
+    produto p ON ci.id_produto = p.id_produto
+JOIN 
+    carrinho c ON ci.id_carrinho = c.id_carrinho
+WHERE 
+    p.ativo = TRUE;

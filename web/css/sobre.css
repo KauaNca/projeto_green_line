@@ -1,0 +1,101 @@
+/* ESTILOS GERAIS */
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* SEÇÃO NOSSA EQUIPE */
+.background-nossa-equipe {
+    background-color: #F5F5DC;
+    color: #111111;
+    padding: 3rem 0;
+}
+
+/* CARDS DA EQUIPE */
+.equipe-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.equipe-card:hover {
+    transform: translateY(-5px);
+}
+
+.equipe-card-img {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+    
+}
+
+.equipe-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.equipe-card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.equipe-card-text {
+    flex-grow: 1;
+}
+
+/* CARD DO FUNDADOR */
+.founder-card {
+    max-width: 300px;
+    margin: 0 auto 3rem;
+    border: none;
+    background: transparent;
+}
+
+.founder-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto;
+    border: 5px solid white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 767.98px) {
+    .equipe-card-img {
+        height: 200px;
+    }
+    
+    .equipe-card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .green_line {
+        height: 100vh;
+    }
+}
+.imagem-valor {
+    width: 60px; 
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
+
+/* Se quiser deixar responsivo */
+@media (max-width: 768px) {
+    .imagem-valor {
+        width: 50px;
+        height: 50px;
+    }
+}

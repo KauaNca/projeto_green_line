@@ -1,0 +1,23 @@
+ .imagem-preview {
+     height: 250px;
+     object-fit: contain;
+     background-color: #f8f9fa;
+ }
+
+ .lista-dicas li {
+     margin-bottom: 0.5rem;
+ }
+
+ .campo-invalido {
+     border-color: #dc3545;
+ }
+
+ .secao-formulario {
+     margin-bottom: 1.5rem;
+ }
+
+ .container-switch {
+     border-radius: 0.375rem;
+     padding: 1rem;
+     background-color: #f8f9fa;
+ }

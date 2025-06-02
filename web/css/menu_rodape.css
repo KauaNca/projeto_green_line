@@ -1,0 +1,220 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    /* Garante o contexto relativo */
+    overflow-x: hidden;
+    font-size: 1.2rem;
+}
+
+@include media-breakpoint-up(sm) {
+    html {
+        font-size: 1.4rem;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    html {
+        font-size: 1.6rem;
+    }
+
+}
+
+@include media-breakpoint-up(lg) {
+    html {
+        font-size: 1.9rem;
+    }
+}
+
+.badge-sm {
+    font-size: 0.7rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    line-height: 1rem;
+    padding: 0;
+}
+
+/* GUILHERME */
+
+.menu_green_line.holo-header {
+    position: absolute;
+    width: 100%;
+    /*background: linear-gradient(135deg, #064e3b, #059669, #34d399);*/
+    background: white;
+    color: black;
+    padding: 1rem 0;
+    z-index: 1000;
+    top: 0;
+    overflow: visible;
+    /* Permite que o dropdown se estenda */
+}
+
+.menu_green_line .navbar {
+    position: relative;
+    z-index: 1050;
+    /* Acima do header, mas abaixo do dropdown */
+}
+
+.menu_green_line .holo-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0 100L100 0M10 100L110 0M20 100L120 0" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/></svg>') repeat;
+    opacity: 0.3;
+    animation: holo-move 15s linear infinite;
+    pointer-events: none;
+}
+
+.menu_green_line .holo-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(52, 211, 153, 0.2) 0%, transparent 70%);
+    opacity: 0.5;
+    animation: pulse 10s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes holo-move {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100px -100px;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+}
+
+.menu_green_line .nav-link {
+    color: black !important;
+    font-weight: 600;
+    position: relative;
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.menu_green_line .nav-link:hover {
+    color: gray !important;
+    transform: translateY(-3px) scale(1.05);
+
+}
+
+.menu_green_line .dropdown-menu {
+    border: none;
+    border-radius: 10px;
+    z-index: 1100;
+    position: absolute;
+    /* Garante que o dropdown se posicione corretamente */
+}
+
+.menu_green_line .dropdown-item {
+    color: black !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.menu_green_line .dropdown-item:hover {
+    background: rgba(52, 211, 153, 0.3);
+    color: #ffffff !important;
+    transform: translateX(5px);
+    text-shadow: 0 0 10px rgba(52, 211, 153, 0.9);
+}
+
+.menu_green_line .icon-btn {
+    color: black !important;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.menu_green_line .icon-btn:hover {
+    color: gray !important;
+    transform: translateY(-3px) scale(1.1);
+    text-shadow: 0 0 15px rgba(52, 211, 153, 0.9);
+}
+
+.menu_green_line .navbar-brand {
+    color: black !important;
+    font-size: 2rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.menu_green_line .navbar-brand:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 991px) {
+    .menu_green_line .navbar {
+        padding: 0.5rem;
+        /* Reduzir o padding */
+    }
+
+    .menu_green_line .nav-link {
+        font-size: 0.9rem;
+        /* Diminuir o tamanho da fonte */
+    }
+
+    .menu_green_line .nav-link:hover {
+        transform: none;
+        /* Remove o transform no hover */
+    }
+
+    .menu_green_line .search-bar {
+        max-width: 100%;
+        margin: 0.5rem 0;
+        /* Ajustar a margem */
+    }
+
+    .menu_green_line .dropdown-menu {
+        left: 0;
+        /* Garantir que o dropdown comece na borda esquerda */
+        right: auto;
+        /* Remover qualquer ajuste automático à direita */
+    }
+
+    .menu_green_line .dropdown-item:hover {
+        transform: none;
+        /* Remove o transform no hover */
+    }
+
+    .menu_green_line .icon-btn:hover {
+        transform: none;
+        /* Remove o transform no hover */
+    }
+
+    .menu_green_line .navbar-brand:hover {
+        transform: none;
+        /* Remove o transform no hover */
+    }
+}

@@ -1,0 +1,15 @@
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Configurações locais da IDE
+.vscode/
+.idea/
+
+# Logs e arquivos temporários
+*.log
+*.tmp
+
+# Arquivos de backup ou swap
+*.bak
+*.swp

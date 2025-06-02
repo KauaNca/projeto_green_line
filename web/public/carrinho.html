@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Line - Carrinho de Compras</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="../js/frotendCarrinho.js" defer></script>
+    <style>
+        /* Estilos personalizados para o carrinho */
+        :root {
+            --verde-principal: #28a745;
+            --verde-claro: #d4edda;
+            --cinza-claro: #f8f9fa;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .secao-carrinho {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+        }
+
+        .produto-carrinho {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .produto-carrinho:hover {
+            background-color: var(--cinza-claro);
+        }
+
+        .img-produto {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .quantidade-input {
+            width: 60px;
+            text-align: center;
+        }
+
+        .btn-quantidade {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .resumo-pedido {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+        }
+
+        .valor-total {
+            font-size: 1.2rem;
+            color: var(--verde-principal);
+            font-weight: bold;
+        }
+
+        .btn-continuar {
+            background-color: var(--verde-principal);
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+        }
+
+        .btn-continuar:hover {
+            background-color: #218838;
+            color: white;
+        }
+
+        .link-continuar {
+            color: var(--verde-principal);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .link-continuar:hover {
+            text-decoration: underline;
+        }
+
+        .badge-promocao {
+            background-color: #dc3545;
+            font-size: 0.7rem;
+        }
+
+        .preco-original {
+            text-decoration: line-through;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .preco-promocao {
+            color: #dc3545;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main>
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <h1 class="h3 fw-bold text-success">
+                        <i class="bi bi-cart3"></i> Seu Carrinho
+                    </h1>
+                    <p class="text-muted">Revise seus itens antes de finalizar a compra</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Lista de Produtos -->
+                <div class="col-lg-8 mb-4">
+                    <div class="secao-carrinho" id="secao-carrinho">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h2 class="h5 fw-bold">Itens no carrinho</h2>
+                            <a href="produtos.html" class="link-continuar">
+                                <i class="bi bi-arrow-left"></i> Continuar comprando
+                            </a>
+                        </div>
+                        <!--Adicionar aqui-->
+                        <div class="d-none alert alert-warning" id="aviso"></div>
+                        <section class="container-fluid border" id="produtos-carrinho"></section>
+                    </div>
+                </div>
+
+                <!-- Resumo do Pedido -->
+                <div class="col-lg-4">
+                    <div class="resumo-pedido sticky-top" style="top: 20px;">
+                        <h2 class="h5 fw-bold mb-4">Resumo</h2>
+
+                        <div class="mb-3">
+                            <!--
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Desconto</span>
+                                <span class="text-success">-R$ 60,00</span>
+                            </div>--->
+                        </div>
+
+                        <div class="py-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="text-muted">Itens </span>
+                                <span class="" id="quantidade-itens"></span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span class="fw-bold">Total</span>
+                                <span class="valor-total" id="total"></span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <button class="btn btn-continuar w-100 py-3" id="finalizar-venda">
+                                Finalizar Compra
+                            </button>
+                        </div>
+
+                        <div class="mt-3 small text-muted">
+                            <p class="mb-1">
+                                <i class="bi bi-lock-fill"></i> Suas informações estão seguras conosco
+                            </p>
+                            <p>
+                                <i class="bi bi-arrow-repeat"></i> Devolução grátis em até 30 dias
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

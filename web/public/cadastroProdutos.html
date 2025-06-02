@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Line - Cadastro de Produtos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/menu_rodape.css">
+    <link rel="stylesheet" href="../css/cadastro_produto.css">
+    <script src="../js/frontendCadastroProduto.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <div class="container-fluid d-flex flex-column py-3">
+            <div class="container text-start mb-4">
+                <h1 class="h3 fw-bold text-success">Cadastro de Produtos</h1>
+                <p class="lead">Preencha as informações do produto que deseja adicionar ao catálogo.</p>
+            </div>
+
+            <!-- Mensagens de feedback -->
+            <div id="error-message" class="alert alert-danger mx-auto" style="display: none; max-width: 800px;"></div>
+            <div id="success-message" class="alert alert-success mx-auto" style="display: none; max-width: 800px;"></div>
+
+            <div class="container-fluid">
+                <div class="row gap-3 justify-content-center">
+                    <div class="col-12 col-lg-8 border rounded-3 p-4 secao-formulario">
+                        <form id="formulario-produto" novalidate>
+                            <fieldset class="mb-4">
+                                <legend class="h5 fw-bold text-success mb-3">Informações Básicas</legend>
+
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="nome-produto" class="form-control" id="nome-produto"
+                                        placeholder="Digite o nome do produto" required minlength="3" maxlength="100">
+                                    <label for="nome-produto">Nome do Produto*</label>
+                                    <div class="invalid-feedback">Por favor, insira um nome válido (3-100 caracteres).
+                                    </div>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="marca-produto" class="form-control" id="marca-produto"
+                                        placeholder="Digite a marca do produto" required minlength="2" maxlength="50">
+                                    <label for="marca-produto">Marca*</label>
+                                    <div class="invalid-feedback">Por favor, insira uma marca válida (2-50 caracteres).
+                                    </div>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <textarea name="descricao-curta" class="form-control" id="descricao-curta"
+                                        placeholder="Digite uma descrição curta" required minlength="10" maxlength="200"
+                                        style="height: 100px;"></textarea>
+                                    <label for="descricao-curta">Descrição Curta*</label>
+                                    <div class="invalid-feedback">A descrição curta deve ter entre 10 e 200 caracteres.
+                                    </div>
+                                    <div class="form-text text-end"><span id="contador-descricao">0</span>/200
+                                        caracteres</div>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <textarea name="descricao-detalhada" class="form-control" id="descricao-detalhada"
+                                        placeholder="Digite uma descrição detalhada" minlength="20" maxlength="1000"
+                                        style="height: 120px;"></textarea>
+                                    <label for="descricao-detalhada">Descrição Detalhada</label>
+                                    <div class="invalid-feedback">A descrição detalhada deve ter entre 20 e 1000
+                                        caracteres.</div>
+                                    <div class="form-text text-end"><span id="contador-detalhada">0</span>/1000
+                                        caracteres</div>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <select name="categoria" class="form-select" id="categoria" required>
+                                        <option value="" selected disabled>Escolha uma categoria</option>
+                                        <option value="Moda Sustentável">Moda Sustentável</option>
+                                        <option value="Cosméticos Naturais">Cosméticos Naturais</option>
+                                        <option value="Casa Ecológica">Casa Ecológica</option>
+                                        <option value="Alimentos Orgânicos">Alimentos Orgânicos</option>
+                                        <option value="Transporte Sustentável">Transporte Sustentável</option>
+                                        <option value="Reciclagem e Reutilização">Reciclagem e Reutilização</option>
+                                        <option value="Jardinagem Orgânica">Jardinagem Orgânica</option>
+                                        <option value="Educação e Conscientização">Educação e Conscientização</option>
+                                        <option value="Energia Renovável">Energia Renovável</option>
+                                        <option value="Bem-estar Sustentável">Bem-estar Sustentável</option>
+                                        <option value="Tecnologia Verde">Tecnologia Verde</option>
+                                    </select>
+                                    <label for="categoria">Categoria*</label>
+                                    <div class="invalid-feedback">Por favor, selecione uma categoria.</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="imagens-produto" class="form-label">Imagens do Produto*</label>
+                                    <input class="form-control" type="file" id="imagens-produto" multiple
+                                        accept="image/jpeg, image/png" required>
+                                    <div class="form-text">Envie até 3 imagens (JPEG/PNG, máx. 5MB cada)</div>
+                                    <div class="invalid-feedback">Por favor, adicione pelo menos uma imagem do produto.
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="mb-4">
+                                <legend class="h5 fw-bold text-success mb-3">Detalhes do Produto</legend>
+
+                                <div class="d-flex justify-content-between gap-3 mb-3">
+                                    <div class="container-switch flex-grow-1">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" name="produto-ativo" type="checkbox"
+                                                id="produto-ativo" checked>
+                                            <label for="produto-ativo" class="form-check-label fw-medium">Produto
+                                                Ativo</label>
+                                        </div>
+                                        <p class="text-muted small mt-1 mb-0">Determina se o produto será exibido no
+                                            catálogo</p>
+                                    </div>
+
+                                    <div class="form-floating flex-grow-1">
+                                        <input type="number" name="estoque" class="form-control" id="estoque"
+                                            placeholder="Digite o estoque do produto" min="0" step="1" required>
+                                        <label for="estoque">Estoque*</label>
+                                        <div class="invalid-feedback">O estoque deve ser um número positivo.</div>
+                                    </div>
+
+                                    <div class="form-floating flex-grow-1">
+                                        <input type="number" name="peso" class="form-control" id="peso"
+                                            placeholder="Digite o peso do produto" min="0" step="0.01">
+                                        <label for="peso">Peso (kg)*</label>
+                                        <div class="invalid-feedback">O peso deve ser um número positivo.</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="dimensoes" class="form-control" id="dimensoes"
+                                        placeholder="Largura x Altura x Profundidade"
+                                        pattern="^\d+(\.\d+)?x\d+(\.\d+)?x\d+(\.\d+)?$">
+                                    <label for="dimensoes">Dimensões (LxAxP)*</label>
+                                    <div class="invalid-feedback">Use o formato: LarguraxAlturaxProfundidade (ex:
+                                        20x15x10)</div>
+                                    <div class="form-text text-end">Exemplo: 20x15x10 (em cm)</div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="mb-4">
+                                <legend class="h5 fw-bold text-success mb-3">Preço e Avaliação</legend>
+
+                                <div class="d-flex justify-content-between gap-3 mb-3">
+                                    <div class="form-floating flex-grow-1">
+                                        <input type="text" name="preco" class="form-control" id="preco"
+                                            placeholder="Digite o preço do produto" pattern="^\d{1,6}(,\d{2})?$"
+                                            required>
+                                        <label for="preco">Preço (R$)*</label>
+                                        <div class="invalid-feedback">Use o formato: 9999,99 (sem ponto para milhar)
+                                        </div>
+                                    </div>
+
+                                    <div class="container-switch flex-grow-1">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" name="promocao" type="checkbox"
+                                                id="promocao">
+                                            <label for="promocao" class="form-check-label fw-medium">Em Promoção</label>
+                                        </div>
+                                        <p class="text-muted small mt-1 mb-0">Marque se o produto está com desconto</p>
+                                    </div>
+                                    <div class="form-floating flex-grow-1 d-none" id="preco-promocional-div">
+                                        <input type="text" name="preco-promocional" class="form-control"
+                                            id="preco-promocional" placeholder="Preço promocional"
+                                            pattern="^\d{1,6}(,\d{2})?$">
+                                        <label for="preco-promocional">Preço promocional (R$)</label>
+                                        <div class="invalid-feedback">Use o formato: 9999,99 (sem ponto para milhar)</div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between gap-3">
+                                    <div class="form-floating flex-grow-1">
+                                        <input type="number" name="parcelas" class="form-control" id="parcelas"
+                                            placeholder="Número de parcelas" min="1" max="12" value="1">
+                                        <label for="parcelas">Parcelas</label>
+                                        <div class="invalid-feedback">Número de parcelas deve ser entre 1 e 12.</div>
+                                    </div>
+                                    <div class="form-floating flex-grow-1">
+                                        <input type="number" name="avaliacao" class="form-control" id="avaliacao"
+                                            placeholder="Avaliação (0 a 5)" min="0" max="5" step="0.1">
+                                        <label for="avaliacao">Avaliação (0-5)</label>
+                                        <div class="invalid-feedback">A avaliação deve ser entre 0 e 5.</div>
+                                    </div>
+
+                                    <div class="form-floating flex-grow-1">
+                                        <input type="number" name="quantidade-avaliacoes" class="form-control"
+                                            id="quantidade-avaliacoes" placeholder="Número de avaliações" min="0">
+                                        <label for="quantidade-avaliacoes">Nº de Avaliações</label>
+                                        <div class="invalid-feedback">Deve ser um número positivo.</div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <div class="d-flex justify-content-end mt-4">
+                                <button type="button" class="btn btn-outline-secondary me-3">Cancelar</button>
+                                <button type="submit" class="btn btn-success">
+                                    <span class="submit-text">Cadastrar Produto</span>
+                                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-12 col-lg-3 d-flex flex-column gap-4">
+                        <div class="border rounded-3 p-3">
+                            <h2 class="h5 mb-3">Pré-visualização</h2>
+                            <div class="card">
+                                <img id="imagem-preview" src="../img/imagem-nao-disponivel.png"
+                                    class="card-img-top imagem-preview" alt="Pré-visualização do produto">
+                                <div class="card-body">
+                                    <h5 id="preview-nome" class="card-title">Nome do produto</h5>
+                                    <p id="preview-descricao" class="card-text text-black-50">Descrição curta</p>
+                                    <p id="preview-preco" class="card-text fw-bold">R$ 0,00</p>
+                                    <span id="preview-etiquetas" class="d-flex gap-1">
+                                        <span class="badge bg-success" id="badge-ativo" style="display: none;">Ativo</span>
+                                        <span class="badge bg-danger d-none" id="badge-promocao">Promoção</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border rounded-3 p-3">
+                            <h2 class="h5 mb-3">Dicas para um bom cadastro</h2>
+                            <ul class="lista-dicas">
+                                <li>Use descrições detalhadas para destacar os benefícios ambientais do produto.</li>
+                                <li>Imagens de alta qualidade aumentam a conversão de vendas.</li>
+                                <li>Escolha a categoria mais adequada para melhorar a busca.</li>
+                                <li>Campos marcados com * são obrigatórios.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

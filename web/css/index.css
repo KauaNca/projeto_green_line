@@ -1,0 +1,66 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    /* Garante o contexto relativo */
+    overflow-x: hidden;
+    font-family: "Roboto", sans-serif;
+    background-color: #fff;
+}
+#comunidade{
+    background-color: #2e8b57;
+    height: 12rem;
+}
+.btn-tamanho-fixo {
+    width: 140px; /* ou qualquer valor desejado */
+    min-width: 140px; /* garante que não ficará menor */
+  }
+/* Estilos para o Modal */
+#produtoModal .modal-content {
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#produtoModal .modal-header {
+  border-bottom: 1px solid #e9ecef;
+  padding: 1.5rem;
+}
+
+#produtoModal .modal-body {
+  padding: 0;
+}
+
+#produtoModal .img-fluid {
+  background-color: #f8f9fa;
+  padding: 1rem;
+}
+
+#produtoModal .lead {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #495057;
+}
+
+#produtoModal .btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  #produtoModal .modal-dialog {
+    margin: 0.5rem;
+  }
+  
+  #produtoModal .row {
+    flex-direction: column;
+  }
+  
+  #produtoModal .col-md-6 {
+    width: 100%;
+  }
+}
